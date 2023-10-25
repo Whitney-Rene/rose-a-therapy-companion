@@ -5,13 +5,18 @@ import cors from 'cors';
 import { db } from './db/db-connection.js';
 import { hashPassword } from './utils/hashPasswordUtils.js';
 
-config();
+// config();
 
 const app = express();
-
 const PORT = process.env.PORT || 8888
 
-app.get
+//middleware
+app.use(cors());
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.json('nuevo comienzo')
+})
 
 app.listen(PORT, () => {
     console.log(`This excellent server is beautifully running on port ${PORT}`);
