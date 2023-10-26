@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function CreateRoseBudThorn() {
   return (
@@ -10,4 +9,5 @@ export default function CreateRoseBudThorn() {
   )
 }
 
+//learned:
 //sfc tab
