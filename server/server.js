@@ -1,3 +1,5 @@
+//the syntax for the dotenv was incorrect causing an issue with readability of env variables
+//I also did not need config() on line 12
 import "dotenv/config";
 import express from 'express';
 import cors from 'cors';
@@ -36,6 +38,7 @@ app.get('/entries', async (req, res) => {
     }
 });
 
+//add post, put/patch and delete endpoints
 
 app.listen(PORT, () => {
     console.log(`Estoy escuchando en port ${PORT}`);
