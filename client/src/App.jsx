@@ -28,6 +28,7 @@ function App() {
       <div>
         <h1>rose: a therapy companion</h1>
         <p>{backEndMessage}</p>
+        <button>add a rose</button>
       </div>
     </>
   )

@@ -16,16 +16,6 @@ app.get('/', (req, res) => {
     res.json('nuevo comienzo')
 });
 
-// app.get('/users', async (req, res) => {
-//     try {
-//         const { rows: users} = await db.query('SELECT * FROM users');
-//         res.send(users)
-//         // console.log(users);
-//     } catch (error) {
-//         return res.status(400).json({error});
-//     }
-// })
-
 app.get('/users', async (req, res) => {
     try {
         const { rows: users } = await db.query('SELECT * FROM users');
