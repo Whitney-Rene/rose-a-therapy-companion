@@ -1,3 +1,6 @@
+
+//my intent is to use this function in the homepage comp of app.jsx, I'd like to house it here to make my code cleaner
+//I want to learn how to possibly resue line 8? can the http be saved as a variable and I add diff endpoints based my server?
 const [backEndMessage, setBackEndMessage] = useState("");
 
 const callBackEnd = async () => {
