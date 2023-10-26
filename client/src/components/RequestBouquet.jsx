@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function RequestBouquet() {
   return (
-    <div>RequestBouquet</div>
+    <div>
+        <p>here you will see an input box for dates to request a bouquet</p>
+    </div>
   )
 }

@@ -6,6 +6,7 @@ import CreateRoseBudThorn from './components/CreateRoseBudThorn';
 import HomePage from './components/HomePage';
 import ListLatestEntrie from './components/ListLatestEntries';
 import RequestBouquet from './components/RequestBouquet';
+import NavBar from './components/NavBar';
 
 import './App.css'
 
@@ -18,12 +19,12 @@ function App() {
 
         <div className='App'>
 
-          {/* navbar? */}
+          <NavBar />
 
           <div className='content'>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/create" element={<CreateRoseBudThorn />} />
+              <Route path="/request" element={<RequestBouquet />} />
             </Routes>
           </div>
 
