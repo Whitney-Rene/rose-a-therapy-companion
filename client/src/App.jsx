@@ -1,21 +1,42 @@
 import { useState, useEffect } from 'react';
-//'switch' has been replaced with 'routes'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+//'Switch' has been replaced with 'Routes'
+import { Route, Routes } from 'react-router-dom';
+
+import callBackEnd from '../utils/functions';
 
 import CreateRoseBudThorn from './components/CreateRoseBudThorn';
 import HomePage from './components/HomePage';
-import ListLatestEntrie from './components/ListLatestEntries';
+import ListLatestEntries from './components/ListLatestEntries';
 import RequestBouquet from './components/RequestBouquet';
 import NavBar from './components/NavBar';
-
 import './App.css'
+
+//400 -client side, issue with request
 
 function App() {
 
 
+//fetch users
+
+const [message, setMessage] = useState('');
+
+useEffect (() => {
+
+  const fetchMessage = async () => {
+    try {
+      const data = await callBackEnd("");
+      setMessage(data);
+    } catch (error) {
+      console.error("An error occured:" , error);
+    }
+  };
+
+  fetchMessage();
+
+}, []);
+
   return (
 
-      <Router>
         <div className='App'>
 
           <NavBar />
@@ -27,8 +48,10 @@ function App() {
             </Routes>
           </div>
 
+        <p>{message}</p>
+
         </div>
-      </Router>
+
   )
 }
 
