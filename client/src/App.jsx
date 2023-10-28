@@ -37,20 +37,20 @@ useEffect (() => {
 
   return (
 
-        <div className='App'>
+    <div className='App'>
 
-          <NavBar />
+      <NavBar />
 
-          <div className='content'>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/request" element={<RequestBouquet />} />
-            </Routes>
-          </div>
+      <div className='content'>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/request" element={<RequestBouquet />} />
+        </Routes>
+      </div>
 
-        <p>{message}</p>
+      <p>{message}</p>
 
-        </div>
+    </div>
 
   )
 }
