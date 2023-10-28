@@ -1,7 +1,10 @@
-import pg from 'pg';
+import pkg from "pg";
+const { Pool } = pkg;
 
-const db = new pg.Pool ({
-    connectionString: process.env.DB_URI
-})
+console.log(process.env.DB_URI);
 
-export { db }; 
+const db = new Pool({
+  connectionString: process.env.DB_URI,
+});
+
+export default db;
