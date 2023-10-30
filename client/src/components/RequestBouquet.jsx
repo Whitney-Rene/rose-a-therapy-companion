@@ -11,7 +11,7 @@ export default function RequestBouquet() {
   return (
     <div>
       
-      <h2>RequestBouquet Component</h2>
+      <p>RequestBouquet Component</p>
       <p>here you will see an input box for dates to request a bouquet</p>
 
       {/* create a form here, will take 1 or 2 dates - how to make it work with 1 date?

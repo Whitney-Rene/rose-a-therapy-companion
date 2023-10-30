@@ -28,12 +28,12 @@ export default function ListLatestEntries() {
 
       <div>
         
-      <h2 style={{ marginBottom: 0, fontWeight: 'bold'}}>ListLatestEntries Component</h2>
+      <p>ListLatestEntries Component</p>
 
         {entries.map((entry, index) => (
           <div key={index}>
-            <h4 style={{ marginTop: 0, marginBotton: 0}}>{entry.entry_type}</h4>
-            <p style={{ marginTop: 0, marginBottom: 0}}>{entry.entry_content}</p>
+            <p>{entry.entry_type}</p>
+            <p>{entry.entry_content}</p>
           </div>
         ))}
 
