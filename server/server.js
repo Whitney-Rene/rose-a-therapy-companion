@@ -39,6 +39,18 @@ app.get("/entries", async (req, res) => {
   }
 });
 
+//call to third party api
+app.get("/quotes", async (req, res) => {
+  try {
+    const response = await fetch("https://www.affirmations.dev");
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 //add post, put/patch and delete endpoints
 
 app.listen(PORT, () => {
