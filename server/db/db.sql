@@ -50,10 +50,16 @@ INSERT INTO entries (
     entry_date, 
     entry_content,
     user_id
-  );
+  )
   VALUES (
   'rose', 
   '2023-10-25',
   'I was feeling anxious. I opened the calm app, and use the 3 min breath timer. I took a deep breaths', 
   1
 );
+
+--update value of a column
+
+UPDATE entries
+SET user_id = 1
+WHERE entry_id = 3;

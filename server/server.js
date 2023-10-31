@@ -71,6 +71,26 @@ app.post("/addusers", async (req, res) => {
   }
 });
 
+// INSERT INTO entries (
+//   entry_type,
+//   entry_date,
+//   entry_content,
+//   user_id
+// );
+// VALUES (
+// 'rose',
+// '2023-10-25',
+// 'I was feeling anxious. I opened the calm app, and use the 3 min breath timer. I took a deep breaths',
+// 1
+// );
+
+//endpoint for adding entries to db
+app.post("/addentries", async (req, res) => {
+  try {
+    const { }
+  }
+})
+
 //add post, put/patch and delete endpoints
 
 //port listening?
