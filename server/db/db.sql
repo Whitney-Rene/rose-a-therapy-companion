@@ -63,3 +63,6 @@ INSERT INTO entries (
 UPDATE entries
 SET user_id = 1
 WHERE entry_id = 3;
+
+--delete row from table
+DELETE FROM entries WHERE entry_id = 3;
