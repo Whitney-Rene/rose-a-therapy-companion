@@ -6,7 +6,7 @@ import callBackEnd from '../../utils/functions';
 export default function ListLatestEntries() {
 
   //state
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState(null); //this could be initialized to an empty array []
 
   //side effect hook, triggers callBackEnd function (imported from utils folder)
   //sets data from resolved promise to the value of "entries"
@@ -19,6 +19,7 @@ export default function ListLatestEntries() {
         setEntries(data)
         console.log('entries data:', entries);}
         )
+      // inside catch throw new Error
       .catch(error => console.error('An error occured:', error));
     
     }, []);
@@ -30,13 +31,15 @@ export default function ListLatestEntries() {
         
       <p>ListLatestEntries Component</p>
 
-        {entries.map((entry, index) => (
+        {/* entries && */}
+        {entries && entries.map((entry, index) => (
           <div key={index}>
             <p>{entry.entry_type}</p>
             <p>{entry.entry_content}</p>
           </div>
         ))}
 
+        {/* {error && <} */}
       </div>
     </>
   );

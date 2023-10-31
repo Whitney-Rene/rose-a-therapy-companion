@@ -14,10 +14,12 @@ const PORT = process.env.PORT || 8888;
 app.use(cors());
 app.use(express.json());
 
+//simple get request to homepage
 app.get("/", (req, res) => {
   res.json("nuevo comienzo");
 });
 
+//endpoint to see users in db
 app.get("/users", async (req, res) => {
   try {
     const { rows: users } = await db.query("SELECT * FROM users");
@@ -29,6 +31,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
+//endpoint to see entries in db
 app.get("/entries", async (req, res) => {
   try {
     const { rows: entries } = await db.query("SELECT * FROM entries");
@@ -51,8 +54,26 @@ app.get("/quotes", async (req, res) => {
   }
 });
 
+//endpoint for adding users to db
+app.post("/addusers", async (req, res) => {
+  try {
+    //object destructuring
+    const { user_name, user_email, user_password } = req.body;
+    const hashedUserPassword = hashPassword(user_password);
+    const result = await db.query(
+      "INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *",
+      [user_name, user_email, hashedUserPassword]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ error });
+  }
+});
+
 //add post, put/patch and delete endpoints
 
+//port listening?
 app.listen(PORT, () => {
   console.log(`Estoy escuchando en port ${PORT}`);
 });
