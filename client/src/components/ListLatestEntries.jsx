@@ -11,11 +11,12 @@ export default function ListLatestEntries() {
   //side effect hook, triggers callBackEnd function (imported from utils folder)
   useEffect (() => {
 
-    //sets data from resolved promise to the value of "entries"
-    callBackEnd('/entries')
+    //I am concerned because I hardcoded this...need to figure out how to get this to work dynamically?
+    //maybe there would be a way to grab the user_id upon login and send that id here?
+    callBackEnd('/list-latest-entries/1')
       .then(data => {
         setEntries(data)
-        console.log('entries data:', entries);}
+        console.log('entries data:', entries)}
         )
       // inside catch throw new Error
       .catch(error => console.error('An error occured:', error));
@@ -37,10 +38,7 @@ export default function ListLatestEntries() {
           </div>
         ))}
 
-        {/* {error && <} */}
       </div>
     </>
   );
 };
-
-// I will change styling to external vs inline.

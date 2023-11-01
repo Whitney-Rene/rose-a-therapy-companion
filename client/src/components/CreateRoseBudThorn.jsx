@@ -1,3 +1,4 @@
+import { library } from 'react-fontawesome';
 
 export default function CreateRoseBudThorn() {
 
@@ -13,7 +14,6 @@ export default function CreateRoseBudThorn() {
     <div className="create" >
 
       <p>CreateRoseBudThorn Component</p>
-      <p>there will be icons here, user will click on the respective icon and be able to add a rose/bud/thorn</p>
 
       {/* each icon (r/b/th) will need to have an onClick function */}
 
