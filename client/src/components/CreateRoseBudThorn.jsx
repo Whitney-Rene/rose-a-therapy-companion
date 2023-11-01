@@ -1,7 +1,10 @@
-
+import { useHistory } from 'react-router-dom';
 
 export default function CreateRoseBudThorn() {
 
+ const handleClick = (entry_type) => {
+  useHistory().push('/create/form/${entryType');
+ }
   //onClick functions for r/b/th
   //each click must first: trigger a modal? another page? for a form
   //the Submit for that form will need to call to backend at endpoint to add to db/post request
@@ -14,12 +17,14 @@ export default function CreateRoseBudThorn() {
     <div className="create" >
 
       <p>CreateRoseBudThorn Component</p>
-      <button onClick>Rose</button>
-      <button onClick>Bud</button>
-      <button onClick>Thorn</button>
+      <button onClick={() => handleClick('rose')}>Rose</button>
+      <button onClick={() => handleClick('bud')}>Bud</button>
+      <button onClick={() => handleClick('thorn')}>Thorn</button>
 
     </div>
     </>
 
   );
 };
+
+
