@@ -1,4 +1,5 @@
 
+
 export default function CreateRoseBudThorn() {
 
   //onClick functions for r/b/th
@@ -9,14 +10,16 @@ export default function CreateRoseBudThorn() {
   //update ListLatestEntries Component?
 
   return (
-
+    <>
     <div className="create" >
 
       <p>CreateRoseBudThorn Component</p>
-      <p>there will be icons here, user will click on the respective icon and be able to add a rose/bud/thorn</p>
-
-      {/* each icon (r/b/th) will need to have an onClick function */}
+      <button onClick>Rose</button>
+      <button onClick>Bud</button>
+      <button onClick>Thorn</button>
 
     </div>
-  )
-}
+    </>
+
+  );
+};

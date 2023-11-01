@@ -44,6 +44,21 @@ app.get("/entries", async (req, res) => {
   }
 });
 
+//endpoint to query db for the lastest entries, limit 5
+app.get("/list-latest-entries/:user_id", async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    const { rows: ffentries } = await db.query(
+      "SELECT * FROM entries WHERE user_id=$1 ORDER BY entry_date DESC LIMIT 5",
+      [user_id]
+    );
+    res.send(ffentries);
+  } catch (error) {
+    console.error("Error in Database Query:", error);
+    res.status(500).json({ error });
+  }
+});
+
 //call to third party api
 app.get("/quotes", async (req, res) => {
   try {
@@ -120,6 +135,27 @@ app.patch("/edit-entries/:entry_id", async (req, res) => {
       [entry_type, entry_date, entry_content, entry_id]
     );
     res.status(400).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(400).json({ error });
+  }
+});
+
+//endpoint to delete a user by user_id
+app.delete("/delete-users/:user_id", async (req, res) => {
+  try {
+    const { user_id } = req.params;
+
+    //necessary to first delete entries related to user, since there are references to the user in the entries table
+    //a foreign key constraint in the "entries" table that enforces referential integrity
+    //you cannot delete a user if there are related records in the "entries" table that depend on that use
+    await db.query("DELETE FROM entries WHERE user_id = $1", [user_id]);
+
+    const result = await db.query(
+      "DELETE FROM users WHERE user_id=$1 RETURNING *",
+      [user_id]
+    );
+    res.status(200).send("User successfully deleted.");
   } catch (error) {
     console.error("Error:", error);
     res.status(400).json({ error });
