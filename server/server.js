@@ -90,7 +90,7 @@ app.post("/add-entries/:user_id", async (req, res) => {
   }
 });
 
-//endpoint to update user information
+//endpoint to update user information by user_id
 app.patch("/edit-users/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;
@@ -109,6 +109,7 @@ app.patch("/edit-users/:user_id", async (req, res) => {
   }
 });
 
+//endpoint to edit entry by entry_id
 app.patch("/edit-entries/:entry_id", async (req, res) => {
   try {
     const { entry_id } = req.params;
@@ -125,6 +126,7 @@ app.patch("/edit-entries/:entry_id", async (req, res) => {
   }
 });
 
+//endpoint to delete an entry by entry_id
 app.delete("/delete-entries/:entry_id", async (req, res) => {
   try {
     const { entry_id } = req.params;
