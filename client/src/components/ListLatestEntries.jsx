@@ -9,11 +9,9 @@ export default function ListLatestEntries() {
   const [entries, setEntries] = useState(null); //this could be initialized to an empty array []
 
   //side effect hook, triggers callBackEnd function (imported from utils folder)
-  //sets data from resolved promise to the value of "entries"
   useEffect (() => {
 
-    //for some reason, "entries" is an empty array???
-    //but the map function on line 40 is working, and printing my rose from db on screen?
+    //sets data from resolved promise to the value of "entries"
     callBackEnd('/entries')
       .then(data => {
         setEntries(data)
