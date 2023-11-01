@@ -27,18 +27,20 @@ app.get("/users", async (req, res) => {
   } catch (error) {
     console.error("Error in Database Query:", error);
     //500-requests was fine, but there is an issue with server
-    return res.status(500).json({ error });
+    res.status(500).json({ error });
   }
 });
 
 //endpoint to see entries in db
+//query parameter /:count/:userId == /entries/5/1
+//search, more than one query parameter, ?count=5&userID=1
 app.get("/entries", async (req, res) => {
   try {
     const { rows: entries } = await db.query("SELECT * FROM entries");
     res.send(entries);
   } catch (error) {
     console.error("Error in Database Query:", error);
-    return res.status(500).json({ error });
+    res.status(500).json({ error });
   }
 });
 
@@ -55,7 +57,7 @@ app.get("/quotes", async (req, res) => {
 });
 
 //endpoint for adding users to db
-app.post("/addusers", async (req, res) => {
+app.post("/add-users", async (req, res) => {
   try {
     //object destructuring
     const { user_name, user_email, user_password } = req.body;
@@ -66,14 +68,80 @@ app.post("/addusers", async (req, res) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.log(error);
-    return res.status(400).json({ error });
+    console.error("Error:", error);
+    res.status(400).json({ error });
   }
 });
 
-//add post, put/patch and delete endpoints
+//endpoint for adding entries to db
+// `:` indicates route parameter
+app.post("/add-entries/:user_id", async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    const { entry_type, entry_date, entry_content } = req.body;
+    const result = await db.query(
+      "INSERT INTO entries (entry_type, entry_date, entry_content, user_id) VALUES ($1, $2, $3, $4) RETURNING *",
+      [entry_type, entry_date, entry_content, user_id]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(400).json({ error });
+  }
+});
 
-//port listening?
+//endpoint to update user information by user_id
+app.patch("/edit-users/:user_id", async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    const { user_name, user_email, user_password } = req.body;
+
+    // const newhashedUserPassword = hashPassword(user_password);
+
+    const result = await db.query(
+      "UPDATE users SET user_name=$1, user_email=$2, user_password=$3 WHERE user_id=$4 RETURNING *",
+      [user_name, user_email, user_password, user_id]
+    );
+    res.status(400).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(400).json({ error });
+  }
+});
+
+//endpoint to edit entry by entry_id
+app.patch("/edit-entries/:entry_id", async (req, res) => {
+  try {
+    const { entry_id } = req.params;
+    const { entry_type, entry_date, entry_content } = req.body;
+
+    const result = await db.query(
+      "UPDATE entries SET entry_type=$1, entry_date=$2, entry_content=$3 WHERE entry_id=$4 RETURNING *",
+      [entry_type, entry_date, entry_content, entry_id]
+    );
+    res.status(400).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(400).json({ error });
+  }
+});
+
+//endpoint to delete an entry by entry_id
+app.delete("/delete-entries/:entry_id", async (req, res) => {
+  try {
+    const { entry_id } = req.params;
+    const result = await db.query(
+      "DELETE FROM entries WHERE entry_id=$1 RETURNING *",
+      [entry_id]
+    );
+    res.status(200).send("Entry successfully deleted.");
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(400).json({ error });
+  }
+});
+
+//port listening
 app.listen(PORT, () => {
   console.log(`Estoy escuchando en port ${PORT}`);
 });
