@@ -109,9 +109,25 @@ app.patch("/edit-users/:user_id", async (req, res) => {
   }
 });
 
-//add post, put/patch and delete endpoints
+app.patch("/edit-entries/:entry_id", async (req, res) => {
+  try {
+    const { entry_id } = req.params;
+    const { entry_type, entry_date, entry_content } = req.body;
 
-//port listening?
+    const result = await db.query(
+      "UPDATE entries SET entry_type=$1, entry_date=$2, entry_content=$3 WHERE entry_id=$4 RETURNING *",
+      [entry_type, entry_date, entry_content, entry_id]
+    );
+    res.status(400).json(result.rows[0]);
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(400).json({ error });
+  }
+});
+
+app;
+
+//port listening
 app.listen(PORT, () => {
   console.log(`Estoy escuchando en port ${PORT}`);
 });
