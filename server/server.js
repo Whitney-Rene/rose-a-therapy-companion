@@ -68,7 +68,7 @@ app.post("/add-users", async (req, res) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.log("Error:", error);
+    console.error("Error:", error);
     res.status(400).json({ error });
   }
 });
@@ -85,7 +85,7 @@ app.post("/add-entries/:user_id", async (req, res) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.log("Error:", error);
+    console.error("Error:", error);
     res.status(400).json({ error });
   }
 });
@@ -104,7 +104,7 @@ app.patch("/edit-users/:user_id", async (req, res) => {
     );
     res.status(400).json(result.rows[0]);
   } catch (error) {
-    console.log("Error:", error);
+    console.error("Error:", error);
     res.status(400).json({ error });
   }
 });
@@ -120,12 +120,24 @@ app.patch("/edit-entries/:entry_id", async (req, res) => {
     );
     res.status(400).json(result.rows[0]);
   } catch (error) {
-    console.log("Error:", error);
+    console.error("Error:", error);
     res.status(400).json({ error });
   }
 });
 
-app;
+app.delete("/delete-entries/:entry_id", async (req, res) => {
+  try {
+    const { entry_id } = req.params;
+    const result = await db.query(
+      "DELETE FROM entries WHERE entry_id=$1 RETURNING *",
+      [entry_id]
+    );
+    res.status(200).send("Entry successfully deleted.");
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(400).json({ error });
+  }
+});
 
 //port listening
 app.listen(PORT, () => {
