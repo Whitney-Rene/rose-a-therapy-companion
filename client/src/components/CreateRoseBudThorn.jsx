@@ -1,4 +1,4 @@
-import { library } from 'react-fontawesome';
+
 
 export default function CreateRoseBudThorn() {
 

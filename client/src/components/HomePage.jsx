@@ -1,7 +1,7 @@
 import CreateRoseBudThorn from './CreateRoseBudThorn'
 import ListLatestEntries from './ListLatestEntries'
 
-export default function HomePage( {message} ) {
+export default function HomePage() {
 
     //fetch async function to db where entries are
 
@@ -13,9 +13,6 @@ export default function HomePage( {message} ) {
         alt='bouquet of flowers' 
         style={{ width: '200px', height: 'auto', marginTop: '10px'}}
       />
-
-      {/* I am practicing passing props from parent to child*/}
-      <p>{message}</p>
 
       {/* This comp will allow user to add r/b/th to db, 
       -and update ListLatestEntries component */}

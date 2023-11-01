@@ -8,6 +8,7 @@ import HomePage from './components/HomePage';
 import RequestBouquet from './components/RequestBouquet';
 import NavBar from './components/NavBar';
 import './App.css'
+import CreateRoseBudThorn from './components/CreateRoseBudThorn';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Routes> {/* component of react-router */}
           <Route path="/" element={<HomePage/>} />
           <Route path="/request" element={<RequestBouquet />} />
+          <Route path="/create/form/:entryType" element={EntryForm} />
         </Routes>
         
       </div>
