@@ -44,6 +44,21 @@ app.get("/entries", async (req, res) => {
   }
 });
 
+//endpoint to query db for the lastest entries, limit 5
+app.get("/list-latest-entries/:user_id", async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    const { rows: ffentries } = await db.query(
+      "SELECT * FROM entries WHERE user_id=$1 ORDER BY entry_date DESC LIMIT 5",
+      [user_id]
+    );
+    res.send(ffentries);
+  } catch (error) {
+    console.error("Error in Database Query:", error);
+    res.status(500).json({ error });
+  }
+});
+
 //call to third party api
 app.get("/quotes", async (req, res) => {
   try {
