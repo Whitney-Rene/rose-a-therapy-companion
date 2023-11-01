@@ -73,19 +73,6 @@ app.post("/add-users", async (req, res) => {
   }
 });
 
-// INSERT INTO entries (
-//   entry_type,
-//   entry_date,
-//   entry_content,
-//   user_id
-// );
-// VALUES (
-// 'rose',
-// '2023-10-25',
-// 'I was feeling anxious. I opened the calm app, and use the 3 min breath timer. I took a deep breaths',
-// 1
-// );
-
 //endpoint for adding entries to db
 // `:` indicates route parameter
 app.post("/add-entries/:user_id", async (req, res) => {
@@ -97,6 +84,25 @@ app.post("/add-entries/:user_id", async (req, res) => {
       [entry_type, entry_date, entry_content, user_id]
     );
     res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.log("Error:", error);
+    res.status(400).json({ error });
+  }
+});
+
+//endpoint to update user information
+app.patch("/edit-users/:user_id", async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    const { user_name, user_email, user_password } = req.body;
+
+    // const newhashedUserPassword = hashPassword(user_password);
+
+    const result = await db.query(
+      "UPDATE users SET user_name=$1, user_email=$2, user_password=$3 WHERE user_id=$4 RETURNING *",
+      [user_name, user_email, user_password, user_id]
+    );
+    res.status(400).json(result.rows[0]);
   } catch (error) {
     console.log("Error:", error);
     res.status(400).json({ error });
