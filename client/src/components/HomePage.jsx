@@ -14,12 +14,8 @@ export default function HomePage() {
         style={{ width: '200px', height: 'auto', marginTop: '10px'}}
       />
 
-      {/* This comp will allow user to add r/b/th to db, 
-      -and update ListLatestEntries component */}
       <CreateRoseBudThorn />
 
-      {/* Can I list the last 5 entries?
-      -I want to encourage user */}
       <ListLatestEntries />
 
     </div>

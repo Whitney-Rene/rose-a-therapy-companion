@@ -30,7 +30,11 @@ export default function ListLatestEntries() {
         
       <p>ListLatestEntries Component</p>
 
-        {/* entries && */}
+      {/* FUTURE PLANS: 
+          add functionality to edit and delete entries,
+          delete/edit icons for each entry with functionality
+      */}
+
         {entries && entries.map((entry, index) => (
           <div key={index}>
             <p>{entry.entry_type}</p>
