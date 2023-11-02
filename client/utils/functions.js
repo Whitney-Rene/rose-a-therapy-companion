@@ -1,7 +1,6 @@
-//my intent is to use this function in the homepage comp of app.jsx, I'd like to house it here to make my code cleaner
-//I want to learn how to possibly resuse line 8? can the http be saved as a variable and I add diff endpoints based my server?
-
 import URL from "./variables";
+
+//add 2 more variables, put/patch and delete requests
 
 const getRequest = async (endpoint) => {
   try {

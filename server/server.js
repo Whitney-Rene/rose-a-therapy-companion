@@ -10,6 +10,9 @@ import { hashPassword } from "./utils/hashPasswordUtils.js";
 const app = express();
 const PORT = process.env.PORT || 8888;
 
+//FUTURE PLANS:
+//do I need all these routes?  am I using them all?
+
 //middleware
 app.use(cors());
 app.use(express.json());
@@ -53,6 +56,21 @@ app.get("/list-latest-entries/:user_id", async (req, res) => {
       [user_id]
     );
     res.send(ffentries);
+  } catch (error) {
+    console.error("Error in Database Query:", error);
+    res.status(500).json({ error });
+  }
+});
+
+//endpoint to query db for entries between specific dates
+app.get("/date-specific-entries/:start_date/:end_date", async (req, res) => {
+  try {
+    const { start_date, end_date } = req.params;
+    const { rows: dsentries } = await db.query(
+      "SELECT *FROM entries WHERE entry_date BETWEEN $1 AND $2",
+      [start_date, end_date]
+    );
+    res.send(dsentries);
   } catch (error) {
     console.error("Error in Database Query:", error);
     res.status(500).json({ error });

@@ -28,6 +28,7 @@ export default function EntryForm() {
         //I would like the user to see a confirmation that r/b/th was submitted to db
         //then take user back to main page
         //update ListLatestEntries Component?
+        //api will send inspiration quote to user
 
     }
     return (
