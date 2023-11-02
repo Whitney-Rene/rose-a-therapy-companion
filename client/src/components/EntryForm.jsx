@@ -29,10 +29,11 @@ export default function EntryForm() {
         //then take user back to main page
         //update ListLatestEntries Component?
         //api will send inspiration quote to user
+        //cancel button
 
     }
 
-    
+
     return (
         <>
         <h2>create a {entry_type} entry</h2>
