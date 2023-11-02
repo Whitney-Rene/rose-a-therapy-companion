@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import getRequest from '../../utils/functions';
+import functions from '../../utils/functions';
 
 
 export default function ListLatestEntries() {
@@ -13,7 +13,7 @@ export default function ListLatestEntries() {
 
     //I am concerned because I hardcoded this...need to figure out how to get this to work dynamically?
     //maybe there would be a way to grab the user_id upon login and send that id here?
-    getRequest('/list-latest-entries/1')
+    functions.getRequest('/list-latest-entries/1')
       .then(data => {
         setEntries(data)
         console.log('entries data:', entries)}
