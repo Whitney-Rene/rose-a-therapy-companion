@@ -19,7 +19,11 @@ export default function ListLatestEntries() {
         console.log('entries data:', entries)}
         )
       // inside catch throw new Error
-      .catch(error => console.error('An error occured:', error));
+      .catch(error => {
+        console.error('An error occured:', error)
+        console.log(error.response);
+      });
+    
     
     }, []);
 

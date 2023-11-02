@@ -30,7 +30,12 @@ app.get("/users", async (req, res) => {
   } catch (error) {
     console.error("Error in Database Query:", error);
     //500-requests was fine, but there is an issue with server
-    res.status(500).json({ error });
+    res.json({ error });
+    // if (res.status === 500 ) {
+
+    // } else if (res.status === 400) {
+    //   res.status(400).json({ error });
+    // }
   }
 });
 
@@ -58,7 +63,8 @@ app.get("/list-latest-entries/:user_id", async (req, res) => {
     res.send(ffentries);
   } catch (error) {
     console.error("Error in Database Query:", error);
-    res.status(500).json({ error });
+    // res.status(500).json({ error });
+    res.json({ error });
   }
 });
 
