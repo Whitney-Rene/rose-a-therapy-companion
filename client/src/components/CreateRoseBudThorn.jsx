@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 export default function CreateRoseBudThorn() {
 
  const handleClick = (entry_type) => {
-  useHistory().push('/create/form/${entryType');
+  useHistory().push(`/create/form/${entry_type}`);
  }
   //onClick functions for r/b/th
   //each click must first: trigger a modal? another page? for a form
