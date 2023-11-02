@@ -24,7 +24,7 @@ function App() {
         <Routes> {/* component of react-router */}
           <Route path="/" element={<HomePage/>} />
           <Route path="/request" element={<RequestBouquet />} />
-          <Route path="/create/form/:entry_type" element={EntryForm} />
+          <Route path="/create/form/:entry_type" element={<EntryForm />} />
         </Routes>
         
       </div>

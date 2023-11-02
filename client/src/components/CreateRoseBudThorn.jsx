@@ -1,9 +1,12 @@
-import { useHistory } from 'react-router-dom';
+//useHistory is replaced by useNavigate "react-router-dom" v.6
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateRoseBudThorn() {
 
- const handleClick = (entry_type) => {
-  useHistory().push(`/create/form/${entry_type}`);
+
+ const navigateTo = useNavigate();
+  const handleClick = (entry_type) => {
+  navigateTo(`/create/form/${entry_type}`);
  }
   //onClick functions for r/b/th
   //each click must first: trigger a modal? another page? for a form

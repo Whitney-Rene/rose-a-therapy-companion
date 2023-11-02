@@ -15,7 +15,7 @@ export default function EntryForm() {
         event.preventDefault();
 
         const entryData = {
-            entry_type: userEntryType,
+            entry_type: userEntryType.current,
             entry_date: userEntryDate.current?.value,
             entry_content: userEntryContent.current?.value,
         }
