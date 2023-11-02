@@ -23,6 +23,12 @@ export default function EntryForm() {
         functions.postRequest("/add-entries/1", entryData);
         console.log("Form data:", entryData);
 
+        //FUTURE PLANS
+        //I would like to add code for form to clear after submit
+        //I would like the user to see a confirmation that r/b/th was submitted to db
+        //then take user back to main page
+        //update ListLatestEntries Component?
+
     }
     return (
         <>
