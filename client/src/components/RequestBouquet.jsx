@@ -14,7 +14,8 @@ export default function RequestBouquet() {
     const end_date = userEndDate.current?.value;
 
     try {
-      const data = await functions.getRequest(`/date-specific-entries/${userStartDate}/${userEndDate}`)
+      const data = await functions.getRequest(`/date-specific-entries/${start_date}/${end_date}`);
+      console.log(data);
       setBouquetData(data);
     } catch (error) {
       console.error("Error while fetching bouquet data:", error);
@@ -39,7 +40,18 @@ export default function RequestBouquet() {
         <button type='submit'>Submit</button>
       </form>
 
-    
+    {bouquetData.length > 0 && (
+      <div>
+        {bouquetData.map((item) => (
+          <div key={item.entry_id}>
+            {/* FUTURE PLANS: format date to human redable */}
+            {item.entry_type}
+            {item.entry_date}
+            {item.entry_content}
+          </div>
+       ))}
+      </div>
+    )}
 
     </div>
   )
