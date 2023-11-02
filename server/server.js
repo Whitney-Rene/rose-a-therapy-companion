@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 8888;
 
 //FUTURE PLANS:
 //do I need all these routes?  am I using them all?
+//for security reasons, not a good idea to have hanging routes
+//could inject queries in the routes and cause issues through thrid party software
 
 //middleware
 app.use(cors());
@@ -125,7 +127,8 @@ app.post("/add-entries/:user_id", async (req, res) => {
     res.status(201).json(result.rows[0]);
   } catch (error) {
     console.error("Error:", error);
-    res.status(400).json({ error });
+    console.log("test");
+    res.status(error.status).json({ error });
   }
 });
 

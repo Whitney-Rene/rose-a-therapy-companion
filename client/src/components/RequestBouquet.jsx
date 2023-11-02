@@ -11,6 +11,7 @@ export default function RequestBouquet() {
     event.preventDefault();
 
     const start_date = userStartDate.current?.value;
+    
     const end_date = userEndDate.current?.value;
 
     try {
