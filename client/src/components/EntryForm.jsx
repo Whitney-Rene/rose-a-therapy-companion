@@ -20,6 +20,7 @@ export default function EntryForm() {
             entry_content: userEntryContent.current?.value,
         }
 
+        callBackEnd("/add-entries/1");
         console.log("Form data:", entryData);
 
     }
