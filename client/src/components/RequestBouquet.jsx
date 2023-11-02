@@ -7,7 +7,19 @@ export default function RequestBouquet() {
   const userEndDate = useRef(null);
   const [bouquetData, setBouquetData] = useState([]);
 
-  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const start_date = userStartDate.current?.value;
+    const end_date = userEndDate.current?.value;
+
+    try {
+      const data = await functions.getRequest(`/date-specific-entries/${userStartDate}/${userEndDate}`)
+      setBouquetData(data);
+    } catch (error) {
+      console.error("Error while fetching bouquet data:", error);
+    }
+  }
 
   return (
     <div>
@@ -15,7 +27,7 @@ export default function RequestBouquet() {
       <p>RequestBouquet Component</p>
       <p>here you will see an input box for dates to request a bouquet</p>
 
-      <form onSubmit={}>
+      <form onSubmit={handleSubmit}>
         <label>
           Start Date:
           <input type="date" ref={userStartDate} />
@@ -27,11 +39,7 @@ export default function RequestBouquet() {
         <button type='submit'>Submit</button>
       </form>
 
-      {/* create a form here, will take 1 or 2 dates - how to make it work with 1 date?
-      -onClick function to retrieve and handle data,
-      -data will be sent to back end to make a query on the db,
-      -endpoint will send a response with rose/bud/thorns for specific dates
-       */}
+    
 
     </div>
   )

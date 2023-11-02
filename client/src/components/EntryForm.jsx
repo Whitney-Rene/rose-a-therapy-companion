@@ -31,6 +31,8 @@ export default function EntryForm() {
         //api will send inspiration quote to user
 
     }
+
+    
     return (
         <>
         <h2>create a {entry_type} entry</h2>
