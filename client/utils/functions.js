@@ -3,7 +3,7 @@
 
 import URL from "./variables";
 
-const callBackEnd = async (endpoint) => {
+const getRequests = async (endpoint) => {
   try {
     const response = await fetch(`${URL}${endpoint}`);
     if (!response.ok) {
@@ -16,4 +16,4 @@ const callBackEnd = async (endpoint) => {
   }
 };
 
-export default callBackEnd;
+export default getRequests;

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import callBackEnd from '../../utils/functions';
+// import postRequest from '../../utils/functions';
 
 export default function EntryForm() {
 
@@ -20,7 +20,7 @@ export default function EntryForm() {
             entry_content: userEntryContent.current?.value,
         }
 
-        callBackEnd("/add-entries/1");
+        // postRequest("/add-entries/1");
         console.log("Form data:", entryData);
 
     }
