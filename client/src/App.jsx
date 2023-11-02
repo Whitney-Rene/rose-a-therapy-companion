@@ -7,8 +7,9 @@ import { Route, Routes } from 'react-router-dom'; //'Switch' has been replaced w
 import HomePage from './components/HomePage';
 import RequestBouquet from './components/RequestBouquet';
 import NavBar from './components/NavBar';
+import EntryForm from './components/EntryForm';
 import './App.css'
-import CreateRoseBudThorn from './components/CreateRoseBudThorn';
+
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
         <Routes> {/* component of react-router */}
           <Route path="/" element={<HomePage/>} />
           <Route path="/request" element={<RequestBouquet />} />
-          {/* <Route path="/create/form/:entry_type" element={EntryForm} /> */}
+          <Route path="/create/form/:entry_type" element={EntryForm} />
         </Routes>
         
       </div>
