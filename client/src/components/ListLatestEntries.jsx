@@ -20,7 +20,7 @@ export default function ListLatestEntries() {
         )
       // inside catch throw new Error
       .catch(error => {
-        console.error('An error occured:', error)
+        console.error('An error occured while fetching entries:', error)
         console.log(error.response);
       });
     
