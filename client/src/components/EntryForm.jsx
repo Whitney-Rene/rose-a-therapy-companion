@@ -4,7 +4,7 @@ import functions from '../../utils/functions';
 
 export default function EntryForm() {
 
-    // const navigateTo = useNavigate();
+    //initialize variables
     const { entry_type } = useParams();
     const [quote, setQuote] = useState("");
     const [confirmationMessage, setConfirmationMessage] = useState("");
@@ -13,6 +13,8 @@ export default function EntryForm() {
     const userEntryDate = useRef(null);
     const userEntryContent = useRef(null);
 
+    //this function is triggered, when a user submits a r/b/th
+    //async function, in try/catch block (to handle success/failure of async call)
     const handleSubmit = async (event) => {
         //this prevents the default behavior of an event, so the default action of a form is to submit the data and reload the page
         event.preventDefault();
@@ -23,52 +25,46 @@ export default function EntryForm() {
             entry_content: userEntryContent.current?.value,
         }
         
-        //try/catch blocks are used to handle asynchronous that involve api calls
+        //try/catch blocks are used to handle asynchronous functionss that involve api calls
         try {
             await functions.postRequest("/add-entries/1", entryData);
             console.log("Form data:", entryData);
+            //resets input fields to blank
             userEntryDate.current.value = null;
             userEntryContent.current.value = null;
+
             setConfirmationMessage("Entry submitted")
 
             const data = await functions.getRequest("/quotes");
             setQuote(data);
 
-            navigateTo("/");
         } catch (error) {
-            console.log('test');
             console.error("Error submitting form data:", error);
             setConfirmationMessage("There was an issue submitting your entry");
             setQuote("");
         }
 
-        // try {
-        //     const data = await functions.getRequest("/quotes");
-        //     setQuote(data);
+    };
 
-        // } catch (error) {
-        //     console.error("Error fetching quotes:", error);
-        // }
-
-
-        //FUTURE PLANS
-        //update ListLatestEntries Component?
-        //api will send inspiration quote to user
-        //cancel button
-
+    //FUTURE PLANS
+    //update ListLatestEntries Component? *not necssary because this is happening on another page
+    //cancel button for entry form
+    //upon submit: *need to decide
         //then take user back to main page 
             //useNavigate commented out on line 7
+            //navigateTo("/"); in try of postRequest call
+            //const navigateTo = useNavigate();
         //OR
         //if user wants to add another entry on the same page, clear conf message and quote, upon change/type in input box
             //info bar at top with inspirational quote
-
-    }
 
 
     return (
         <>
         <h2>create a {entry_type} entry</h2>
+
         <form onSubmit={handleSubmit}>
+
             <label>
                 Date:
                 <input required type='date' ref={userEntryDate}></input>
