@@ -1,7 +1,9 @@
 import URL from "./variables";
 
-//add 2 more variables, put/patch and delete requests
+//FUTURE PLANS:
+//add 2 more functions, put/patch and delete requests
 
+//this is an async call to backend, specifically for get requests
 const getRequest = async (endpoint) => {
   try {
     const response = await fetch(`${URL}${endpoint}`);
@@ -15,6 +17,7 @@ const getRequest = async (endpoint) => {
   }
 };
 
+//this is an async call to backend, specifically for get post requests
 const postRequest = async (endpoint, data) => {
   try {
     const response = await fetch(`${URL}${endpoint}`, {
