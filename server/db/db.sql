@@ -58,6 +58,7 @@ INSERT INTO entries (
   1
 );
 
+--Extra SQL COMMANDS:
 --update value of a column
 
 -- UPDATE entries
