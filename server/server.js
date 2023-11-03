@@ -1,5 +1,3 @@
-//the syntax for the dotenv was incorrect causing an issue with readability of env variables
-//I also did not need config() on line 12
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -9,6 +7,11 @@ import { hashPassword } from "./utils/hashPasswordUtils.js";
 
 const app = express();
 const PORT = process.env.PORT || 8888;
+
+//FUTURE PLANS:
+//do I need all these routes?  am I using them all?
+//for security reasons, not a good idea to have "hanging" routes
+//could inject queries in the routes and cause issues through thrid party software - learn about protecting routes??
 
 //middleware
 app.use(cors());
@@ -20,27 +23,25 @@ app.get("/", (req, res) => {
 });
 
 //endpoint to see users in db
+//500-requests was fine, but there is an issue with server
 app.get("/users", async (req, res) => {
   try {
     const { rows: users } = await db.query("SELECT * FROM users");
     res.send(users);
   } catch (error) {
     console.error("Error in Database Query:", error);
-    //500-requests was fine, but there is an issue with server
-    res.status(500).json({ error });
+    res.json({ error });
   }
 });
 
 //endpoint to see entries in db
-//query parameter /:count/:userId == /entries/5/1
-//search, more than one query parameter, ?count=5&userID=1
 app.get("/entries", async (req, res) => {
   try {
     const { rows: entries } = await db.query("SELECT * FROM entries");
     res.send(entries);
   } catch (error) {
     console.error("Error in Database Query:", error);
-    res.status(500).json({ error });
+    res.json({ error });
   }
 });
 
@@ -55,7 +56,22 @@ app.get("/list-latest-entries/:user_id", async (req, res) => {
     res.send(ffentries);
   } catch (error) {
     console.error("Error in Database Query:", error);
-    res.status(500).json({ error });
+    res.json({ error });
+  }
+});
+
+//endpoint to query db for entries between specific dates
+app.get("/date-specific-entries/:start_date/:end_date", async (req, res) => {
+  try {
+    const { start_date, end_date } = req.params;
+    const { rows: dsentries } = await db.query(
+      "SELECT *FROM entries WHERE entry_date BETWEEN $1 AND $2",
+      [start_date, end_date]
+    );
+    res.send(dsentries);
+  } catch (error) {
+    console.error("Error in Database Query:", error);
+    res.json({ error });
   }
 });
 
@@ -66,8 +82,8 @@ app.get("/quotes", async (req, res) => {
     const data = await response.json();
     res.send(data);
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "An error occurred" });
+    console.error("Error with quotes api:", error);
+    res.json({ error });
   }
 });
 
@@ -83,13 +99,13 @@ app.post("/add-users", async (req, res) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.error("Error:", error);
-    res.status(400).json({ error });
+    console.error("Error adding user to database:", error);
+    res.json({ error });
   }
 });
 
 //endpoint for adding entries to db
-// `:` indicates route parameter
+// `:` indicates route/url parameter
 app.post("/add-entries/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;
@@ -100,8 +116,8 @@ app.post("/add-entries/:user_id", async (req, res) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.error("Error:", error);
-    res.status(400).json({ error });
+    console.error("Error adding entry to database:", error);
+    res.json({ error });
   }
 });
 
@@ -111,6 +127,7 @@ app.patch("/edit-users/:user_id", async (req, res) => {
     const { user_id } = req.params;
     const { user_name, user_email, user_password } = req.body;
 
+    //commenting this out for now, causing issues in db, different password values, even if user does not change password
     // const newhashedUserPassword = hashPassword(user_password);
 
     const result = await db.query(
@@ -119,8 +136,8 @@ app.patch("/edit-users/:user_id", async (req, res) => {
     );
     res.status(400).json(result.rows[0]);
   } catch (error) {
-    console.error("Error:", error);
-    res.status(400).json({ error });
+    console.error("Error editing user:", error);
+    res.json({ error });
   }
 });
 
@@ -136,8 +153,8 @@ app.patch("/edit-entries/:entry_id", async (req, res) => {
     );
     res.status(400).json(result.rows[0]);
   } catch (error) {
-    console.error("Error:", error);
-    res.status(400).json({ error });
+    console.error("Error editing entry:", error);
+    res.json({ error });
   }
 });
 
@@ -157,8 +174,8 @@ app.delete("/delete-users/:user_id", async (req, res) => {
     );
     res.status(200).send("User successfully deleted.");
   } catch (error) {
-    console.error("Error:", error);
-    res.status(400).json({ error });
+    console.error("Error deleting user:", error);
+    res.json({ error });
   }
 });
 
@@ -172,8 +189,8 @@ app.delete("/delete-entries/:entry_id", async (req, res) => {
     );
     res.status(200).send("Entry successfully deleted.");
   } catch (error) {
-    console.error("Error:", error);
-    res.status(400).json({ error });
+    console.error("Error deleting entry:", error);
+    res.json({ error });
   }
 });
 

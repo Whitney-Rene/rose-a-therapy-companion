@@ -1,24 +1,64 @@
-
-//import useRef, maybe useState & useEffect too?
-//import callBackEnd function
+//imports from react and other files
+import React, { useRef, useState } from 'react';
+import functions from '../../utils/functions';
 
 export default function RequestBouquet() {
 
-  //useRef initialization
+  //useRefs and state
+  const userStartDate = useRef(null);
+  const userEndDate = useRef(null);
+  const [bouquetData, setBouquetData] = useState([]);
 
-  //handleSumbit function here
+  //function to handle the submit/button click
+  //will call backend and retrieve r/b/th between specific dates
+  const handleSubmit = async (event) => {
+    //prevent the default nature of event
+    event.preventDefault();
+
+    //variables to house the values of useRefs
+    const start_date = userStartDate.current?.value;
+    const end_date = userEndDate.current?.value;
+
+    //async call in try/catch (handles success or failure of async call)
+    try {
+      const data = await functions.getRequest(`/date-specific-entries/${start_date}/${end_date}`);
+      console.log(data);
+      setBouquetData(data);
+    } catch (error) {
+      console.error("Error while fetching bouquet data:", error);
+    }
+  }
 
   return (
     <div>
       
       <p>RequestBouquet Component</p>
-      <p>here you will see an input box for dates to request a bouquet</p>
 
-      {/* create a form here, will take 1 or 2 dates - how to make it work with 1 date?
-      -onClick function to retrieve and handle data,
-      -data will be sent to back end to make a query on the db,
-      -endpoint will send a response with rose/bud/thorns for specific dates
-       */}
+      <form onSubmit={handleSubmit}>
+        <label>
+          Start Date:
+          <input type="date" ref={userStartDate} />
+        </label>
+        <label>
+          End Date:
+          <input type='date' ref={userEndDate} />
+        </label>
+        <button type='submit'>Submit</button>
+      </form>
+
+    {/* if bouquetData not empty, render details of bouquet */}
+    {bouquetData.length > 0 && (
+      <div>
+        {bouquetData.map((item) => (
+          <div key={item.entry_id}>
+            {/* FUTURE PLANS: format date to human redable */}
+            {item.entry_type}
+            {item.entry_date}
+            {item.entry_content}
+          </div>
+       ))}
+      </div>
+    )}
 
     </div>
   )

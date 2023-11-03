@@ -1,4 +1,4 @@
-/* Replace with your SQL commands */
+/* SQL commands */
 
 DROP TABLE entries;
 DROP TABLE users;
