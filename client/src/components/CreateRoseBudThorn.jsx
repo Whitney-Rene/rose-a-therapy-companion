@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CreateRoseBudThorn() {
 
-
  const navigateTo = useNavigate();
+
   const handleClick = (entry_type) => {
   navigateTo(`/create/form/${entry_type}`);
- }
+  }
 
   return (
     <>
