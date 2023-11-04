@@ -125,7 +125,10 @@ app.post("/login", async (req, res) => {
       );
 
       if (passwordMatch) {
-        res.json({ message: "Authentication successful", user: user.user_id });
+        res.json({
+          message: "Authentication successful",
+          user_id: user.user_id,
+        });
       } else {
         res.json({ error: "Incorrect password" });
       }
