@@ -87,6 +87,19 @@ app.get("/quotes", async (req, res) => {
   }
 });
 
+//endpoint for user login
+app.post("/login", async (req, res) => {
+  const { user_email, user_password } = req.body;
+
+  try {
+    const user = await db.oneOrNone(
+      //without "RETURNING *" the "user" variable will contain retrieved user data
+      "SELECT * FROM users WHERE user_email = $1",
+      [user_email]
+    );
+  } catch {}
+});
+
 //endpoint for adding users to db
 app.post("/add-users", async (req, res) => {
   try {
