@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import bcrypt from "bcrypt";
 
 import db from "./db/db-connection.js";
 import { hashPassword } from "./utils/hashPasswordUtils.js";
@@ -87,36 +88,6 @@ app.get("/quotes", async (req, res) => {
   }
 });
 
-//endpoint for user login
-app.post("/login", async (req, res) => {
-  const { user_email, user_password } = req.body;
-
-  try {
-    //oneOfNone() is function provided by the pg-promise library
-    //executes a query again the db and retrieves the first row of the result
-    //oneOrNon will throw an error is the query returns multiple rows because this function expects one row at most
-    const user = await db.oneOrNone(
-      //without "RETURNING *" the "user" variable will contain retrieved user data
-      "SELECT * FROM users WHERE user_email = $1",
-      [user_email]
-    );
-
-    //if there is a user returned in the variable
-    if (user) {
-      if (user.user_password === user_password) {
-        res.json({ message: "Authentication successful", user: user.user_id });
-      } else {
-        res.json({ error: "Incorrect password" });
-      }
-    } else {
-      res.json({ error: "User not found" });
-    }
-  } catch (error) {
-    console.error("Database error:", error);
-    res.json({ error });
-  }
-});
-
 //endpoint for adding users to db
 app.post("/add-users", async (req, res) => {
   try {
@@ -130,6 +101,39 @@ app.post("/add-users", async (req, res) => {
     res.status(201).json(result.rows[0]);
   } catch (error) {
     console.error("Error adding user to database:", error);
+    res.json({ error });
+  }
+});
+
+//endpoint for user login
+app.post("/login", async (req, res) => {
+  const { user_email, user_password } = req.body;
+
+  try {
+    const result = await db.query(
+      "SELECT user_id, user_password FROM users WHERE user_email = $1",
+      [user_email]
+    );
+
+    //if there is a user returned in the variable
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      //I need to compare the hashed passwords
+      const passwordMatch = await bcrypt.compare(
+        user_password,
+        user.user_password
+      );
+
+      if (passwordMatch) {
+        res.json({ message: "Authentication successful", user: user.user_id });
+      } else {
+        res.json({ error: "Incorrect password" });
+      }
+    } else {
+      res.json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Database error:", error);
     res.json({ error });
   }
 });
@@ -158,11 +162,11 @@ app.patch("/edit-users/:user_id", async (req, res) => {
     const { user_name, user_email, user_password } = req.body;
 
     //commenting this out for now, causing issues in db, different password values, even if user does not change password
-    // const newhashedUserPassword = hashPassword(user_password);
+    const newhashedUserPassword = hashPassword(user_password);
 
     const result = await db.query(
       "UPDATE users SET user_name=$1, user_email=$2, user_password=$3 WHERE user_id=$4 RETURNING *",
-      [user_name, user_email, user_password, user_id]
+      [user_name, user_email, newhashedUserPassword, user_id]
     );
     res.status(400).json(result.rows[0]);
   } catch (error) {
