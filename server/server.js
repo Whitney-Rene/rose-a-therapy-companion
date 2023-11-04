@@ -97,7 +97,21 @@ app.post("/login", async (req, res) => {
       "SELECT * FROM users WHERE user_email = $1",
       [user_email]
     );
-  } catch {}
+
+    //if there is a user returned in the variable
+    if (user) {
+      if (user.user_password === user_password) {
+        res.json({ message: "Authentication successful", user: user.user_id });
+      } else {
+        res.json({ error: "Incorrect password" });
+      }
+    } else {
+      res.json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Database error:", error);
+    res.json({ error });
+  }
 });
 
 //endpoint for adding users to db
