@@ -92,6 +92,9 @@ app.post("/login", async (req, res) => {
   const { user_email, user_password } = req.body;
 
   try {
+    //oneOfNone() is function provided by the pg-promise library
+    //executes a query again the db and retrieves the first row of the result
+    //oneOrNon will throw an error is the query returns multiple rows because this function expects one row at most
     const user = await db.oneOrNone(
       //without "RETURNING *" the "user" variable will contain retrieved user data
       "SELECT * FROM users WHERE user_email = $1",
