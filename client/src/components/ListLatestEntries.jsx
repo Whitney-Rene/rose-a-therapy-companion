@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 import functions from '../../utils/functions';
 
@@ -43,6 +46,8 @@ export default function ListLatestEntries() {
           <div key={index}>
             <p>{entry.entry_type}</p>
             <p>{entry.entry_content}</p>
+            <FontAwesomeIcon icon={faTrash} className='iconEye '/>
+            <FontAwesomeIcon icon={faPenSquare} className='iconPen' />
           </div>
         ))}
 

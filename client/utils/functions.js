@@ -38,10 +38,27 @@ const postRequest = async (endpoint, data) => {
   }
 };
 
+const patchRequest = async (endpoint, entry_id, data) => {
+  try {
+    const response = await fetch(`${URL}${endpoint}/${entry_id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to update entry");
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error("Error updating contact:", error);
+  }
+};
+
 function formatTime(rawDate) {
   const dateObject = moment(rawDate);
   const formattedDate = dateObject.format("MMMM D, YYYY");
   return formattedDate;
 }
 
-export default { getRequest, postRequest, formatTime };
+export default { getRequest, postRequest, patchRequest, formatTime };
