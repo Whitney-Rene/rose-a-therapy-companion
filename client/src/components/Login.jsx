@@ -9,7 +9,8 @@ export default function Login( {currentUser, setCurrentUser }) {
 
     const navigateTo = useNavigate();
 
-    const handleLogin = async () => {
+    const handleLogin = async (event) => {
+        event.preventDefault();
 
         const logInData = {
         user_email : userEmail.current?.value,
@@ -23,13 +24,16 @@ export default function Login( {currentUser, setCurrentUser }) {
             body: JSON.stringify(logInData),
         });
 
-        if (response.data.message === "Authentication successful"){
-        const user_id = response.data.user_id;
+        const data = await response.json();
+        console.log(data);
+        if (data.message === "Authentication successful"){
+        const user_id = data.user_id;
         setCurrentUser({id: user_id});
-        // navigateTo("/home");
+        navigateTo("/");
         } else {
-            setLoginError(response.data.error);
+            setLoginError(data.error);
         }
+
         } catch (error) {
             console.error("API error", error)
 
@@ -49,7 +53,7 @@ export default function Login( {currentUser, setCurrentUser }) {
                     <label>Password</label>
                     <input type='text'  ref={userPassword}/>
                 </div>
-                <button onClick={()=> handleLogin()}>Log In</button>
+                <button onClick={(e)=> handleLogin(e)}>Log In</button>
                 {/* {loginError && <p>{loginError}</p>} */}
             </form>
         </>

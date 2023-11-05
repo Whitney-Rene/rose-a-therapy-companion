@@ -15,8 +15,9 @@ export default function NavBar() {
 
           {/* when the user clicks "Home" or "Request a Bouquet" links
           direct the user to this path, which renders an element/comp */}
-          <Link to="/" style={{color: 'sandybrown'}}>Home   </Link>
-          <Link to="/request" style={{color: 'sandybrown'}}>request a bouquet</Link>
+          <Link to="/" style={{color: 'sandybrown'}}>home   </Link>
+          <Link to="/request" style={{color: 'sandybrown'}}>request a bouquet   </Link>
+          <Link to="/login" style={{color: 'sandybrown'}}>login</Link>
 
       </div>
 
