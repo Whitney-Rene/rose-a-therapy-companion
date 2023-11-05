@@ -23,7 +23,8 @@ function App() {
       <div className='content'>
 
         <Routes> {/* component of react-router */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
           <Route path="/home" element={<HomePage />} />
           <Route path="/request" element={<RequestBouquet />} />
           <Route path="/create/form/:entry_type" element={<EntryForm />} />
