@@ -108,6 +108,7 @@ app.post("/add-users", async (req, res) => {
 //endpoint for user login
 app.post("/login", async (req, res) => {
   const { user_email, user_password } = req.body;
+  console.log({ user_email, user_password });
 
   try {
     const result = await db.query(
