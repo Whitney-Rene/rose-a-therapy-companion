@@ -51,9 +51,8 @@ export default function RequestBouquet() {
       <div>
         {bouquetData.map((item) => (
           <div key={item.entry_id}>
-            {/* FUTURE PLANS: format date to human redable */}
             {item.entry_type}
-            {item.entry_date}
+            {functions.formatTime(item.entry_date)}
             {item.entry_content}
           </div>
        ))}

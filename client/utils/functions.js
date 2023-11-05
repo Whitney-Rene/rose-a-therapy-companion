@@ -1,4 +1,5 @@
 import URL from "./variables";
+import moment from "moment";
 
 //FUTURE PLANS:
 //add 2 more functions, put/patch and delete requests
@@ -37,4 +38,10 @@ const postRequest = async (endpoint, data) => {
   }
 };
 
-export default { getRequest, postRequest };
+function formatTime(rawDate) {
+  const dateObject = moment(rawDate);
+  const formattedDate = dateObject.format("MMMM D, YYYY");
+  return formattedDate;
+}
+
+export default { getRequest, postRequest, formatTime };
