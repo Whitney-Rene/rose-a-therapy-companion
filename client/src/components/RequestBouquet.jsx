@@ -1,6 +1,8 @@
 //imports from react and other files
 import React, { useRef, useState } from 'react';
 import functions from '../../utils/functions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function RequestBouquet() {
 
@@ -54,6 +56,8 @@ export default function RequestBouquet() {
             {item.entry_type}
             {functions.formatTime(item.entry_date)}
             {item.entry_content}
+            <FontAwesomeIcon icon={faTrash} className='iconEye '/>
+            <FontAwesomeIcon icon={faPenSquare} className='iconPen' />
           </div>
        ))}
       </div>
