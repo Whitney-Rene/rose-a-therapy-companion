@@ -1,12 +1,13 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import bcrypt from "bcrypt";
 
 import db from "./db/db-connection.js";
 import { hashPassword } from "./utils/hashPasswordUtils.js";
 
 const app = express();
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT || 9999;
 
 //FUTURE PLANS:
 //do I need all these routes?  am I using them all?
@@ -104,6 +105,43 @@ app.post("/add-users", async (req, res) => {
   }
 });
 
+//endpoint for user login
+app.post("/login", async (req, res) => {
+  const { user_email, user_password } = req.body;
+  console.log("login route", { user_email, user_password });
+
+  try {
+    const result = await db.query(
+      "SELECT user_id, user_password FROM users WHERE user_email = $1",
+      [user_email]
+    );
+
+    //if there is a user returned in the variable
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      //I need to compare the hashed passwords
+      const passwordMatch = await bcrypt.compare(
+        user_password,
+        user.user_password
+      );
+
+      if (passwordMatch) {
+        res.json({
+          message: "Authentication successful",
+          user_id: user.user_id,
+        });
+      } else {
+        res.json({ error: "Incorrect password" });
+      }
+    } else {
+      res.json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Database error:", error);
+    res.json({ error });
+  }
+});
+
 //endpoint for adding entries to db
 // `:` indicates route/url parameter
 app.post("/add-entries/:user_id", async (req, res) => {
@@ -128,11 +166,11 @@ app.patch("/edit-users/:user_id", async (req, res) => {
     const { user_name, user_email, user_password } = req.body;
 
     //commenting this out for now, causing issues in db, different password values, even if user does not change password
-    // const newhashedUserPassword = hashPassword(user_password);
+    const newhashedUserPassword = hashPassword(user_password);
 
     const result = await db.query(
       "UPDATE users SET user_name=$1, user_email=$2, user_password=$3 WHERE user_id=$4 RETURNING *",
-      [user_name, user_email, user_password, user_id]
+      [user_name, user_email, newhashedUserPassword, user_id]
     );
     res.status(400).json(result.rows[0]);
   } catch (error) {

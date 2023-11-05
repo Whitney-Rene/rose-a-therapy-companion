@@ -1,4 +1,5 @@
 import URL from "./variables";
+import moment from "moment";
 
 //FUTURE PLANS:
 //add 2 more functions, put/patch and delete requests
@@ -31,10 +32,16 @@ const postRequest = async (endpoint, data) => {
     }
 
     const responseData = await response.json();
-    // console.log(responseData)
+    return responseData;
   } catch (error) {
     console.error("Error while adding contact:", error);
   }
 };
 
-export default { getRequest, postRequest };
+function formatTime(rawDate) {
+  const dateObject = moment(rawDate);
+  const formattedDate = dateObject.format("MMMM D, YYYY");
+  return formattedDate;
+}
+
+export default { getRequest, postRequest, formatTime };

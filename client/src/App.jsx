@@ -8,10 +8,14 @@ import HomePage from './components/HomePage';
 import RequestBouquet from './components/RequestBouquet';
 import NavBar from './components/NavBar';
 import EntryForm from './components/EntryForm';
+import Login from './components/Login';
 import './App.css'
 
 
 function App() {
+
+  //store username and userid
+  const [currentUser, setCurrentUser] = useState({});
 
   return (
 
@@ -22,7 +26,9 @@ function App() {
       <div className='content'>
 
         <Routes> {/* component of react-router */}
-          <Route path="/" element={<HomePage/>} />
+          <Route path="/" element={<Login currentuser={currentUser} setCurrentUser={setCurrentUser}/>} />
+          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/home" element={<HomePage />} />
           <Route path="/request" element={<RequestBouquet />} />
           <Route path="/create/form/:entry_type" element={<EntryForm />} />
         </Routes>
