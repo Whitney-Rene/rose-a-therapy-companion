@@ -32,7 +32,7 @@ const postRequest = async (endpoint, data) => {
     }
 
     const responseData = await response.json();
-    // console.log(responseData)
+    return responseData;
   } catch (error) {
     console.error("Error while adding contact:", error);
   }

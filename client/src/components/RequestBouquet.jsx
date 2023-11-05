@@ -54,6 +54,8 @@ export default function RequestBouquet() {
             {item.entry_type}
             {functions.formatTime(item.entry_date)}
             {item.entry_content}
+            {/* <FontAwesomeIcon icon='eye' className='iconEye '/>
+            <FontAwesomeIcon icon={faPenSquare} className='iconPen' /> */}
           </div>
        ))}
       </div>

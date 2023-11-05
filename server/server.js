@@ -7,7 +7,7 @@ import db from "./db/db-connection.js";
 import { hashPassword } from "./utils/hashPasswordUtils.js";
 
 const app = express();
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT || 9999;
 
 //FUTURE PLANS:
 //do I need all these routes?  am I using them all?
@@ -108,7 +108,7 @@ app.post("/add-users", async (req, res) => {
 //endpoint for user login
 app.post("/login", async (req, res) => {
   const { user_email, user_password } = req.body;
-  console.log({ user_email, user_password });
+  console.log("login route", { user_email, user_password });
 
   try {
     const result = await db.query(
