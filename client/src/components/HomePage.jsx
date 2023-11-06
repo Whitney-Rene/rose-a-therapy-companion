@@ -1,3 +1,4 @@
+//import components from respective files
 import CreateRoseBudThorn from './CreateRoseBudThorn'
 import ListLatestEntries from './ListLatestEntries'
 

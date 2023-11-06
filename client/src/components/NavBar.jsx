@@ -1,4 +1,4 @@
-//import component to create navigation links
+//import Link component to create navigation links
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
@@ -16,7 +16,7 @@ export default function NavBar() {
           direct the user to this path, which renders an element/comp */}
           <Link to="/" style={{color: 'sandybrown'}}>home   </Link>
           <Link to="/request" style={{color: 'sandybrown'}}>request a bouquet   </Link>
-          <Link to="/login" style={{color: 'sandybrown'}}>login</Link>
+          <Link to="/login" style={{color: 'sandybrown'}}>logout</Link>
 
       </div>
 

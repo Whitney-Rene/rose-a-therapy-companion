@@ -1,11 +1,10 @@
+//imports from react, libraries and other files
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-
 import functions from '../../utils/functions';
-
 
 export default function ListLatestEntries() {
 

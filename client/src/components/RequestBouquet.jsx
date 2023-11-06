@@ -1,4 +1,4 @@
-//imports from react and other files
+//imports from react, libraries and other files
 import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
