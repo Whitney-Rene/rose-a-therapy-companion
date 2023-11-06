@@ -1,6 +1,6 @@
 //imports from react and other files
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +14,22 @@ export default function RequestBouquet() {
   const userStartDate = useRef(null);
   const userEndDate = useRef(null);
   const [bouquetData, setBouquetData] = useState([]);
+
+  const handleDelete = async (entry_id) => {
+    try { 
+      const response = await fetch (`http://localhost:9999/delete-entries/${entry_id}`, {
+        method: 'DELETE',
+      });
+      if(!response.ok) {
+        throw new Error('Failed to delete entry');
+      }
+
+      //very new for me, but great!  less lines of code
+      setBouquetData((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
+    } catch (error) {
+      console.error('Error deleting entry:', error)
+    }
+  };
 
   //function to handle the submit/button click
   //will call backend and retrieve r/b/th between specific dates
@@ -47,11 +63,11 @@ export default function RequestBouquet() {
       <form onSubmit={handleSubmit}>
         <label>
           Start Date:
-          <input type="date" ref={userStartDate} />
+          <input required type="date" ref={userStartDate} />
         </label>
         <label>
           End Date:
-          <input type='date' ref={userEndDate} />
+          <input required type='date' ref={userEndDate} />
         </label>
         <button type='submit'>Submit</button>
       </form>
@@ -65,8 +81,10 @@ export default function RequestBouquet() {
             {item.entry_type}
             {functions.formatTime(item.entry_date)}
             {item.entry_content}
-            <FontAwesomeIcon icon={faTrash} className='iconEye '/>
-            <FontAwesomeIcon icon={faPenSquare} className='iconPen' />
+            <FontAwesomeIcon icon={faTrash} className='iconEye' onClick={() => handleDelete(item.entry_id)}/>
+            <Link to={`/edit/${item.entry_id}`} state={item} className='iconPen'>
+              <FontAwesomeIcon icon={faPenSquare} /> 
+            </Link>
           </div>
        ))}
       </div>
