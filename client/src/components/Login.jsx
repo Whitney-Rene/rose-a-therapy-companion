@@ -1,12 +1,13 @@
-import { useState, useRef } from 'react';
-import functions from '../../utils/functions';
+import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login( {currentUser, setCurrentUser }) {
 
+    //set up useRef for form
     const userEmail = useRef(null);
     const userPassword = useRef(null);
 
+    //variable to store useNavigate react-router-dom
     const navigateTo = useNavigate();
 
     const handleLogin = async (event) => {

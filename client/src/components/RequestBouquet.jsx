@@ -8,6 +8,7 @@ import functions from '../../utils/functions';
 
 export default function RequestBouquet() {
 
+  //attempted to refactor this code, but learned: can't user a react hook in a place where it's not allowed
   //variable to store useNavigate react-router-dom
   const navigateTo = useNavigate();
 
@@ -34,6 +35,7 @@ export default function RequestBouquet() {
   };
 
   //function to handle the submit/button click
+
   const handleSubmit = async (event) => {
     //prevent the default nature of event
     event.preventDefault();
@@ -109,4 +111,3 @@ export default function RequestBouquet() {
 //confirmation/alert for delete
 //when I click update for an entry in the "requestbouqet" page list, I am routed 
   //to a different page, can I be take back to my query after the update of the entry? 
-//
