@@ -92,7 +92,7 @@ export default function RequestBouquet() {
 
       <button onClick={routeHome}>cancel</button>
 
-    {/* if bouquetData is not empty, render details of bouquet */}
+    {/* if bouquetData is not empty, render details of bouquet, else message to user */}
     {bouquetData.length > 0 ? (
       <div>
         {bouquetData.map((item) => (

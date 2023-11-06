@@ -36,7 +36,7 @@ export default function ListLatestEntries() {
     functions.getRequest('/list-latest-entries/1')
       .then(data => {
         setEntries(data)
-        console.log('entries data:', entries)
+        // console.log('entries data:', entries)
       
       }
         )
@@ -47,7 +47,7 @@ export default function ListLatestEntries() {
       });
     
     
-    }, [entries]);
+    }, []);
 
   return (
     <>
