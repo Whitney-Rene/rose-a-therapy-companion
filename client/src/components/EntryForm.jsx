@@ -29,7 +29,7 @@ export default function EntryForm() {
         //try/catch blocks are used to handle asynchronous functionss that involve api calls
         try {
             await functions.postRequest("/add-entries/1", entryData);
-            console.log("Form data:", entryData);
+            // console.log("Form data:", entryData);
             //resets input fields to blank
             userEntryDate.current.value = null;
             userEntryContent.current.value = null;

@@ -93,7 +93,7 @@ export default function RequestBouquet() {
       <button onClick={routeHome}>cancel</button>
 
     {/* if bouquetData is not empty, render details of bouquet */}
-    {bouquetData.length > 0 && (
+    {bouquetData.length > 0 ? (
       <div>
         {bouquetData.map((item) => (
           <div key={item.entry_id}>
@@ -109,7 +109,8 @@ export default function RequestBouquet() {
           </div>
        ))}
       </div>
-    )}
+    ) : 
+      <p>there are no r/b/thorns for these dates </p>}
 
     </div>
   )
