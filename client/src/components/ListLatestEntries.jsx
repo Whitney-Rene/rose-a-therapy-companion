@@ -12,6 +12,24 @@ export default function ListLatestEntries() {
   //state
   const [entries, setEntries] = useState(null); //this could be initialized to an empty array []
 
+  const handleDelete = async (entry_id) => {
+    try { 
+      const response = await fetch (`http://localhost:9999/delete-entries/${entry_id}`, {
+        method: 'DELETE',
+      });
+      if(!response.ok) {
+        throw new Error('Failed to delete entry');
+      }
+
+      //very new for me, but great!  less lines of code
+      //FUTURE PLANS: some sort of confirm/alert  --eventcard.jsx, eventonica, confirm alert
+      setEntries((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
+    } catch (error) {
+      console.error('Error deleting entry:', error)
+    }
+  };
+  
+
   //side effect hook, triggers getRequest function (imported from utils folder)
   useEffect (() => {
 
@@ -49,7 +67,7 @@ export default function ListLatestEntries() {
           <div key={index}>
             <p>{entry.entry_type}</p>
             <p>{entry.entry_content}</p>
-            <FontAwesomeIcon icon={faTrash} className='iconEye '/>
+            <FontAwesomeIcon icon={faTrash} className='iconEye' onClick={() => handleDelete(entry.entry_id)}/>
             <Link to={`/edit/${entry.entry_id}`} state={entry} className='iconPen'>
               <FontAwesomeIcon icon={faPenSquare} /> 
             </Link>
