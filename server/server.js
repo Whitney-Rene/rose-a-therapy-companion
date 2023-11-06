@@ -125,14 +125,14 @@ app.post("/login", async (req, res) => {
   console.log("login route", { user_email, user_password });
 
   try {
-    const result = await db.query(
-      "SELECT user_id, user_password FROM users WHERE user_email = $1",
-      [user_email]
-    );
+    const result = await db.query("SELECT * FROM users WHERE user_email = $1", [
+      user_email,
+    ]);
 
     //if there is a user returned in the variable
     if (result.rows.length > 0) {
       const user = result.rows[0];
+      console.log(user);
       //I need to compare the hashed passwords
       const passwordMatch = await bcrypt.compare(
         user_password,
@@ -143,6 +143,8 @@ app.post("/login", async (req, res) => {
         res.json({
           message: "Authentication successful",
           user_id: user.user_id,
+          user_name: user.user_name,
+          user_email: user.user_email,
         });
       } else {
         res.json({ error: "Incorrect password" });

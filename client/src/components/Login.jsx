@@ -1,16 +1,20 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login( {currentUser, setCurrentUser }) {
 
-    //set up useRef for form
+    //set up useRef for form, state
     const userEmail = useRef(null);
     const userPassword = useRef(null);
+    const [loginError, setLoginError] = useState(null);
 
     //variable to store useNavigate react-router-dom
     const navigateTo = useNavigate();
 
+    //function to handle login, async call to backend
     const handleLogin = async (event) => {
+
+        //prevent the default nature of event
         event.preventDefault();
 
         const logInData = {
@@ -18,6 +22,7 @@ export default function Login( {currentUser, setCurrentUser }) {
         user_password : userPassword.current?.value
         }
         
+        //try/catch block for async call to api
         try {
         const response = await fetch ("http://localhost:9999/login", {
             method: "POST",
@@ -26,7 +31,8 @@ export default function Login( {currentUser, setCurrentUser }) {
         });
 
         const data = await response.json();
-        console.log(data);
+        
+        //if login successful do this, if not show error message
         if (data.message === "Authentication successful"){
         const user_id = data.user_id;
         setCurrentUser({id: user_id});
@@ -44,6 +50,8 @@ export default function Login( {currentUser, setCurrentUser }) {
 
         return (
         <>
+
+        {/* login form, with button that triggers handleLogin */}
         <h2>Login</h2>
             <form>
                 <div>
@@ -55,7 +63,8 @@ export default function Login( {currentUser, setCurrentUser }) {
                     <input type='text'  ref={userPassword}/>
                 </div>
                 <button onClick={(e)=> handleLogin(e)}>Log In</button>
-                {/* {loginError && <p>{loginError}</p>} */}
+                {/* if loginError is not empty, show error */}
+                {loginError && <p>{loginError}</p>}
             </form>
         </>
     )
