@@ -46,6 +46,20 @@ app.get("/entries", async (req, res) => {
   }
 });
 
+app.get("/get-entry/:entry_id", async (req, res) => {
+  try {
+    const { entry_id } = req.params;
+    const { rows: entry } = await db.query(
+      "SELECT * FROM entries WHERE entry_id = $1",
+      [entry_id]
+    );
+    res.send(entry);
+  } catch (error) {
+    console.error("Error in Database Query:", error);
+    res.json({ error });
+  }
+});
+
 //endpoint to query db for the lastest entries, limit 5
 app.get("/list-latest-entries/:user_id", async (req, res) => {
   try {
@@ -111,14 +125,14 @@ app.post("/login", async (req, res) => {
   console.log("login route", { user_email, user_password });
 
   try {
-    const result = await db.query(
-      "SELECT user_id, user_password FROM users WHERE user_email = $1",
-      [user_email]
-    );
+    const result = await db.query("SELECT * FROM users WHERE user_email = $1", [
+      user_email,
+    ]);
 
     //if there is a user returned in the variable
     if (result.rows.length > 0) {
       const user = result.rows[0];
+      console.log(user);
       //I need to compare the hashed passwords
       const passwordMatch = await bcrypt.compare(
         user_password,
@@ -129,6 +143,8 @@ app.post("/login", async (req, res) => {
         res.json({
           message: "Authentication successful",
           user_id: user.user_id,
+          user_name: user.user_name,
+          user_email: user.user_email,
         });
       } else {
         res.json({ error: "Incorrect password" });
@@ -189,7 +205,7 @@ app.patch("/edit-entries/:entry_id", async (req, res) => {
       "UPDATE entries SET entry_type=$1, entry_date=$2, entry_content=$3 WHERE entry_id=$4 RETURNING *",
       [entry_type, entry_date, entry_content, entry_id]
     );
-    res.status(400).json(result.rows[0]);
+    res.status(200).json(result.rows[0]);
   } catch (error) {
     console.error("Error editing entry:", error);
     res.json({ error });

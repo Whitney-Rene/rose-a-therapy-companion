@@ -6,6 +6,7 @@ export default function EntryForm() {
 
     //initialize variables
     const { entry_type } = useParams();
+    const navigateTo = useNavigate();
     const [quote, setQuote] = useState("");
     const [confirmationMessage, setConfirmationMessage] = useState("");
 
@@ -46,9 +47,12 @@ export default function EntryForm() {
 
     };
 
+    const routeHome = () => {
+        navigateTo("/");
+    }
+
     //FUTURE PLANS
     //update ListLatestEntries Component? *not necssary because this is happening on another page
-    //cancel button for entry form
     //upon submit: *need to decide
         //then take user back to main page 
             //useNavigate commented out on line 7
@@ -74,8 +78,11 @@ export default function EntryForm() {
                 <textarea required ref={userEntryContent} />
             </label>
             <button type='submit'>Submit</button>
+    
 
         </form>
+
+        <button onClick={routeHome}>Cancel</button>
 
         {confirmationMessage}
 

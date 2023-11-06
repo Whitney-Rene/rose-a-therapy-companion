@@ -1,21 +1,28 @@
-import { useState, useRef } from 'react';
-import functions from '../../utils/functions';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login( {currentUser, setCurrentUser }) {
 
+    //set up useRef for form, state
     const userEmail = useRef(null);
     const userPassword = useRef(null);
+    const [loginError, setLoginError] = useState(null);
 
+    //variable to store useNavigate react-router-dom
     const navigateTo = useNavigate();
 
-    const handleLogin = async () => {
+    //function to handle login, async call to backend
+    const handleLogin = async (event) => {
+
+        //prevent the default nature of event
+        event.preventDefault();
 
         const logInData = {
         user_email : userEmail.current?.value,
         user_password : userPassword.current?.value
         }
         
+        //try/catch block for async call to api
         try {
         const response = await fetch ("http://localhost:9999/login", {
             method: "POST",
@@ -23,13 +30,19 @@ export default function Login( {currentUser, setCurrentUser }) {
             body: JSON.stringify(logInData),
         });
 
-        if (response.data.message === "Authentication successful"){
-        const user_id = response.data.user_id;
-        setCurrentUser({id: user_id});
-        // navigateTo("/home");
+        const data = await response.json();
+        
+        //if login successful do this, if not show error message
+        if (data.message === "Authentication successful"){
+        const user_id = data.user_id;
+        const user_name = data.user_name;
+        setCurrentUser({id: user_id, name: user_name});
+        //could I send the user_name as a param?
+        navigateTo("/");
         } else {
-            setLoginError(response.data.error);
+            setLoginError(data.error);
         }
+
         } catch (error) {
             console.error("API error", error)
 
@@ -39,6 +52,8 @@ export default function Login( {currentUser, setCurrentUser }) {
 
         return (
         <>
+
+        {/* login form, with button that triggers handleLogin */}
         <h2>Login</h2>
             <form>
                 <div>
@@ -49,9 +64,14 @@ export default function Login( {currentUser, setCurrentUser }) {
                     <label>Password</label>
                     <input type='text'  ref={userPassword}/>
                 </div>
-                <button onClick={()=> handleLogin()}>Log In</button>
-                {/* {loginError && <p>{loginError}</p>} */}
+                <button onClick={(e)=> handleLogin(e)}>Log In</button>
+                {/* if loginError is not empty, show error */}
+                {loginError && <p>{loginError}</p>}
             </form>
         </>
     )
 }
+
+//FUTURE PLANS:
+//add styling
+//optional: is there a way to send user_name and user_email to homepage?
