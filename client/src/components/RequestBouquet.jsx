@@ -34,7 +34,6 @@ export default function RequestBouquet() {
   };
 
   //function to handle the submit/button click
-  //will call backend and retrieve r/b/th between specific dates
   const handleSubmit = async (event) => {
     //prevent the default nature of event
     event.preventDefault();

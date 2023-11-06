@@ -8,12 +8,11 @@ export default function NavBar() {
    
     <nav className='navbar'>
 
-      <p>NavBar Component</p>
-      <p style={{color: 'sandybrown'}}>rose: a therapy companion</p>
+      <p>rose: a therapy companion</p>
 
       <div className="links">
 
-          {/* when the user clicks "Home" or "Request a Bouquet" links
+          {/* when the user clicks "Home", "Request a Bouquet" or "Login" links
           direct the user to this path, which renders an element/comp */}
           <Link to="/" style={{color: 'sandybrown'}}>home   </Link>
           <Link to="/request" style={{color: 'sandybrown'}}>request a bouquet   </Link>
