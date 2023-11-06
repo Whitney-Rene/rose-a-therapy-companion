@@ -2,9 +2,12 @@
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateRoseBudThorn() {
+  
+  //variable to store useNavigate react-router-dom
+  const navigateTo = useNavigate();
 
- const navigateTo = useNavigate();
-
+  //when user clicks r/b/th button, navigate user to route that will display
+    //the EditEntry component and will take the entry type as a param 
   const handleClick = (entry_type) => {
   navigateTo(`/create/form/${entry_type}`);
   }
@@ -13,6 +16,7 @@ export default function CreateRoseBudThorn() {
     <>
     <div className="create" >
 
+      {/* buttons that have routing functionality */}
       <p>CreateRoseBudThorn Component</p>
       <button onClick={() => handleClick('rose')}>Rose</button>
       <button onClick={() => handleClick('bud')}>Bud</button>
