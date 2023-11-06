@@ -35,7 +35,9 @@ export default function Login( {currentUser, setCurrentUser }) {
         //if login successful do this, if not show error message
         if (data.message === "Authentication successful"){
         const user_id = data.user_id;
-        setCurrentUser({id: user_id});
+        const user_name = data.user_name;
+        setCurrentUser({id: user_id, name: user_name});
+        //could I send the user_name as a param?
         navigateTo("/");
         } else {
             setLoginError(data.error);
@@ -69,3 +71,7 @@ export default function Login( {currentUser, setCurrentUser }) {
         </>
     )
 }
+
+//FUTURE PLANS:
+//add styling
+//optional: is there a way to send user_name and user_email to homepage?

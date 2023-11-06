@@ -111,3 +111,4 @@ export default function RequestBouquet() {
 //confirmation/alert for delete
 //when I click update for an entry in the "requestbouqet" page list, I am routed 
   //to a different page, can I be take back to my query after the update of the entry? 
+//add styling

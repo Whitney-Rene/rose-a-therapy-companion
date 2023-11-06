@@ -25,3 +25,6 @@ export default function NavBar() {
     </>
   )
 }
+
+//FUTURE PLANS:
+//add styling
