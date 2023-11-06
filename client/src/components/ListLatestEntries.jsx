@@ -10,8 +10,9 @@ import functions from '../../utils/functions';
 export default function ListLatestEntries() {
 
   //state
-  const [entries, setEntries] = useState(null); //this could be initialized to an empty array []
+  const [entries, setEntries] = useState(null); 
 
+  //function to handle delete
   const handleDelete = async (entry_id) => {
     try { 
       const response = await fetch (`http://localhost:9999/delete-entries/${entry_id}`, {
@@ -21,8 +22,7 @@ export default function ListLatestEntries() {
         throw new Error('Failed to delete entry');
       }
 
-      //very new for me, but great!  less lines of code
-      //FUTURE PLANS: some sort of confirm/alert  --eventcard.jsx, eventonica, confirm alert
+      //filter method, if a entry does not have an id, don't show it
       setEntries((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
     } catch (error) {
       console.error('Error deleting entry:', error)
@@ -33,8 +33,6 @@ export default function ListLatestEntries() {
   //side effect hook, triggers getRequest function (imported from utils folder)
   useEffect (() => {
 
-    //I am concerned because I hardcoded this...need to figure out how to get this to work dynamically?
-    //maybe there would be a way to grab the user_id upon login and send that id here?
     functions.getRequest('/list-latest-entries/1')
       .then(data => {
         setEntries(data)
@@ -56,25 +54,27 @@ export default function ListLatestEntries() {
 
       <div>
         
-      <p>ListLatestEntries Component</p>
+      <p> your latest rose, bud and thorns </p>
 
-      {/* FUTURE PLANS: 
-          add functionality to edit and delete entries,
-          delete/edit icons for each entry with functionality
-      */}
-
-        {entries && entries.map((entry, index) => (
-          <div key={index}>
-            <p>{entry.entry_type}</p>
-            <p>{entry.entry_content}</p>
-            <FontAwesomeIcon icon={faTrash} className='iconEye' onClick={() => handleDelete(entry.entry_id)}/>
-            <Link to={`/edit/${entry.entry_id}`} state={entry} className='iconPen'>
-              <FontAwesomeIcon icon={faPenSquare} /> 
-            </Link>
-          </div>
-        ))}
+      {/* map over entries state and show relevant data and buttons */}
+      {entries && entries.map((entry, index) => (
+        <div key={index}>
+          <p>{entry.entry_type}</p>
+          <p>{entry.entry_content}</p>
+          <FontAwesomeIcon icon={faTrash} className='iconEye' onClick={() => handleDelete(entry.entry_id)}/>
+          <Link to={`/edit/${entry.entry_id}`} state={entry} className='iconPen'>
+            <FontAwesomeIcon icon={faPenSquare} /> 
+          </Link>
+        </div>
+      ))}
 
       </div>
     </>
   );
 };
+
+//FUTURE PLANS:
+//add styling
+//line 37 is hardcoded...need to figure out how to get this to work dynamically?
+    //maybe there would be a way to grab the user_id upon login and send that id here?
+//some sort of confirm/alert for delete --eventcard.jsx, eventonica, confirm alert
