@@ -9,10 +9,7 @@ export default function EditEntry (){
 
     const location = useLocation();
     const state = location.state;
-    console.log(state);
-    // const {entry_id} = useParams();
-    // console.log('Entry ID from URL:', entry_id);
-    // const [entry, setEntry] = useState([]);
+
     const [updatedEntry, setUpdatedEntry] = useState({entry_type: state.entry_type, entry_date: state.entry_date, entry_content: state.entry_content});
 
     const handleInputChange = (event) => {
@@ -24,32 +21,35 @@ export default function EditEntry (){
     };
     console.log(updatedEntry);
 
+    //FUTURE PLANS:
+    //something to notify the user that the update was successful!
+    const handleSave = async () => {
+        console.log(state.entry_id);
+        try {
+            const response = await fetch(`http://localhost:9999/edit-entries/${state.entry_id}`, {
+            
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(updatedEntry),
+
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if(!response.ok) {
+            throw new Error ('Failed to update contact');
+        }
+
+
+    } catch (error) {
+        console.error('Error updating entry:', error);
+    }
+
+    };
+
     const routeHome = () => {
         navigateTo("/");
     }
-    // async function fetchEntry() {
-    //     try {
-    //       // Construct the URL for fetching the entry data
-    //       const apiUrl = `http://localhost:9999/get-entry/${entry_id}`;
-  
-    //       const response = await fetch(apiUrl);
-  
-    //       if (!response.ok) {
-    //         throw new Error('Network response was not ok');
-    //       }
-  
-    //       const data = await response.json();
-    //       console.log(data);
-    //       setEntry(data);
-    //     } catch (error) {
-    //       console.error('An error occurred while fetching entry:', error);
-    //     }
-    //   }
-
-    // useEffect(() => {
-    //     fetchEntry();
-    //   }, []);
-    // //   [entry_id]
 
     return (
         <>
@@ -64,7 +64,7 @@ export default function EditEntry (){
                 <input name="entry_type" type="text" value={updatedEntry.entry_type} onChange={handleInputChange}></input>
                 <input name="entry_content" type="text" value={updatedEntry.entry_content} onChange={handleInputChange}></input>
             </form>
-            <button>Update Entry</button>
+            <button onClick={handleSave}>Update Entry</button>
             <button onClick={routeHome}>Cancel</button>
           </div>
         )}

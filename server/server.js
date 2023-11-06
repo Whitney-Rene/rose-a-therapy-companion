@@ -203,7 +203,7 @@ app.patch("/edit-entries/:entry_id", async (req, res) => {
       "UPDATE entries SET entry_type=$1, entry_date=$2, entry_content=$3 WHERE entry_id=$4 RETURNING *",
       [entry_type, entry_date, entry_content, entry_id]
     );
-    res.status(400).json(result.rows[0]);
+    res.status(200).json(result.rows[0]);
   } catch (error) {
     console.error("Error editing entry:", error);
     res.json({ error });
