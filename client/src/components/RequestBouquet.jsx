@@ -8,6 +8,7 @@ import functions from '../../utils/functions';
 
 export default function RequestBouquet() {
 
+  //variable to store useNavigate react-router-dom
   const navigateTo = useNavigate();
 
   //useRefs and state
@@ -15,6 +16,7 @@ export default function RequestBouquet() {
   const userEndDate = useRef(null);
   const [bouquetData, setBouquetData] = useState([]);
 
+  //functionality for delete buttons
   const handleDelete = async (entry_id) => {
     try { 
       const response = await fetch (`http://localhost:9999/delete-entries/${entry_id}`, {
@@ -46,11 +48,17 @@ export default function RequestBouquet() {
       const data = await functions.getRequest(`/date-specific-entries/${start_date}/${end_date}`);
       console.log(data);
       setBouquetData(data);
+
+      //this will clear the input fields AFTER the request is made
+      userStartDate.current.value = "";
+      userEndDate.current.value = "";
+
     } catch (error) {
       console.error("Error while fetching bouquet data:", error);
     }
   }
 
+  //function to navigate user to homepage 
   const routeHome = () => {
     navigateTo("/");
   }
@@ -58,22 +66,23 @@ export default function RequestBouquet() {
   return (
     <div>
       
-      <p>RequestBouquet Component</p>
+      <p> request a bouquet </p>
 
       <form onSubmit={handleSubmit}>
         <label>
-          Start Date:
+          start date:
           <input required type="date" ref={userStartDate} />
         </label>
         <label>
-          End Date:
+          end date:
           <input required type='date' ref={userEndDate} />
         </label>
-        <button type='submit'>Submit</button>
+        <button type='submit'>submit</button>
       </form>
-      <button onClick={routeHome}>Cancel</button>
 
-    {/* if bouquetData not empty, render details of bouquet */}
+      <button onClick={routeHome}>cancel</button>
+
+    {/* if bouquetData is not empty, render details of bouquet */}
     {bouquetData.length > 0 && (
       <div>
         {bouquetData.map((item) => (
@@ -82,6 +91,8 @@ export default function RequestBouquet() {
             {functions.formatTime(item.entry_date)}
             {item.entry_content}
             <FontAwesomeIcon icon={faTrash} className='iconEye' onClick={() => handleDelete(item.entry_id)}/>
+            {/* routes user to edit component
+                and takes the entry id and current state of entry with it */}
             <Link to={`/edit/${item.entry_id}`} state={item} className='iconPen'>
               <FontAwesomeIcon icon={faPenSquare} /> 
             </Link>
@@ -93,3 +104,10 @@ export default function RequestBouquet() {
     </div>
   )
 }
+
+//FUTURE PLANS: some sort of confirm/alert  --eventcard.jsx, eventonica, confirm alert
+//if there are no r/b/th between specific dates, can i print a message to the user
+//confirmation/alert for delete
+//when I click update for an entry in the "requestbouqet" page list, I am routed 
+  //to a different page, can I be take back to my query after the update of the entry? 
+//
