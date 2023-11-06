@@ -11,6 +11,7 @@ export default function EditEntry (){
     const state = location.state;
 
     const [updatedEntry, setUpdatedEntry] = useState({entry_type: state.entry_type, entry_date: state.entry_date, entry_content: state.entry_content});
+    const [confirmationMessage, setConfirmationMessage] =useState("");
 
     //handle the data in input fields
     const handleInputChange = (event) => {
@@ -34,14 +35,18 @@ export default function EditEntry (){
         });
 
         const data = await response.json();
+        setUpdatedEntry({entry_type: "", entry_date: "", entry_content: ""})
         console.log(data);
         if(!response.ok) {
             throw new Error ('Failed to update contact');
+        } else {
+            setConfirmationMessage(` your ${state.entry_type} updated successfully!`)
         }
 
 
     } catch (error) {
         console.error('Error updating entry:', error);
+        setConfirmationMessage(` there was an issue updating your ${state.entry_type} successfully`);
     }
 
     };
@@ -62,14 +67,16 @@ export default function EditEntry (){
             <p>{functions.formatTime(state.entry_date)}</p>
             <p>{state.entry_content}</p>
             <form>
-                <input name="entry_date" type="date" value={updatedEntry.entry_date} onChange={handleInputChange}></input>
-                <input name="entry_type" type="text" value={updatedEntry.entry_type} onChange={handleInputChange}></input>
-                <input name="entry_content" type="text" value={updatedEntry.entry_content} onChange={handleInputChange}></input>
+                <input required name="entry_date" type="date" value={updatedEntry.entry_date} onChange={handleInputChange}></input>
+                <input required name="entry_type" type="text" value={updatedEntry.entry_type} onChange={handleInputChange}></input>
+                <input required name="entry_content" type="text" value={updatedEntry.entry_content} onChange={handleInputChange}></input>
             </form>
             <button onClick={handleUpdate}>Update Entry</button>
             <button onClick={routeHome}>Cancel</button>
           </div>
         )}
+
+        {confirmationMessage && confirmationMessage}
       </>
     )
 }
