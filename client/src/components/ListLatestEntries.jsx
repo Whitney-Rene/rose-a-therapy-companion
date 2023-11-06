@@ -23,6 +23,7 @@ export default function ListLatestEntries() {
 
       //filter method, if a entry does not have an id, don't show it
       setEntries((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
+
     } catch (error) {
       console.error('Error deleting entry:', error)
     }
@@ -46,7 +47,7 @@ export default function ListLatestEntries() {
       });
     
     
-    }, []);
+    }, [entries]);
 
   return (
     <>

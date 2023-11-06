@@ -48,7 +48,7 @@ export default function EditEntry (){
 
     //function to route user to home, when the cancel button is clicked
     const routeHome = () => {
-        navigateTo("/");
+        navigateTo(-1);
     }
 
     return (
@@ -56,7 +56,7 @@ export default function EditEntry (){
 
         {/* form to grab the value of input boxes with update buttons and cancel button */}
         <p>edit {state.entry_type}</p>
-        
+
         {state && (
           <div>
             <p>{functions.formatTime(state.entry_date)}</p>

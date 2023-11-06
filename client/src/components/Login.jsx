@@ -32,6 +32,7 @@ export default function Login( {currentUser, setCurrentUser }) {
         });
 
         const data = await response.json();
+        console.log(data);
         
         //if login successful do this, if not show error message
         if (data.message === "Authentication successful"){

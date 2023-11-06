@@ -1,5 +1,5 @@
 //imports from react, libraries and other files
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -47,7 +47,7 @@ export default function RequestBouquet() {
     //async call in try/catch (handles success or failure of async call)
     try {
       const data = await functions.getRequest(`/date-specific-entries/${start_date}/${end_date}`);
-      console.log(data);
+      // localStorage.setItem('entries', JSON.stringify(data));
       setBouquetData(data);
 
       //this will clear the input fields AFTER the request is made
@@ -58,6 +58,15 @@ export default function RequestBouquet() {
       console.error("Error while fetching bouquet data:", error);
     }
   }
+
+  // Load entries from localStorage when the component mounts
+  // useEffect(() => {
+  //   console.log(localStorage);
+  //   const savedEntries = localStorage.getItem('entries');
+  //   if (savedEntries) {
+  //     setBouquetData(JSON.parse(savedEntries));
+  //   }
+  // }, []);
 
   //function to navigate user to homepage 
   const routeHome = () => {
@@ -106,9 +115,11 @@ export default function RequestBouquet() {
   )
 }
 
-//FUTURE PLANS: some sort of confirm/alert  --eventcard.jsx, eventonica, confirm alert
+//FUTURE PLANS: 
 //if there are no r/b/th between specific dates, can i print a message to the user
 //confirmation/alert for delete
+
+//?? if we have time
 //when I click update for an entry in the "requestbouqet" page list, I am routed 
   //to a different page, can I be take back to my query after the update of the entry? 
 //add styling

@@ -88,6 +88,7 @@ export default function EntryForm() {
     //FUTURE PLANS
     //upon submit: *need to decide
         //right now, there is a success messsage and then a quote
-        //is it enough for the user to click the home button? or add another entry?
+        //IT IS enough for the user to click the home button? or add another entry?
+        //SET TIME
         //if user wants to add another entry on the same page, clear conf message and quote, upon change/type in input box
             //info bar at top with inspirational quote
