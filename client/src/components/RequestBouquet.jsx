@@ -1,10 +1,14 @@
 //imports from react and other files
 import React, { useRef, useState } from 'react';
-import functions from '../../utils/functions';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
+import functions from '../../utils/functions';
+
 export default function RequestBouquet() {
+
+  const navigateTo = useNavigate();
 
   //useRefs and state
   const userStartDate = useRef(null);
@@ -31,6 +35,10 @@ export default function RequestBouquet() {
     }
   }
 
+  const routeHome = () => {
+    navigateTo("/");
+  }
+
   return (
     <div>
       
@@ -47,6 +55,7 @@ export default function RequestBouquet() {
         </label>
         <button type='submit'>Submit</button>
       </form>
+      <button onClick={routeHome}>Cancel</button>
 
     {/* if bouquetData not empty, render details of bouquet */}
     {bouquetData.length > 0 && (

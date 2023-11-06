@@ -20,7 +20,9 @@ export default function ListLatestEntries() {
     functions.getRequest('/list-latest-entries/1')
       .then(data => {
         setEntries(data)
-        console.log('entries data:', entries)}
+        console.log('entries data:', entries)
+      
+      }
         )
       // inside catch throw new Error
       .catch(error => {
@@ -48,7 +50,7 @@ export default function ListLatestEntries() {
             <p>{entry.entry_type}</p>
             <p>{entry.entry_content}</p>
             <FontAwesomeIcon icon={faTrash} className='iconEye '/>
-            <Link to={`/edit/${entry.id}`} className='iconPen'>
+            <Link to={`/edit/${entry.entry_id}`} state={entry} className='iconPen'>
               <FontAwesomeIcon icon={faPenSquare} /> 
             </Link>
           </div>

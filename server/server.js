@@ -46,6 +46,20 @@ app.get("/entries", async (req, res) => {
   }
 });
 
+app.get("/get-entry/:entry_id", async (req, res) => {
+  try {
+    const { entry_id } = req.params;
+    const { rows: entry } = await db.query(
+      "SELECT * FROM entries WHERE entry_id = $1",
+      [entry_id]
+    );
+    res.send(entry);
+  } catch (error) {
+    console.error("Error in Database Query:", error);
+    res.json({ error });
+  }
+});
+
 //endpoint to query db for the lastest entries, limit 5
 app.get("/list-latest-entries/:user_id", async (req, res) => {
   try {
