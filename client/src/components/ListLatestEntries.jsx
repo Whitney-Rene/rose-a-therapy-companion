@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -47,7 +48,9 @@ export default function ListLatestEntries() {
             <p>{entry.entry_type}</p>
             <p>{entry.entry_content}</p>
             <FontAwesomeIcon icon={faTrash} className='iconEye '/>
-            <FontAwesomeIcon icon={faPenSquare} className='iconPen' />
+            <Link to={`/edit/${entry.id}`} className='iconPen'>
+              <FontAwesomeIcon icon={faPenSquare} /> 
+            </Link>
           </div>
         ))}
 

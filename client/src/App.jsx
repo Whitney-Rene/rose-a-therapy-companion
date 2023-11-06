@@ -10,6 +10,7 @@ import NavBar from './components/NavBar';
 import EntryForm from './components/EntryForm';
 import Login from './components/Login';
 import './App.css'
+import EditEntry from './components/EditEntry';
 
 
 function App() {
@@ -26,11 +27,11 @@ function App() {
       <div className='content'>
 
         <Routes> {/* component of react-router */}
-          <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/home" element={<HomePage />} /> */}
+          <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
           <Route path="/request" element={<RequestBouquet />} />
           <Route path="/create/form/:entry_type" element={<EntryForm />} />
+          <Route path="/edit/:entry_id" element={<EditEntry />} />
         </Routes>
         
       </div>
