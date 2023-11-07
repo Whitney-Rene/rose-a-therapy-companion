@@ -16,6 +16,7 @@ export default function RequestBouquet() {
   const userStartDate = useRef(null);
   const userEndDate = useRef(null);
   const [bouquetData, setBouquetData] = useState([]);
+  const [noEntriesMessage, setNoEntriesMessage] = useState(false);
 
   //functionality for delete buttons
   const handleDelete = async (entry_id) => {
@@ -48,6 +49,12 @@ export default function RequestBouquet() {
     try {
       const data = await functions.getRequest(`/date-specific-entries/${start_date}/${end_date}`);
       // localStorage.setItem('entries', JSON.stringify(data));
+      if (data.length === 0) {
+        setNoEntriesMessage(true)
+      } else {
+        setNoEntriesMessage(false);
+        setBouquetData(data)};
+
       setBouquetData(data);
 
       //this will clear the input fields AFTER the request is made
@@ -93,7 +100,7 @@ export default function RequestBouquet() {
       <button onClick={routeHome}>cancel</button>
 
     {/* if bouquetData is not empty, render details of bouquet, else message to user */}
-    {bouquetData.length > 0 ? (
+    {bouquetData.length > 0 && (
       <div>
         {bouquetData.map((item) => (
           <div key={item.entry_id}>
@@ -109,9 +116,9 @@ export default function RequestBouquet() {
           </div>
        ))}
       </div>
-    ) : 
-      <p>there are no r/b/thorns for these dates </p>}
+    )}
 
+    {noEntriesMessage && <p> no r/b/th for these dates </p>}
     </div>
   )
 }

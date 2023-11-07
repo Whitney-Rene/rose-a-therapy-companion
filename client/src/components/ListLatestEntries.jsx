@@ -11,6 +11,23 @@ export default function ListLatestEntries() {
   //state
   const [entries, setEntries] = useState(null); 
 
+  //variables
+  const updateListEntries = () => {
+    functions.getRequest('/list-latest-entries/1')
+  .then(data => {
+    setEntries(data)
+    // console.log('entries data:', entries)
+  
+  }
+    )
+  // inside catch throw new Error
+  .catch(error => {
+    console.error('An error occured while fetching entries:', error)
+    console.log(error.response);
+  });
+
+}
+
   //function to handle delete
   const handleDelete = async (entry_id) => {
     try { 
@@ -21,8 +38,7 @@ export default function ListLatestEntries() {
         throw new Error('Failed to delete entry');
       }
 
-      //filter method, if a entry does not have an id, don't show it
-      setEntries((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
+      updateListEntries();
 
     } catch (error) {
       console.error('Error deleting entry:', error)
@@ -33,19 +49,7 @@ export default function ListLatestEntries() {
   //side effect hook, triggers getRequest function (imported from utils folder)
   useEffect (() => {
 
-    functions.getRequest('/list-latest-entries/1')
-      .then(data => {
-        setEntries(data)
-        // console.log('entries data:', entries)
-      
-      }
-        )
-      // inside catch throw new Error
-      .catch(error => {
-        console.error('An error occured while fetching entries:', error)
-        console.log(error.response);
-      });
-    
+    updateListEntries();
     
     }, []);
 
@@ -78,3 +82,20 @@ export default function ListLatestEntries() {
 //line 37 is hardcoded...need to figure out how to get this to work dynamically?
     //maybe there would be a way to grab the user_id upon login and send that id here?
 //some sort of confirm/alert for delete --eventcard.jsx, eventonica, confirm alert
+//things learned:
+  //filter method, if a entry does not have an id, don't show it
+  // setEntries((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
+
+    // functions.getRequest('/list-latest-entries/1')
+    //   .then(data => {
+    //     setEntries(data)
+    //     // console.log('entries data:', entries)
+      
+    //   }
+    //     )
+    //   // inside catch throw new Error
+    //   .catch(error => {
+    //     console.error('An error occured while fetching entries:', error)
+    //     console.log(error.response);
+    //   });
+    
