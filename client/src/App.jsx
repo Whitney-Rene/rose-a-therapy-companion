@@ -1,8 +1,8 @@
 //imports React's state management and side effect hooks
 import { useState, useEffect } from 'react';  
 //import components from React Router to define routes
-import { Route, Routes } from 'react-router-dom'; //'Switch' has been replaced with 'Routes'
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; //'Switch' has been replaced with 'Routes'
+// import { BrowserRouter as Router } from 'react-router-dom';
 //imports functions and components
 import HomePage from './components/HomePage';
 import RequestBouquet from './components/RequestBouquet';
@@ -21,6 +21,8 @@ function App() {
   return (
 
     <div className='App'>
+
+    <Router>
       
       <NavBar />
 
@@ -35,6 +37,8 @@ function App() {
         </Routes>
         
       </div>
+
+    </Router>
 
     </div>
 
