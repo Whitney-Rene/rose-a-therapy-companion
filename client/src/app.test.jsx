@@ -9,8 +9,8 @@ test ('App renders correctly', () => {
     render(<App />);
     //this will hold a reference to an HTMl elememt
     //screen.getByText is a query function, searches for the rendered component 
-    const homePage = screen.getByText("HomePage")
+    const homePageTitle = screen.getByText("rose: a therapy companion")
 
     //assertion used to check whether homePage is present in the rendered component
-    expect(homePage).toBeInTheDocument();
+    expect(homePageTitle).toBeInTheDocument();
 });
