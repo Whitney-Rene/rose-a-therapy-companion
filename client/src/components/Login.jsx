@@ -60,11 +60,11 @@ export default function Login( {currentUser, setCurrentUser }) {
             <form>
                 <div>
                     <label>Email:</label>
-                    <input type="text"  ref={userEmail}/>
+                    <input required type="text"  ref={userEmail}/>
                 </div>
                 <div>
                     <label>Password</label>
-                    <input type='text'  ref={userPassword}/>
+                    <input required type='text'  ref={userPassword}/>
                 </div>
                 <button onClick={(e)=> handleLogin(e)}>Log In</button>
                 {/* if loginError is not empty, show error */}
@@ -77,3 +77,4 @@ export default function Login( {currentUser, setCurrentUser }) {
 //FUTURE PLANS:
 //add styling
 //optional: is there a way to send user_name and user_email to homepage?
+    //required on input fields
