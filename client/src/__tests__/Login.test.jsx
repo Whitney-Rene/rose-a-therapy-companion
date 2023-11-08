@@ -22,3 +22,5 @@ test('NavBar should render links case-insensitively', () => {
     expect(loginButton).toBeInTheDocument();
     expect(pageTitle).toBeInTheDocument();
   });
+
+  //PASSED!

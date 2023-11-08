@@ -41,7 +41,10 @@ test('list entries on page', async () => {
 });
 
 afterAll(() => {
-    // Clean up the global fetch mock after the tests
-    delete globalThis.fetch;
-  });
-  
+  // Clean up the global fetch mock after the tests
+  delete globalThis.fetch;
+});
+
+//ISSUE: TestingLibraryElementError: Unable to find an element with the text: Some rose content. 
+    //This could be because the text is broken up by multiple elements. 
+    //In this case, you can provide a function for your text matcher to make your matcher more flexible.

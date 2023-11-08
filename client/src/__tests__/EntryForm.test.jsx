@@ -10,13 +10,17 @@ test('HomePage renders child components', () => {
     </Router>);
 
     const inputElement = screen.getByPlaceholderText(/type text here/i);
-    const buttonElement = screen.getByRole('button', {name: 'submit'});
+    const buttonElement = screen.getByRole('button', {name: 'Submit'});
 
     fireEvent.change(inputElement, {target: {value: 'abundance mindset'}});
     fireEvent.click(buttonElement);
-    const budElement = screen.getByText(/abundance mindset/)
+    const confirmationElement = screen.getByText(/entry submitted/i)
 
-    expect(budElement).toBeInTheDocument();
+    expect(confirmationElement).toBeInTheDocument();
     // expect(inputElement).toBeInTheDocument();
     // expect(buttonElement).toBeInTheDocument();
 });
+
+//ISSUE: TestingLibraryElementError: Unable to find an element with the text: /entry submitted/i. 
+    //This could be because the text is broken up by multiple elements. 
+    //In this case, you can provide a function for your text matcher to make your matcher more flexible.

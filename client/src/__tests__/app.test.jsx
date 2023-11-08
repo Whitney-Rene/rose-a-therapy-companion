@@ -21,3 +21,5 @@ test ('App renders correctly', () => {
     expect(homePageTitle).toBeInTheDocument();
     expect(roseButton).toBeInTheDocument();
 });
+
+//PASSED!

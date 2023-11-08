@@ -13,3 +13,5 @@ test('HomePage renders child components', () => {
   expect(createComponentElem).toBeInTheDocument();
 
 });
+
+//PASSED!
