@@ -18,9 +18,9 @@ export default function CreateRoseBudThorn() {
 
       {/* buttons that have routing functionality */}
       <p>CreateRoseBudThorn Component</p>
-      <button onClick={() => handleClick('rose')}>Rose</button>
-      <button onClick={() => handleClick('bud')}>Bud</button>
-      <button onClick={() => handleClick('thorn')}>Thorn</button>
+      <button onClick={() => handleClick('rose')}>rose</button>
+      <button onClick={() => handleClick('bud')}>bud</button>
+      <button onClick={() => handleClick('thorn')}>thorn</button>
 
     </div>
     </>
