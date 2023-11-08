@@ -32,7 +32,6 @@ export default function Login( {currentUser, setCurrentUser }) {
         });
 
         const data = await response.json();
-        console.log(data);
         
         //if login successful do this, if not show error message
         if (data.message === "Authentication successful"){
@@ -75,7 +74,7 @@ export default function Login( {currentUser, setCurrentUser }) {
 //FUTURE PLANS:
 //add styling
 
-//NICE TO HAVES:
+//NICE-TO-HAVES:
 //required on input fields
-//optional: is there a way to send user_name and user_email to homepage?
+//auth 0 to login users
 

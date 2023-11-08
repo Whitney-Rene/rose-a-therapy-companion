@@ -11,10 +11,14 @@ test ("buttons render", () => {
         <RequestBouquet />
     </Router>);
 
+    //this will hold a reference to an HTMl elememt
     const buttonElement = screen.getByRole('button', { name: 'submit'});
+    //assertion
     expect(buttonElement).toBeInTheDocument();
 
+    //this will hold a reference to an HTMl elememt
     const cancelButton = screen.getByRole('button', { name: "cancel" });
+    //assertion
     expect(cancelButton).toBeInTheDocument();
 
 

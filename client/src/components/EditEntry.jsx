@@ -24,7 +24,6 @@ export default function EditEntry (){
   
     //handle the update entry request, async function in try/catch block 
     const handleUpdate = async () => {
-        console.log(state.entry_id);
         try {
             const response = await fetch(`http://localhost:9999/edit-entries/${state.entry_id}`, {
             
@@ -36,7 +35,6 @@ export default function EditEntry (){
 
         const data = await response.json();
         setUpdatedEntry({entry_type: "", entry_date: "", entry_content: ""})
-        console.log(data);
         if(!response.ok) {
             throw new Error ('Failed to update contact');
         } else {
@@ -51,7 +49,7 @@ export default function EditEntry (){
 
     };
 
-    //function to route user to home, when the cancel button is clicked
+    //function to route user to previous page, when the cancel button is clicked
     const routeHome = () => {
         navigateTo(-1);
     }
@@ -82,5 +80,4 @@ export default function EditEntry (){
 }
 
 //FUTURE PLANS:
-//something to notify the user that the update was successful!
-    //I only know it is successful if I navigate to home or search for r/b/th
+//add styling

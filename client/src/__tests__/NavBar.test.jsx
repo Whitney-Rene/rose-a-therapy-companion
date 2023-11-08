@@ -9,14 +9,14 @@ test('NavBar should render links case-insensitively', () => {
         <NavBar />
     </Router>);
   
+    //this will hold a reference to an HTMl elememt
     //'i' flag for case-insensitive search
     const homeLink = screen.getByText(/home/i);
     const requestLink = screen.getByText(/request a bouquet/i);
     const logoutLink = screen.getByText(/logout/i);
     
-  
+    //assertions
     expect(homeLink).toBeInTheDocument();
     expect(requestLink).toBeInTheDocument();
     expect(logoutLink).toBeInTheDocument();
-    // Add more assertions as needed
   });

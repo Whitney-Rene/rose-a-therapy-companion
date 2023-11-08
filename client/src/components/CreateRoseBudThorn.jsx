@@ -27,3 +27,6 @@ export default function CreateRoseBudThorn() {
 
   );
 };
+
+//FUTURE PLANS:
+//add styling

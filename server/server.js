@@ -63,8 +63,6 @@ app.get("/list-latest-entries/:user_id", async (req, res) => {
       "SELECT * FROM entries WHERE user_id=$1 ORDER BY entry_date DESC LIMIT 5",
       [user_id]
     );
-    //could possibly sort by entry id
-    // console.log(ffentries);
     res.send(ffentries);
   } catch (error) {
     console.error(
@@ -125,7 +123,6 @@ app.post("/add-users", async (req, res) => {
 //endpoint for user login
 app.post("/login", async (req, res) => {
   const { user_email, user_password } = req.body;
-  console.log("login route", { user_email, user_password });
 
   try {
     const result = await db.query("SELECT * FROM users WHERE user_email = $1", [
@@ -135,8 +132,8 @@ app.post("/login", async (req, res) => {
     //if there is a user returned in the variable
     if (result.rows.length > 0) {
       const user = result.rows[0];
-      console.log(user);
-      //I need to compare the hashed passwords
+
+      //compares the hashed passwords
       const passwordMatch = await bcrypt.compare(
         user_password,
         user.user_password

@@ -29,7 +29,6 @@ export default function EntryForm() {
         //try/catch blocks are used to handle asynchronous functionss that involve api calls
         try {
             await functions.postRequest("/add-entries/1", entryData);
-            // console.log("Form data:", entryData);
             //resets input fields to blank
             userEntryDate.current.value = null;
             userEntryContent.current.value = null;
@@ -76,19 +75,18 @@ export default function EntryForm() {
 
         {confirmationMessage}
 
-        {/* conditional rendering statement:
-        if the quote has a truthy value = not empty/null/underfined, {quote} will render true
-        {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
+        {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
         {quote && quote.affirmation}
             
         </>
     )
 }
 
-    //FUTURE PLANS
-    //upon submit: *need to decide
-        //right now, there is a success messsage and then a quote
-        //IT IS enough for the user to click the home button? or add another entry?
-        //SET TIME
-        //if user wants to add another entry on the same page, clear conf message and quote, upon change/type in input box
-            //info bar at top with inspirational quote
+//FUTURE PLANS:
+//add styling
+
+//NICE-TO-HAVES:
+//info bar at top with inspirational quote
+
+//LEARNED:
+//conditional rendering statement

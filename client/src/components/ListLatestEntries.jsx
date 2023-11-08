@@ -12,12 +12,10 @@ export default function ListLatestEntries() {
   const [entries, setEntries] = useState(null); 
 
   //variables
-  const updateListEntries = () => {
+  const updateListLatestEntries = () => {
     functions.getRequest('/list-latest-entries/1')
   .then(data => {
     setEntries(data)
-    // console.log('entries data:', entries)
-  
   }
     )
   // inside catch throw new Error
@@ -38,7 +36,7 @@ export default function ListLatestEntries() {
         throw new Error('Failed to delete entry');
       }
 
-      updateListEntries();
+      updateListLatestEntries();
 
     } catch (error) {
       console.error('Error deleting entry:', error)
@@ -46,10 +44,10 @@ export default function ListLatestEntries() {
   };
   
 
-  //side effect hook, triggers getRequest function (imported from utils folder)
+  //side effect hook, triggers function
   useEffect (() => {
 
-    updateListEntries();
+    updateListLatestEntries();
     
     }, []);
 
@@ -79,23 +77,11 @@ export default function ListLatestEntries() {
 
 //FUTURE PLANS:
 //add styling
-//line 37 is hardcoded...need to figure out how to get this to work dynamically?
-    //maybe there would be a way to grab the user_id upon login and send that id here?
-//some sort of confirm/alert for delete --eventcard.jsx, eventonica, confirm alert
-//things learned:
+
+//NICE-TO-HAVES:
+//confirm/alert for delete -- go back to Eventonica project
+
+//LEARNED:
   //filter method, if a entry does not have an id, don't show it
   // setEntries((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
-
-    // functions.getRequest('/list-latest-entries/1')
-    //   .then(data => {
-    //     setEntries(data)
-    //     // console.log('entries data:', entries)
-      
-    //   }
-    //     )
-    //   // inside catch throw new Error
-    //   .catch(error => {
-    //     console.error('An error occured while fetching entries:', error)
-    //     console.log(error.response);
-    //   });
     
