@@ -1,9 +1,6 @@
 import URL from "./variables";
 import moment from "moment";
 
-//FUTURE PLANS:
-//add 2 more functions, put/patch and delete requests
-
 //this is an async call to backend, specifically for get requests
 const getRequest = async (endpoint) => {
   try {
@@ -18,7 +15,7 @@ const getRequest = async (endpoint) => {
   }
 };
 
-//this is an async call to backend, specifically for get post requests
+//this is an async call to backend, specifically for post requests
 const postRequest = async (endpoint, data) => {
   try {
     const response = await fetch(`${URL}${endpoint}`, {
@@ -38,6 +35,7 @@ const postRequest = async (endpoint, data) => {
   }
 };
 
+//this is an async call to backend, specifically for patch requests
 const patchRequest = async (endpoint, entry_id, data) => {
   try {
     const response = await fetch(`${URL}${endpoint}/${entry_id}`, {
@@ -55,6 +53,7 @@ const patchRequest = async (endpoint, entry_id, data) => {
   }
 };
 
+//function to format time/human readable
 function formatTime(rawDate) {
   const dateObject = moment(rawDate);
   const formattedDate = dateObject.format("MMMM D, YYYY");
