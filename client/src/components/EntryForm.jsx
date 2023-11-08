@@ -64,7 +64,7 @@ export default function EntryForm() {
             </label>
             <label>
                 {entry_type}
-                <textarea required ref={userEntryContent} />
+                <textarea placeholder='type text here'required ref={userEntryContent} />
             </label>
             <button type='submit'>Submit</button>
     
