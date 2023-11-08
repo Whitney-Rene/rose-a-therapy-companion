@@ -12,12 +12,12 @@ test ("buttons render", () => {
     </Router>);
 
     //this will hold a reference to an HTMl elememt
-    const buttonElement = screen.getByRole('button', { name: 'submit'});
+    const buttonElement = screen.getByRole('button', { name: /submit/i});
     //assertion
     expect(buttonElement).toBeInTheDocument();
 
     //this will hold a reference to an HTMl elememt
-    const cancelButton = screen.getByRole('button', { name: "cancel" });
+    const cancelButton = screen.getByRole('button', { name: /cancel/i});
     //assertion
     expect(cancelButton).toBeInTheDocument();
 

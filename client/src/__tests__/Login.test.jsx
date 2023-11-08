@@ -13,7 +13,7 @@ test('NavBar should render links case-insensitively', () => {
     //'i' flag for case-insensitive search
     const emailLabel = screen.getByText(/email:/i);
     const passwordLabel = screen.getByText(/password/i);
-    const loginButton = screen.getByRole('button', { name: 'Login'});
+    const loginButton = screen.getByRole('button', { name: /login/i});
     const pageTitle = screen.getByRole('heading', {level: 2, name: /login/i});
     
     //assertions

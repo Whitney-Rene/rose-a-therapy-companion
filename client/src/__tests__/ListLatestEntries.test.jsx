@@ -30,11 +30,11 @@ test('list entries on page', async () => {
     </Router>);
 
       // Wait for the component to render and fetch data
-  await screen.findByText('your latest rose, bud and thorns');
+  await screen.findByText(/your latest rose, bud and thorns/i);
 
   // Assert that the rendered entries are present
-  const roseEntry = screen.getByText('Some rose content');
-  const budEntry = screen.getByText('Some bud content');
+  const roseEntry = screen.getByText(/some rose content/i);
+  const budEntry = screen.getByText(/some bud content/i);
 
   expect(roseEntry).toBeInTheDocument();
   expect(budEntry).toBeInTheDocument();
