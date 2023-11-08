@@ -10,9 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 9999;
 
 //FUTURE PLANS:
-//do I need all these routes?  am I using them all?
-//for security reasons, not a good idea to have "hanging" routes
-//could inject queries in the routes and cause issues through thrid party software - learn about protecting routes??
+//for security reasons, not a good idea to have "hanging" routes --learn about protecting routes
 
 //middleware
 app.use(cors());
