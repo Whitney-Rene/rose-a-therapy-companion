@@ -39,7 +39,6 @@ export default function Login( {currentUser, setCurrentUser }) {
         const user_id = data.user_id;
         const user_name = data.user_name;
         setCurrentUser({id: user_id, name: user_name});
-        //could I send the user_name as a param?
         navigateTo("/");
         } else {
             setLoginError(data.error);
@@ -47,7 +46,6 @@ export default function Login( {currentUser, setCurrentUser }) {
 
         } catch (error) {
             console.error("API error", error)
-
         }
         
     };
@@ -76,5 +74,8 @@ export default function Login( {currentUser, setCurrentUser }) {
 
 //FUTURE PLANS:
 //add styling
+
+//NICE TO HAVES:
+//required on input fields
 //optional: is there a way to send user_name and user_email to homepage?
-    //required on input fields
+
