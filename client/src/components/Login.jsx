@@ -63,7 +63,7 @@ export default function Login( {currentUser, setCurrentUser }) {
                     <label>Password</label>
                     <input required type='text'  ref={userPassword}/>
                 </div>
-                <button onClick={(e)=> handleLogin(e)}>Log In</button>
+                <button onClick={(e)=> handleLogin(e)}>Login</button>
                 {/* if loginError is not empty, show error */}
                 {loginError && <p>{loginError}</p>}
             </form>
@@ -76,5 +76,6 @@ export default function Login( {currentUser, setCurrentUser }) {
 
 //NICE-TO-HAVES:
 //required on input fields
+//add placeholders
 //auth 0 to login users
 
