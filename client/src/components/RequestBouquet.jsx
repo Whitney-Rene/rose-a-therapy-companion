@@ -1,5 +1,5 @@
 //imports from react, libraries and other files
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,6 @@ import functions from '../../utils/functions';
 
 export default function RequestBouquet() {
 
-  //attempted to refactor this code, but learned: can't user a react hook in a place where it's not allowed
   //variable to store useNavigate react-router-dom
   const navigateTo = useNavigate();
 
@@ -48,7 +47,7 @@ export default function RequestBouquet() {
     //async call in try/catch (handles success or failure of async call)
     try {
       const data = await functions.getRequest(`/date-specific-entries/${start_date}/${end_date}`);
-      // localStorage.setItem('entries', JSON.stringify(data));
+
       if (data.length === 0) {
         setNoEntriesMessage(true)
       } else {
@@ -65,15 +64,6 @@ export default function RequestBouquet() {
       console.error("Error while fetching bouquet data:", error);
     }
   }
-
-  // Load entries from localStorage when the component mounts
-  // useEffect(() => {
-  //   console.log(localStorage);
-  //   const savedEntries = localStorage.getItem('entries');
-  //   if (savedEntries) {
-  //     setBouquetData(JSON.parse(savedEntries));
-  //   }
-  // }, []);
 
   //function to navigate user to homepage 
   const routeHome = () => {
@@ -99,7 +89,7 @@ export default function RequestBouquet() {
 
       <button onClick={routeHome}>cancel</button>
 
-    {/* if bouquetData is not empty, render details of bouquet, else message to user */}
+    {/* render details of bouquet, if it is true that bouquetData is longer than 0*/}
     {bouquetData.length > 0 && (
       <div>
         {bouquetData.map((item) => (
@@ -117,17 +107,17 @@ export default function RequestBouquet() {
        ))}
       </div>
     )}
-
+    {/* if entriesMessage is true */}
     {noEntriesMessage && <p> no r/b/th for these dates </p>}
     </div>
   )
 }
 
 //FUTURE PLANS: 
-//if there are no r/b/th between specific dates, can i print a message to the user
+//add styling
 //confirmation/alert for delete
 
-//?? if we have time
+//NICE-TO-HAVES
+//if I have time
 //when I click update for an entry in the "requestbouqet" page list, I am routed 
   //to a different page, can I be take back to my query after the update of the entry? 
-//add styling
