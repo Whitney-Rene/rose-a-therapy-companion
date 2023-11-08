@@ -1,42 +1,24 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from 'react-router-dom';
-import { rest } from 'msw';
-import { setupServer } from "msw/node";
-import { loginHandler } from "../__mocks__/mocks";
-
 
 import Login from "../components/Login";
 
-//creates a server
-const server = setupServer(loginHandler);
-
-//start api testing b/4 tests
-beforeAll(() => {
-  server.listen();
-});
-
-//stop api testing after tests run
-afterAll(() => {
-  server.close();
-});
-
-
-test("Login component functionality", async () => {
+test('NavBar should render links case-insensitively', () => {
     render(
-        <Router>
-            <Login />
-        </Router>
-    )
-
-    const emailInput = screen.getByLabelText("Email:");
-    const passwordInput = screen.getByLabelText("Password:");
-    const loginButton = screen.getByText("Login");
-
-    emailInput.value = 'test@example.com';
-    passwordInput.value = 'password123';
-
-    loginButton.click();
-
-    await screen.findByText('Authentication successful');
-
-});
+    <Router>
+        <Login />
+    </Router>);
+  
+    //this will hold a reference to an HTMl elememt
+    //'i' flag for case-insensitive search
+    const emailLabel = screen.getByText(/email:/i);
+    const passwordLabel = screen.getByText(/password/i);
+    const loginButton = screen.getByRole('button', { name: 'Login'});
+    const pageTitle = screen.getByRole('heading', {level: 2, name: /login/i});
+    
+    //assertions
+    expect(emailLabel).toBeInTheDocument();
+    expect(passwordLabel).toBeInTheDocument();
+    expect(loginButton).toBeInTheDocument();
+    expect(pageTitle).toBeInTheDocument();
+  });

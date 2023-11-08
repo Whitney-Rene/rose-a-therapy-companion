@@ -56,12 +56,12 @@ export default function Login( {currentUser, setCurrentUser }) {
         <h2>Login</h2>
             <form>
                 <div>
-                    <label>Email:</label>
-                    <input required type="text"  ref={userEmail}/>
+                    <label htmlFor="email" >Email:</label>
+                    <input id="email" required type="text"  ref={userEmail}/>
                 </div>
                 <div>
-                    <label>Password</label>
-                    <input required type='text'  ref={userPassword}/>
+                    <label htmlFor="password">Password:</label>
+                    <input id="password" required type='text'  ref={userPassword}/>
                 </div>
                 <button onClick={(e)=> handleLogin(e)}>Login</button>
                 {/* if loginError is not empty, show error */}
