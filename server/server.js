@@ -9,11 +9,6 @@ import { hashPassword } from "./utils/hashPasswordUtils.js";
 const app = express();
 const PORT = process.env.PORT || 9999;
 
-//FUTURE PLANS:
-//do I need all these routes?  am I using them all?
-//for security reasons, not a good idea to have "hanging" routes
-//could inject queries in the routes and cause issues through thrid party software - learn about protecting routes??
-
 //middleware
 app.use(cors());
 app.use(express.json());
@@ -24,13 +19,12 @@ app.get("/", (req, res) => {
 });
 
 //endpoint to see users in db
-//500-requests was fine, but there is an issue with server
 app.get("/users", async (req, res) => {
   try {
     const { rows: users } = await db.query("SELECT * FROM users");
     res.send(users);
   } catch (error) {
-    console.error("Error in Database Query:", error);
+    console.error("Error in Database Query to retrieve users:", error);
     res.json({ error });
   }
 });
@@ -41,11 +35,12 @@ app.get("/entries", async (req, res) => {
     const { rows: entries } = await db.query("SELECT * FROM entries");
     res.send(entries);
   } catch (error) {
-    console.error("Error in Database Query:", error);
+    console.error("Error in Database Query to retrieve entries:", error);
     res.json({ error });
   }
 });
 
+//endpoint to grab entry by id
 app.get("/get-entry/:entry_id", async (req, res) => {
   try {
     const { entry_id } = req.params;
@@ -55,7 +50,7 @@ app.get("/get-entry/:entry_id", async (req, res) => {
     );
     res.send(entry);
   } catch (error) {
-    console.error("Error in Database Query:", error);
+    console.error("Error in Database Query to retrieve entry by id:", error);
     res.json({ error });
   }
 });
@@ -70,7 +65,10 @@ app.get("/list-latest-entries/:user_id", async (req, res) => {
     );
     res.send(ffentries);
   } catch (error) {
-    console.error("Error in Database Query:", error);
+    console.error(
+      "Error in Database Query to retrieve most recent 5 entries:",
+      error
+    );
     res.json({ error });
   }
 });
@@ -85,12 +83,15 @@ app.get("/date-specific-entries/:start_date/:end_date", async (req, res) => {
     );
     res.send(dsentries);
   } catch (error) {
-    console.error("Error in Database Query:", error);
+    console.error(
+      "Error in Database Query to retrieve entries between dates:",
+      error
+    );
     res.json({ error });
   }
 });
 
-//call to third party api
+//call to third party api for inspiratonal quotes
 app.get("/quotes", async (req, res) => {
   try {
     const response = await fetch("https://www.affirmations.dev");
@@ -122,7 +123,6 @@ app.post("/add-users", async (req, res) => {
 //endpoint for user login
 app.post("/login", async (req, res) => {
   const { user_email, user_password } = req.body;
-  console.log("login route", { user_email, user_password });
 
   try {
     const result = await db.query("SELECT * FROM users WHERE user_email = $1", [
@@ -132,8 +132,8 @@ app.post("/login", async (req, res) => {
     //if there is a user returned in the variable
     if (result.rows.length > 0) {
       const user = result.rows[0];
-      console.log(user);
-      //I need to compare the hashed passwords
+
+      //compares the hashed passwords
       const passwordMatch = await bcrypt.compare(
         user_password,
         user.user_password
@@ -158,8 +158,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//endpoint for adding entries to db
-// `:` indicates route/url parameter
+//endpoint for adding entries to db for specific user
 app.post("/add-entries/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;
@@ -181,7 +180,6 @@ app.patch("/edit-users/:user_id", async (req, res) => {
     const { user_id } = req.params;
     const { user_name, user_email, user_password } = req.body;
 
-    //commenting this out for now, causing issues in db, different password values, even if user does not change password
     const newhashedUserPassword = hashPassword(user_password);
 
     const result = await db.query(
@@ -217,9 +215,6 @@ app.delete("/delete-users/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;
 
-    //necessary to first delete entries related to user, since there are references to the user in the entries table
-    //a foreign key constraint in the "entries" table that enforces referential integrity
-    //you cannot delete a user if there are related records in the "entries" table that depend on that use
     await db.query("DELETE FROM entries WHERE user_id = $1", [user_id]);
 
     const result = await db.query(
@@ -252,3 +247,8 @@ app.delete("/delete-entries/:entry_id", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Estoy escuchando en port ${PORT}`);
 });
+
+//things learned:
+// `:` indicates route/url parameter
+//referential integrity
+//not a good idea to have "hanging" routes --learn about protecting routes

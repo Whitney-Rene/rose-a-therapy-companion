@@ -1,3 +1,4 @@
+//imports from react and libraries
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,7 +38,6 @@ export default function Login( {currentUser, setCurrentUser }) {
         const user_id = data.user_id;
         const user_name = data.user_name;
         setCurrentUser({id: user_id, name: user_name});
-        //could I send the user_name as a param?
         navigateTo("/");
         } else {
             setLoginError(data.error);
@@ -45,7 +45,6 @@ export default function Login( {currentUser, setCurrentUser }) {
 
         } catch (error) {
             console.error("API error", error)
-
         }
         
     };
@@ -57,14 +56,14 @@ export default function Login( {currentUser, setCurrentUser }) {
         <h2>Login</h2>
             <form>
                 <div>
-                    <label>Email:</label>
-                    <input type="text"  ref={userEmail}/>
+                    <label htmlFor="email" >Email:</label>
+                    <input id="email" required type="text"  ref={userEmail}/>
                 </div>
                 <div>
-                    <label>Password</label>
-                    <input type='text'  ref={userPassword}/>
+                    <label htmlFor="password">Password:</label>
+                    <input id="password" required type='text'  ref={userPassword}/>
                 </div>
-                <button onClick={(e)=> handleLogin(e)}>Log In</button>
+                <button onClick={(e)=> handleLogin(e)}>Login</button>
                 {/* if loginError is not empty, show error */}
                 {loginError && <p>{loginError}</p>}
             </form>
@@ -74,4 +73,9 @@ export default function Login( {currentUser, setCurrentUser }) {
 
 //FUTURE PLANS:
 //add styling
-//optional: is there a way to send user_name and user_email to homepage?
+
+//NICE-TO-HAVES:
+//required on input fields
+//add placeholders
+//auth 0 to login users
+

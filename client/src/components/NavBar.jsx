@@ -1,26 +1,32 @@
-//import component to create navigation links
+//import Link component to create navigation links
 import { Link } from 'react-router-dom';
+import { Toolbar, Typography, AppBar } from '@mui/material';
 
 export default function NavBar() {
 
   return (
     <>
    
-    <nav className='navbar'>
+    <div className='navbar'>
 
-      <p>rose: a therapy companion</p>
+    <AppBar>
+      <Toolbar>
+        <Typography>
+          rose: a therapy companion
+          <div className="links">
 
-      <div className="links">
+            {/* when the user clicks "Home", "Request a Bouquet" or "Login" links
+            direct the user to this path, which renders an element/comp */}
+            <Link to="/">home   </Link>
+            <Link to="/request">request a bouquet   </Link>
+            <Link to="/login">logout</Link>
 
-          {/* when the user clicks "Home", "Request a Bouquet" or "Login" links
-          direct the user to this path, which renders an element/comp */}
-          <Link to="/" style={{color: 'sandybrown'}}>home   </Link>
-          <Link to="/request" style={{color: 'sandybrown'}}>request a bouquet   </Link>
-          <Link to="/login" style={{color: 'sandybrown'}}>login</Link>
+          </div>
+        </Typography>
+      </Toolbar>
+    </AppBar>
 
-      </div>
-
-    </nav>
+    </div>
 
     </>
   )

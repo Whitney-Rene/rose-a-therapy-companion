@@ -1,4 +1,4 @@
-//imports from react and other files
+//imports from react, libraries and other files
 import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +8,6 @@ import functions from '../../utils/functions';
 
 export default function RequestBouquet() {
 
-  //attempted to refactor this code, but learned: can't user a react hook in a place where it's not allowed
   //variable to store useNavigate react-router-dom
   const navigateTo = useNavigate();
 
@@ -16,6 +15,7 @@ export default function RequestBouquet() {
   const userStartDate = useRef(null);
   const userEndDate = useRef(null);
   const [bouquetData, setBouquetData] = useState([]);
+  const [noEntriesMessage, setNoEntriesMessage] = useState(false);
 
   //functionality for delete buttons
   const handleDelete = async (entry_id) => {
@@ -47,7 +47,13 @@ export default function RequestBouquet() {
     //async call in try/catch (handles success or failure of async call)
     try {
       const data = await functions.getRequest(`/date-specific-entries/${start_date}/${end_date}`);
-      console.log(data);
+
+      if (data.length === 0) {
+        setNoEntriesMessage(true)
+      } else {
+        setNoEntriesMessage(false);
+        setBouquetData(data)};
+
       setBouquetData(data);
 
       //this will clear the input fields AFTER the request is made
@@ -83,7 +89,7 @@ export default function RequestBouquet() {
 
       <button onClick={routeHome}>cancel</button>
 
-    {/* if bouquetData is not empty, render details of bouquet */}
+    {/* render details of bouquet, if it is true that bouquetData is longer than 0*/}
     {bouquetData.length > 0 && (
       <div>
         {bouquetData.map((item) => (
@@ -101,14 +107,17 @@ export default function RequestBouquet() {
        ))}
       </div>
     )}
-
+    {/* if entriesMessage is true */}
+    {noEntriesMessage && <p> no r/b/th for these dates </p>}
     </div>
   )
 }
 
-//FUTURE PLANS: some sort of confirm/alert  --eventcard.jsx, eventonica, confirm alert
-//if there are no r/b/th between specific dates, can i print a message to the user
+//FUTURE PLANS: 
+//add styling
+
+//NICE-TO-HAVES
 //confirmation/alert for delete
+//if I have time
 //when I click update for an entry in the "requestbouqet" page list, I am routed 
   //to a different page, can I be take back to my query after the update of the entry? 
-//add styling

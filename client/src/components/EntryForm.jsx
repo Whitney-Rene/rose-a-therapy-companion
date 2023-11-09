@@ -1,3 +1,4 @@
+//imports from react, libraries and other files
 import { useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import functions from '../../utils/functions';
@@ -14,8 +15,7 @@ export default function EntryForm() {
     const userEntryDate = useRef(null);
     const userEntryContent = useRef(null);
 
-    //this function is triggered, when a user submits a r/b/th
-    //async function, in try/catch block (to handle success/failure of async call)
+    //async function to submits a r/b/th in db, in try/catch block (to handle success/failure of async call)
     const handleSubmit = async (event) => {
         //this prevents the default behavior of an event, so the default action of a form is to submit the data and reload the page
         event.preventDefault();
@@ -29,7 +29,6 @@ export default function EntryForm() {
         //try/catch blocks are used to handle asynchronous functionss that involve api calls
         try {
             await functions.postRequest("/add-entries/1", entryData);
-            console.log("Form data:", entryData);
             //resets input fields to blank
             userEntryDate.current.value = null;
             userEntryContent.current.value = null;
@@ -47,26 +46,16 @@ export default function EntryForm() {
 
     };
 
+    //route user to homepage for cancel button
     const routeHome = () => {
         navigateTo("/");
     }
-
-    //FUTURE PLANS
-    //update ListLatestEntries Component? *not necssary because this is happening on another page
-    //upon submit: *need to decide
-        //then take user back to main page 
-            //useNavigate commented out on line 7
-            //navigateTo("/"); in try of postRequest call
-            //const navigateTo = useNavigate();
-        //OR
-        //if user wants to add another entry on the same page, clear conf message and quote, upon change/type in input box
-            //info bar at top with inspirational quote
-
 
     return (
         <>
         <h2>create a {entry_type} entry</h2>
 
+        {/* basic form for entry with sumbit and cancel button */}
         <form onSubmit={handleSubmit}>
 
             <label>
@@ -75,7 +64,7 @@ export default function EntryForm() {
             </label>
             <label>
                 {entry_type}
-                <textarea required ref={userEntryContent} />
+                <textarea placeholder='type text here'required ref={userEntryContent} />
             </label>
             <button type='submit'>Submit</button>
     
@@ -86,12 +75,18 @@ export default function EntryForm() {
 
         {confirmationMessage}
 
-        {/* conditional rendering statement:
-        if the quote has a truthy value = not empty/null/underfined, {quote} will render true
-        && logical && operator, will conditionally render the second operand `quote` if the first operand {quote} is true
-        after logical operator is what will be displayed if `quote` is truthy */}
+        {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
         {quote && quote.affirmation}
             
         </>
     )
 }
+
+//FUTURE PLANS:
+//add styling
+
+//NICE-TO-HAVES:
+//info bar at top with inspirational quote
+
+//LEARNED:
+//conditional rendering statement

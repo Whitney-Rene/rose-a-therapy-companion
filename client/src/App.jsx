@@ -9,7 +9,7 @@ import RequestBouquet from './components/RequestBouquet';
 import NavBar from './components/NavBar';
 import EntryForm from './components/EntryForm';
 import Login from './components/Login';
-import './App.css'
+// import './App.css' //not sure I need this line of code??
 import EditEntry from './components/EditEntry';
 
 
@@ -42,3 +42,6 @@ function App() {
 };
 
 export default App
+
+// FUTURE PLANS:
+//add styling, decide whether to delete app.css or index.css
