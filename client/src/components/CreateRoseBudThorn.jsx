@@ -28,11 +28,13 @@ export default function CreateRoseBudThorn() {
       </Typography>
 
       {/* buttons that have routing functionality */}
-      <ButtonGroup variant="outlined">
-        <Button className="button" onClick={() => handleClick('rose')}>rose</Button>
-        <Button className="button" onClick={() => handleClick('bud')}>bud</Button>
-        <Button className="button" onClick={() => handleClick('thorn')}>thorn</Button>
-      </ButtonGroup>
+      <div className="button-group" >
+        <ButtonGroup variant="outlined">
+          <Button className="button" onClick={() => handleClick('rose')}>rose</Button>
+          <Button className="button" onClick={() => handleClick('bud')}>bud</Button>
+          <Button className="button" onClick={() => handleClick('thorn')}>thorn</Button>
+        </ButtonGroup>
+      </div>
     </div>
 
   );

@@ -51,13 +51,42 @@ body{
   background-color: #FEF1E6;
 }
 
-.button {
-  background-color: #F9D5A7;
-  color: #90AACB !important;
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .headers {
   text-align: center;
   color: #FFB085;
   font-family: monospace;
+}
+
+.button {
+  color: #90AACB !important;
+  border: 1px solid #90AACB !important;
+  text-align: center !important;
+  text-transform: lowercase !important;
+  font-family: cursive !important; 
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headers {
+  text-align: center;
+  color: #FFB085;
+  font-family: monospace;
+}
+
+.icon-edit {
+  color: #90AACB;
+}
+
+.icon-trash {
+  color: #F9D5A7;
 }

@@ -1,8 +1,9 @@
 //imports from react, libraries and other files
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+
 import { Typography } from '@mui/material';
 
 import functions from '../../utils/functions';
@@ -72,9 +73,9 @@ export default function ListLatestEntries() {
         <div key={index}>
           <p>{entry.entry_type}</p>
           <p>{entry.entry_content}</p>
-          <FontAwesomeIcon icon={faTrash} className='iconEye' onClick={() => handleDelete(entry.entry_id)}/>
-          <Link to={`/edit/${entry.entry_id}`} state={entry} className='iconPen'>
-            <FontAwesomeIcon icon={faPenSquare} /> 
+          <DeleteOutlineIcon className='icon-trash' onClick={() => handleDelete(entry.entry_id)}/>
+          <Link to={`/edit/${entry.entry_id}`} state={entry}>
+            <EditTwoToneIcon className='icon-edit'/> 
           </Link>
         </div>
       ))}
