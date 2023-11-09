@@ -16,6 +16,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.17",
     "bcrypt": "^5.1.1",
     "moment": "^2.29.4",

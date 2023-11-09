@@ -52,6 +52,12 @@ body{
 }
 
 .button {
-  background-color: F9D5A7;
-  color: #90AACB;
+  background-color: #F9D5A7;
+  color: #90AACB !important;
+}
+
+.headers {
+  text-align: center;
+  color: #FFB085;
+  font-family: monospace;
 }

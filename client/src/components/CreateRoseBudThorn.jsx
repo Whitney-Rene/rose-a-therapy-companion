@@ -18,17 +18,16 @@ export default function CreateRoseBudThorn() {
 
     <div className="create" >
 
-      {/* buttons that have routing functionality */}
+      
       <Typography 
-      // variant="subtitle"
-      // noWrap
-      align="center"
-      color="#FFB085"
-      style={{ fontFamily: 'monospace' }}
-      >
+        align="center"
+        color="#FFB085"
+        style={{ fontFamily: 'monospace' }}
+        >
         create a new rose, bud or thorn
       </Typography>
 
+      {/* buttons that have routing functionality */}
       <ButtonGroup variant="outlined">
         <Button className="button" onClick={() => handleClick('rose')}>rose</Button>
         <Button className="button" onClick={() => handleClick('bud')}>bud</Button>
