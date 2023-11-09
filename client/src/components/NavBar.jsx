@@ -9,12 +9,10 @@ export default function NavBar() {
    
     <div className='navbar'>
 
-    <AppBar>
-      <Toolbar>
-        <Typography>
           rose: a therapy companion
-          <div className="links">
 
+          <div className="links">
+        
             {/* when the user clicks "Home", "Request a Bouquet" or "Login" links
             direct the user to this path, which renders an element/comp */}
             <Link to="/">home   </Link>
@@ -22,9 +20,7 @@ export default function NavBar() {
             <Link to="/login">logout</Link>
 
           </div>
-        </Typography>
-      </Toolbar>
-    </AppBar>
+
 
     </div>
 

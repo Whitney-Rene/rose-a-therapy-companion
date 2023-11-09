@@ -46,3 +46,7 @@
 } */
 
 /* needs to be import to specific components to work, certian sytling for specific component, create new css file and then import it, will override global css for that specific component  */
+
+body{
+  background-color: #FEF1E6;
+}

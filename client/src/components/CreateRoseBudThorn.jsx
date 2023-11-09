@@ -1,5 +1,7 @@
 //useHistory is replaced by useNavigate "react-router-dom" v.6
 import { useNavigate } from 'react-router-dom';
+import { Toolbar, Typography, AppBar } from '@mui/material';
+
 
 export default function CreateRoseBudThorn() {
   
@@ -17,7 +19,15 @@ export default function CreateRoseBudThorn() {
     <div className="create" >
 
       {/* buttons that have routing functionality */}
-      <p>CreateRoseBudThorn Component</p>
+      <Typography 
+      // variant="subtitle"
+      // noWrap
+      align="center"
+      color="#FFB085"
+      style={{ fontFamily: 'monospace' }}
+      >
+        create a new rose, bud or thorn
+      </Typography>
       <button onClick={() => handleClick('rose')}>rose</button>
       <button onClick={() => handleClick('bud')}>bud</button>
       <button onClick={() => handleClick('thorn')}>thorn</button>

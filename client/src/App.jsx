@@ -9,7 +9,7 @@ import RequestBouquet from './components/RequestBouquet';
 import NavBar from './components/NavBar';
 import EntryForm from './components/EntryForm';
 import Login from './components/Login';
-// import './App.css' //not sure I need this line of code??
+import './App.css' 
 import EditEntry from './components/EditEntry';
 
 
