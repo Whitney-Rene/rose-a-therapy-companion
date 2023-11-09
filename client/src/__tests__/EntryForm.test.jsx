@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, userEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import EntryForm from '../components/EntryForm';
@@ -12,6 +12,7 @@ test('HomePage renders child components', () => {
     const inputElement = screen.getByPlaceholderText(/type text here/i);
     const buttonElement = screen.getByRole('button', {name: 'Submit'});
 
+    //TODO: replace with userEvent 
     fireEvent.change(inputElement, {target: {value: 'abundance mindset'}});
     fireEvent.click(buttonElement);
     const confirmationElement = screen.getByText(/entry submitted/i)

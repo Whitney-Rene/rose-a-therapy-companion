@@ -13,7 +13,7 @@ export default function CreateRoseBudThorn() {
   }
 
   return (
-    <>
+
     <div className="create" >
 
       {/* buttons that have routing functionality */}
@@ -23,10 +23,11 @@ export default function CreateRoseBudThorn() {
       <button onClick={() => handleClick('thorn')}>thorn</button>
 
     </div>
-    </>
 
   );
 };
 
 //FUTURE PLANS:
 //add styling
+
+//TODO: add button, consider removing fragments in other components

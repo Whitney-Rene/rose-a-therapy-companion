@@ -50,6 +50,7 @@ export default function EditEntry (){
     };
 
     //function to route user to previous page, when the cancel button is clicked
+    //TODO: CHANGE NAME- previous page
     const routeHome = () => {
         navigateTo(-1);
     }
