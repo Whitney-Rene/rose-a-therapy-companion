@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Typography } from '@mui/material';
 
 import functions from '../../utils/functions';
 
@@ -55,8 +56,16 @@ export default function ListLatestEntries() {
     <>
 
       <div>
-        
-      <p> your latest rose, bud and thorns </p>
+      
+      <Typography 
+      // variant="subtitle"
+      // noWrap
+      align="center"
+      color="#FFB085"
+      style={{ fontFamily: 'monospace' }}
+      >
+        your latest rose, bud and thorns
+      </Typography>
 
       {/* map over entries state and show relevant data and buttons */}
       {entries && entries.map((entry, index) => (
