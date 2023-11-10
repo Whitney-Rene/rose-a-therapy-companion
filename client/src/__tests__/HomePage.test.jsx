@@ -14,5 +14,3 @@ test('HomePage renders child components', () => {
 
 
 });
-
-//PASSED!

@@ -41,18 +41,19 @@ test('list entries on page', async () => {
         <ListLatestEntries />
     </Router>);
 
-      // Wait for the component to render and fetch data
-  await screen.findByText(/your latest rose, bud and thorns/i);
+    // Assert that the rendered entries are present
+    await waitFor( () => {
+      const roseEntry = screen.getByText(/some rose content/i);
+      expect(roseEntry).toBeInTheDocument();
+    });
 
-  // Assert that the rendered entries are present
- await waitFor( () => {const roseEntry = screen.getByText(/some rose content/i); screen.debug(); expect(roseEntry).toBeInTheDocument();});
-  // const budEntry = screen.getByText(/some bud content/i);
+    await waitFor( () => {
+      const budEntry = screen.getByText(/some bud content/i); 
+      expect(budEntry).toBeInTheDocument();});
 
-  
-  // expect(budEntry).toBeInTheDocument();
 });
 
-test('test, edit entry', async () => {
+test('edit icon apperas for entries entry', async () => {
   render(
     <Router>
         <ListLatestEntries />
@@ -63,14 +64,7 @@ test('test, edit entry', async () => {
     user.click(editButtons[0]);
   });
 
-  screen.debug();
-  
-  // const updateButton = screen.getByRole('button', {name: /update entry/i});
-  // const cancelButton = screen.getByRole('button', {name: /cancel/i});
-
-  // expect(updateButton).toBeInTheDocument();
-  // expect(cancelButton).toBeInTheDocument();
-
 });
 
-//PASSED
+//LEARNED:
+  //screen.debug();

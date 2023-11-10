@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter as Router } from 'react-router-dom';
-// import userEvent from '@testing-library/user-event';
 
 import App from '../App';
 
@@ -9,7 +8,6 @@ const user = userEvent.setup();
 
 //unit testing - the user can't see this, test for ids-commonly
 //toHaveAttribute("name", "entry_date")
-
 
 test ('App renders correctly', () => {
 
@@ -44,25 +42,3 @@ test ('clicking on login button takes user to login page', async () => {
     const loginButton = screen.getByRole('button', {name: /login/i});
     expect(loginButton).toBeInTheDocument();
 });
-
-test ('clicking on request a bouquet button takes user to rab page', () => {
-    render(
-        <Router>
-            <App />
-        </Router>);
-});
-
-test ('clicking on request a create r/b/th button takes user to create entry page', () => {
-    render(
-        <Router>
-            <App />
-        </Router>);
-});
-
-test ('clicking on edit button navigates user to edit entry form', () => {
-    render(
-        <Router>
-            <App />
-        </Router>);
-});
-//PASSED!

@@ -23,4 +23,5 @@ test('NavBar should render links case-insensitively', () => {
     expect(pageTitle).toBeInTheDocument();
   });
 
-  //PASSED!
+  //Learned: 
+    //there is a priority in matchers, getByRole is #1
