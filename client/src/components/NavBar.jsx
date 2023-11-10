@@ -2,6 +2,8 @@
 import { Link } from 'react-router-dom';
 import { Toolbar, Typography, AppBar } from '@mui/material';
 
+import '../css/NavBar.css';
+
 export default function NavBar() {
 
   return (
@@ -9,15 +11,19 @@ export default function NavBar() {
    
     <div className='navbar'>
 
-          rose: a therapy companion
+          <Typography
+          style={{ color: '#90AACB', fontFamily: 'Patrick Hand, cursive' }}
+          > 
+          rose: a therapy companion 
+          </Typography>
 
           <div className="links">
         
             {/* when the user clicks "Home", "Request a Bouquet" or "Login" links
             direct the user to this path, which renders an element/comp */}
-            <Link to="/">home   </Link>
-            <Link to="/request">request a bouquet   </Link>
-            <Link to="/login">logout</Link>
+            <Link className="nav-link" to="/">home   </Link>
+            <Link className="nav-link" to="/request">request a bouquet   </Link>
+            <Link className="nav-link" to="/login">logout</Link>
 
           </div>
 

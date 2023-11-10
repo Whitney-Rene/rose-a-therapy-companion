@@ -7,6 +7,8 @@ import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import { Typography } from '@mui/material';
 
 import functions from '../../utils/functions';
+import '../css/ListLatestEntries.css';
+
 
 export default function ListLatestEntries() {
 
