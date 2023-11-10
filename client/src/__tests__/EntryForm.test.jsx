@@ -12,18 +12,15 @@ beforeAll(() => {
     global.fetch = vi.fn()
     fetch.mockReturnValue(
       Promise.resolve(
-        { json: () => Promise.resolve([
-          {
-            entry_id: 1,
-            entry_type: 'Rose',
-            entry_content: 'Some rose content',
-          },
-          {
-            entry_id: 2,
-            entry_type: 'Bud',
-            entry_content: 'Some bud content',
-          },
-          ]),
+        {
+          ok: true, 
+          json: () => Promise.resolve({
+            "entry_id": 60,
+            "entry_type": "bud",
+            "entry_date": "2023-11-09T05:00:00.000Z",
+            "entry_content": "how to destress",
+            "user_id": 1
+        }),
       })
     );
 
@@ -50,11 +47,8 @@ test('HomePage renders child components', async () => {
     expect(dateElement).toHaveValue('2023-11-09');
     await user.type(inputElement, 'abundance mindset');
     await user.click(buttonElement);
-    await waitFor(() => {
-      const confirmationElement = screen.getByText(/entry submitted/i)
-    });
 
-    expect(confirmationElement).toBeInTheDocument();
+    expect(await screen.findByText(/entry submitted/i)).toBeInTheDocument();
     // expect(inputElement).toBeInTheDocument();
     // expect(buttonElement).toBeInTheDocument();
 });

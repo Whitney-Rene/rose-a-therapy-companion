@@ -11,9 +11,9 @@ export default function EntryForm() {
     const [quote, setQuote] = useState("");
     const [confirmationMessage, setConfirmationMessage] = useState("");
 
-    const userEntryType = useRef(entry_type);
-    const userEntryDate = useRef(null);
-    const userEntryContent = useRef(null);
+    // const userEntryType = useRef(entry_type);
+    // const userEntryDate = useRef(null);
+    // const userEntryContent = useRef(null);
 
     //async function to submits a r/b/th in db, in try/catch block (to handle success/failure of async call)
     const handleSubmit = async (event) => {
@@ -21,17 +21,18 @@ export default function EntryForm() {
         event.preventDefault();
 
         const entryData = {
-            entry_type: userEntryType.current,
-            entry_date: userEntryDate.current?.value,
-            entry_content: userEntryContent.current?.value,
+            //specifically for variables and is the same name as key, only need to type key name
+            entry_type,
+            entry_date: event.target.elements.date.value, //userEntryDate.current?.value,
+            entry_content: event.target.elements.content.value //userEntryContent.current?.value,
         }
         
         //try/catch blocks are used to handle asynchronous functionss that involve api calls
         try {
             await functions.postRequest("/add-entries/1", entryData);
+
             //resets input fields to blank
-            userEntryDate.current.value = null;
-            userEntryContent.current.value = null;
+            event.target.reset();
 
             setConfirmationMessage("Entry submitted")
 
@@ -60,11 +61,11 @@ export default function EntryForm() {
 
             <label>
                 Date:
-                <input required type='date' ref={userEntryDate}></input>
+                <input name="date" required type='date'></input>
             </label>
             <label>
                 {entry_type}
-                <textarea placeholder='type text here'required ref={userEntryContent} />
+                <textarea name="content" placeholder='type text here'required />
             </label>
             <button type='submit'>Submit</button>
     

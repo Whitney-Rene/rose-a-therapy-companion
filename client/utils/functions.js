@@ -31,7 +31,7 @@ const postRequest = async (endpoint, data) => {
     const responseData = await response.json();
     return responseData;
   } catch (error) {
-    console.error("Error while adding contact:", error);
+    console.error("Error while adding entry:", error);
   }
 };
 

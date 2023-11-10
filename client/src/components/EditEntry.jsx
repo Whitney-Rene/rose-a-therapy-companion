@@ -11,7 +11,7 @@ export default function EditEntry (){
     const state = location.state;
 
     const [updatedEntry, setUpdatedEntry] = useState({entry_type: state.entry_type, entry_date: state.entry_date, entry_content: state.entry_content});
-    const [confirmationMessage, setConfirmationMessage] =useState("");
+    const [confirmationMessage, setConfirmationMessage] = useState("");
 
     //handle the data in input fields
     const handleInputChange = (event) => {
