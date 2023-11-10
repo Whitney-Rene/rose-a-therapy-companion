@@ -32,7 +32,8 @@ afterAll(() => {
   vi.clearAllMocks()
 });
 
-test('HomePage renders child components', async () => {
+test('Entry component is confirming new entry for user', async () => {
+  
   render(
     <Router>
         <EntryForm />
@@ -49,10 +50,4 @@ test('HomePage renders child components', async () => {
     await user.click(buttonElement);
 
     expect(await screen.findByText(/entry submitted/i)).toBeInTheDocument();
-    // expect(inputElement).toBeInTheDocument();
-    // expect(buttonElement).toBeInTheDocument();
 });
-
-//ISSUE: TestingLibraryElementError: Unable to find an element with the text: /entry submitted/i. 
-    //This could be because the text is broken up by multiple elements. 
-    //In this case, you can provide a function for your text matcher to make your matcher more flexible.

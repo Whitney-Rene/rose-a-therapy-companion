@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import ListLatestEntries from '../components/ListLatestEntries';
 
+//store userEvent method as a variable, easier to write and understand
 const user = userEvent.setup();
 
 beforeAll(() => {
@@ -36,29 +37,32 @@ afterAll(() => {
 });
 
 test('list entries on page', async () => {
-    render(
-    <Router>
-        <ListLatestEntries />
-    </Router>);
 
-    // Assert that the rendered entries are present
-    await waitFor( () => {
-      const roseEntry = screen.getByText(/some rose content/i);
-      expect(roseEntry).toBeInTheDocument();
-    });
-
-    await waitFor( () => {
-      const budEntry = screen.getByText(/some bud content/i); 
-      expect(budEntry).toBeInTheDocument();});
-
-});
-
-test('edit icon apperas for entries entry', async () => {
   render(
     <Router>
         <ListLatestEntries />
     </Router>);
 
+  // Assert that the rendered entries are present
+  await waitFor( () => {
+    const roseEntry = screen.getByText(/some rose content/i);
+    expect(roseEntry).toBeInTheDocument();
+  });
+
+  await waitFor( () => {
+    const budEntry = screen.getByText(/some bud content/i); 
+    expect(budEntry).toBeInTheDocument();});
+
+});
+
+test('edit icon apperas for entries entry', async () => {
+  
+  render(
+    <Router>
+        <ListLatestEntries />
+    </Router>);
+
+//edit icons are present
   await waitFor( () => {
     const editButtons = screen.getAllByTestId("EditTwoToneIcon");
     user.click(editButtons[0]);

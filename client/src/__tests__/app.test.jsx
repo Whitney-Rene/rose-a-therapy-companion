@@ -25,9 +25,10 @@ test ('App renders correctly', () => {
     //assertion used to check whether homePage is present in the rendered component
     expect(homePageTitle).toBeInTheDocument();
     expect(roseButton).toBeInTheDocument();
+    
 });
 
-//integration = how user interacts with application, what they see on the page
+//how user interacts with application, what they see on the page
 test ('clicking on login button takes user to login page', async () => {
 
     render(
@@ -41,4 +42,5 @@ test ('clicking on login button takes user to login page', async () => {
     await user.click(logoutButton);
     const loginButton = screen.getByRole('button', {name: /login/i});
     expect(loginButton).toBeInTheDocument();
+
 });

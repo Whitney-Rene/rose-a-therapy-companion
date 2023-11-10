@@ -3,8 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import RequestBouquet from "../components/RequestBouquet";
 
-test ("buttons render", () => {
-    //render app
+test ("buttons render in Request Bouquet comp", () => {
+    
+    //render RequestBouquet
     render(
     <Router>
         <RequestBouquet />

@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 
 test('NavBar should render links case-insensitively', () => {
+
+    //render NavBar comp
     render(
     <Router>
         <NavBar />
@@ -19,4 +21,5 @@ test('NavBar should render links case-insensitively', () => {
     expect(homeLink).toBeInTheDocument();
     expect(requestLink).toBeInTheDocument();
     expect(logoutLink).toBeInTheDocument();
+    
   });

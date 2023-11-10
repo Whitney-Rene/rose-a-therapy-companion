@@ -19,4 +19,5 @@ test('CreateRoseBudThorn component renders buttons', () => {
   expect(roseButton).toBeInTheDocument();
   expect(budButton).toBeInTheDocument();
   expect(thornButton).toBeInTheDocument();
+  
 });
