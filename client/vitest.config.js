@@ -12,5 +12,3 @@ export default defineConfig({
     setupFiles: ["./src/setupTest.js"],
   },
 });
-
-//is there an issue with line 12?

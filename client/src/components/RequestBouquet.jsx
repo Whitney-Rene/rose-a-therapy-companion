@@ -1,8 +1,8 @@
 //imports from react, libraries and other files
 import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 
 import functions from '../../utils/functions';
 
@@ -76,39 +76,55 @@ export default function RequestBouquet() {
       <p> request a bouquet </p>
 
       <form onSubmit={handleSubmit}>
+
         <label>
           start date:
           <input required type="date" ref={userStartDate} />
         </label>
+        
         <label>
           end date:
           <input required type='date' ref={userEndDate} />
         </label>
+
         <button type='submit'>submit</button>
+
       </form>
 
       <button onClick={routeHome}>cancel</button>
 
     {/* render details of bouquet, if it is true that bouquetData is longer than 0*/}
     {bouquetData.length > 0 && (
+
       <div>
+       
         {bouquetData.map((item) => (
+
           <div key={item.entry_id}>
+
             {item.entry_type}
             {functions.formatTime(item.entry_date)}
             {item.entry_content}
-            <FontAwesomeIcon icon={faTrash} className='iconEye' onClick={() => handleDelete(item.entry_id)}/>
+
+            <span className='icon-wrapper' aria-label="Delete" onClick={() => handleDelete(item.entry_id)}>
+            <DeleteOutlineIcon className='icontrash'/>
+            </span>
+
             {/* routes user to edit component
                 and takes the entry id and current state of entry with it */}
-            <Link to={`/edit/${item.entry_id}`} state={item} className='iconPen'>
-              <FontAwesomeIcon icon={faPenSquare} /> 
+            <Link to={`/edit/${item.entry_id}`} state={item} aria-label="Edit">
+              <EditTwoToneIcon className='icon-edit' /> 
             </Link>
+
           </div>
+
        ))}
       </div>
     )}
+
     {/* if entriesMessage is true */}
     {noEntriesMessage && <p> no r/b/th for these dates </p>}
+
     </div>
   )
 }
