@@ -12,6 +12,7 @@ test('HomePage renders child components', () => {
   const createComponentElem = screen.getByRole('button', {name: /rose/i});
   expect(createComponentElem).toBeInTheDocument();
 
+
 });
 
 //PASSED!

@@ -1,4 +1,4 @@
-import { useState,  } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import functions from '../../utils/functions';
@@ -79,6 +79,7 @@ export default function EditEntry (){
       </>
     )
 }
+
 
 //FUTURE PLANS:
 //add styling

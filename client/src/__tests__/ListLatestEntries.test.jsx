@@ -1,24 +1,38 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import ListLatestEntries from '../components/ListLatestEntries';
 
+const user = userEvent.setup();
+
 beforeAll(() => {
   // Mock the global fetch function with a custom implementation
-  global.fetch = vi.fn (() => Promise.resolve ( {
-      json: () => Promise.resolve ( [
-        {
-          entry_id: 1,
-          entry_type: 'Rose',
-          entry_content: 'Some rose content',
-        },
-        {
-          entry_id: 2,
-          entry_type: 'Bud',
-          entry_content: 'Some bud content',
-        },
-      ]),
-    }));
+    global.fetch = vi.fn()
+    fetch.mockReturnValue(
+      Promise.resolve(
+        { json: () => Promise.resolve([
+          {
+            entry_id: 1,
+            entry_type: 'Rose',
+            entry_content: 'Some rose content',
+          },
+          {
+            entry_id: 2,
+            entry_type: 'Bud',
+            entry_content: 'Some bud content',
+          },
+          ]),
+      ok: true
+      })
+    );
+
+});
+
+//want to always clear mocks, so it does not interfere with other tests
+afterAll(() => {
+  //needed to avoid issues
+  vi.clearAllMocks()
 });
 
 test('list entries on page', async () => {
@@ -31,19 +45,32 @@ test('list entries on page', async () => {
   await screen.findByText(/your latest rose, bud and thorns/i);
 
   // Assert that the rendered entries are present
-  waitFor( () => {const roseEntry = screen.getByText(/some rose content/i); screen.debug(); expect(roseEntry).toBeInTheDocument();});
+ await waitFor( () => {const roseEntry = screen.getByText(/some rose content/i); screen.debug(); expect(roseEntry).toBeInTheDocument();});
   // const budEntry = screen.getByText(/some bud content/i);
 
   
   // expect(budEntry).toBeInTheDocument();
 });
 
-afterAll(() => {
-  // Clean up the global fetch mock after the tests
-  delete globalThis.fetch;
+test('test, edit entry', async () => {
+  render(
+    <Router>
+        <ListLatestEntries />
+    </Router>);
+
+  await waitFor( () => {
+    const editButtons = screen.getAllByTestId("EditTwoToneIcon");
+    user.click(editButtons[0]);
+  });
+
+  screen.debug();
+  
+  // const updateButton = screen.getByRole('button', {name: /update entry/i});
+  // const cancelButton = screen.getByRole('button', {name: /cancel/i});
+
+  // expect(updateButton).toBeInTheDocument();
+  // expect(cancelButton).toBeInTheDocument();
+
 });
 
-
-//ISSUE: TestingLibraryElementError: Unable to find an element with the text: Some rose content. 
-    //This could be because the text is broken up by multiple elements. 
-    //In this case, you can provide a function for your text matcher to make your matcher more flexible.
+//PASSED

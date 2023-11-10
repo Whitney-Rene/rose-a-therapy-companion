@@ -1,21 +1,58 @@
-import { render, screen, fireEvent, userEvent } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import EntryForm from '../components/EntryForm';
 
-test('HomePage renders child components', () => {
+const user = userEvent.setup();
+
+//update mock to simulate handle submit
+beforeAll(() => {
+  // Mock the global fetch function with a custom implementation
+    global.fetch = vi.fn()
+    fetch.mockReturnValue(
+      Promise.resolve(
+        { json: () => Promise.resolve([
+          {
+            entry_id: 1,
+            entry_type: 'Rose',
+            entry_content: 'Some rose content',
+          },
+          {
+            entry_id: 2,
+            entry_type: 'Bud',
+            entry_content: 'Some bud content',
+          },
+          ]),
+      })
+    );
+
+});
+
+//want to always clear mocks, so it does not interfere with other tests
+afterAll(() => {
+  //needed to avoid issues
+  vi.clearAllMocks()
+});
+
+test('HomePage renders child components', async () => {
   render(
     <Router>
         <EntryForm />
     </Router>);
 
-    const inputElement = screen.getByPlaceholderText(/type text here/i);
+    const inputElement = screen.getByRole('textbox');
+    const dateElement = screen.getByLabelText(/date:/i);
+    expect(dateElement).toBeInTheDocument();
     const buttonElement = screen.getByRole('button', {name: 'Submit'});
-
-    //TODO: replace with userEvent 
-    fireEvent.change(inputElement, {target: {value: 'abundance mindset'}});
-    fireEvent.click(buttonElement);
-    const confirmationElement = screen.getByText(/entry submitted/i)
+ 
+    await user.type(dateElement, "2023-11-09");
+    expect(dateElement).toHaveValue('2023-11-09');
+    await user.type(inputElement, 'abundance mindset');
+    await user.click(buttonElement);
+    await waitFor(() => {
+      const confirmationElement = screen.getByText(/entry submitted/i)
+    });
 
     expect(confirmationElement).toBeInTheDocument();
     // expect(inputElement).toBeInTheDocument();
