@@ -23,7 +23,7 @@ If you are interested in installing and running this project on your local compu
 
 The project will look like this on the client side:
 
-![screenshot of rose_atc](<rose_atc, week 2.png>)
+![screenshot of rose_atc](<Screenshot 2023-11-10 at 6.14.25 PM.png>)
 
 ### Technologies Used
 

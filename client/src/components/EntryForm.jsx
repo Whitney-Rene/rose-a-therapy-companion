@@ -63,13 +63,14 @@ export default function EntryForm() {
                 Date:
                 <input name="date" required type='date'></input>
             </label>
+
             <label>
                 {entry_type}
                 <textarea name="content" placeholder='type text here'required />
             </label>
+
             <button type='submit'>Submit</button>
     
-
         </form>
 
         <button onClick={routeHome}>Cancel</button>

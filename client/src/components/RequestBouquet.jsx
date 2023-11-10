@@ -81,7 +81,7 @@ export default function RequestBouquet() {
           start date:
           <input required type="date" ref={userStartDate} />
         </label>
-        
+
         <label>
           end date:
           <input required type='date' ref={userEndDate} />

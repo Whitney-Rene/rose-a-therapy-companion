@@ -150,7 +150,9 @@ app.post("/login", async (req, res) => {
         res.json({ error: "Incorrect password" });
       }
     } else {
-      res.json({ error: "User not found" });
+      res.json({
+        error: "User not found. Please check you email and password entries",
+      });
     }
   } catch (error) {
     console.error("Database error:", error);

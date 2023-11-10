@@ -6,9 +6,6 @@ import App from '../App';
 
 const user = userEvent.setup();
 
-//unit testing - the user can't see this, test for ids-commonly
-//toHaveAttribute("name", "entry_date")
-
 test ('App renders correctly', () => {
 
     //reders the app component
@@ -44,3 +41,7 @@ test ('clicking on login button takes user to login page', async () => {
     expect(loginButton).toBeInTheDocument();
 
 });
+
+//LEARNED:
+    //unit testing - the user can't see this, test for ids-commonly
+    //syntax = toHaveAttribute("name", "entry_date")
