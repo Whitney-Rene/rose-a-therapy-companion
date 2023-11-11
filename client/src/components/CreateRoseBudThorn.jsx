@@ -19,7 +19,6 @@ export default function CreateRoseBudThorn() {
 
     <div className="create" >
 
-      
       <Typography 
         align="center"
         color="#FFB085"
@@ -30,12 +29,15 @@ export default function CreateRoseBudThorn() {
 
       {/* buttons that have routing functionality */}
       <div className="button-group" >
+
         <ButtonGroup variant="outlined">
           <Button className="button" onClick={() => handleClick('rose')}>rose</Button>
           <Button className="button" onClick={() => handleClick('bud')}>bud</Button>
           <Button className="button" onClick={() => handleClick('thorn')}>thorn</Button>
         </ButtonGroup>
+
       </div>
+      
     </div>
 
   );

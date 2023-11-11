@@ -1,6 +1,6 @@
 //import Link component to create navigation links
 import { Link } from 'react-router-dom';
-import { Toolbar, Typography, AppBar } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import '../css/NavBar.css';
 

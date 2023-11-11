@@ -8,7 +8,7 @@ const user = userEvent.setup();
 
 test ('App renders correctly', () => {
 
-    //reders the app component
+    //reders the APP component
     render(
         <Router>
             <App />

@@ -19,6 +19,7 @@ export default function RequestBouquet() {
 
   //functionality for delete buttons
   const handleDelete = async (entry_id) => {
+
     try { 
       const response = await fetch (`http://localhost:9999/delete-entries/${entry_id}`, {
         method: 'DELETE',
@@ -32,11 +33,13 @@ export default function RequestBouquet() {
     } catch (error) {
       console.error('Error deleting entry:', error)
     }
+
   };
 
   //function to handle the submit/button click
 
   const handleSubmit = async (event) => {
+
     //prevent the default nature of event
     event.preventDefault();
 
@@ -63,14 +66,16 @@ export default function RequestBouquet() {
     } catch (error) {
       console.error("Error while fetching bouquet data:", error);
     }
-  }
+
+  };
 
   //function to navigate user to homepage 
   const routeHome = () => {
     navigateTo("/");
-  }
+  };
 
   return (
+
     <div>
       
       <p> request a bouquet </p>
@@ -118,9 +123,11 @@ export default function RequestBouquet() {
 
           </div>
 
-       ))}
+        ))}
+
       </div>
-    )}
+
+    )};
 
     {/* if entriesMessage is true */}
     {noEntriesMessage && <p> no r/b/th for these dates </p>}

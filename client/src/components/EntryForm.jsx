@@ -1,5 +1,5 @@
 //imports from react, libraries and other files
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import functions from '../../utils/functions';
 
@@ -11,17 +11,13 @@ export default function EntryForm() {
     const [quote, setQuote] = useState("");
     const [confirmationMessage, setConfirmationMessage] = useState("");
 
-    // const userEntryType = useRef(entry_type);
-    // const userEntryDate = useRef(null);
-    // const userEntryContent = useRef(null);
-
     //async function to submits a r/b/th in db, in try/catch block (to handle success/failure of async call)
     const handleSubmit = async (event) => {
+
         //this prevents the default behavior of an event, so the default action of a form is to submit the data and reload the page
         event.preventDefault();
 
         const entryData = {
-            //specifically for variables and is the same name as key, only need to type key name
             entry_type,
             entry_date: event.target.elements.date.value, //userEntryDate.current?.value,
             entry_content: event.target.elements.content.value //userEntryContent.current?.value,
@@ -91,4 +87,5 @@ export default function EntryForm() {
 //info bar at top with inspirational quote
 
 //LEARNED:
-//conditional rendering statement
+    //line 76: conditional rendering statement
+    //line 21: specifically for variables and is the same name as key, only need to type key name

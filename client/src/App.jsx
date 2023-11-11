@@ -27,11 +27,13 @@ function App() {
       <div className='content'>
 
         <Routes> {/* component of react-router */}
+
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
           <Route path="/request" element={<RequestBouquet />} />
           <Route path="/create/form/:entry_type" element={<EntryForm />} />
           <Route path="/edit/:entry_id" element={<EditEntry />} />
+          
         </Routes>
         
       </div>

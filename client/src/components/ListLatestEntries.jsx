@@ -47,7 +47,6 @@ export default function ListLatestEntries() {
     }
   };
   
-
   //side effect hook, triggers function
   useEffect (() => {
 
@@ -56,7 +55,6 @@ export default function ListLatestEntries() {
     }, []);
 
   return (
-    <>
 
       <div>
       
@@ -81,7 +79,7 @@ export default function ListLatestEntries() {
           <span className='icon-wrapper' aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
             <DeleteOutlineIcon className='icon-trash' />
           </span>
-          
+
           <Link to={`/edit/${entry.entry_id}`} state={entry} aria-label='Edit'>
             <EditTwoToneIcon className='icon-edit' />
           </Link>
@@ -91,7 +89,7 @@ export default function ListLatestEntries() {
       ))}
 
       </div>
-    </>
+
   );
 };
 
