@@ -1,7 +1,8 @@
-//useHistory is replaced by useNavigate "react-router-dom" v.6
 import { useNavigate } from 'react-router-dom';
 import { Typography, Button, ButtonGroup } from '@mui/material';
-//TODO: import css specific file here!!
+
+import '../css/CreateRoseBudThorn.css'
+
 
 
 export default function CreateRoseBudThorn() {

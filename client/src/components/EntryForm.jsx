@@ -1,7 +1,9 @@
 //imports from react, libraries and other files
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
 import functions from '../../utils/functions';
+import '../css/EntryForm.css';
 
 export default function EntryForm() {
 

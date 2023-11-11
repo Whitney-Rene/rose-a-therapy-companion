@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import functions from '../../utils/functions';
+import '../css/EditEntry.css';
 
 export default function EditEntry (){
 

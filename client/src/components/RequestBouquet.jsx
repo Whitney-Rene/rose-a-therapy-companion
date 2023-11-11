@@ -5,6 +5,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 
 import functions from '../../utils/functions';
+import "../css/RequestBouquet.css";
 
 export default function RequestBouquet() {
 
