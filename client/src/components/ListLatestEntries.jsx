@@ -76,7 +76,7 @@ export default function ListLatestEntries() {
           <p>{entry.entry_type}</p>
           <p>{entry.entry_content}</p>
 
-          <span className='icon-wrapper' aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
+          <span aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
             <DeleteOutlineIcon className='icon-trash' />
           </span>
 
