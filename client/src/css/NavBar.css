@@ -1,4 +1,13 @@
 .nav-link {
-    color: #FFB085;
+    color: #444444;
     font-family: cursive;
+}
+
+.rose-icon {
+   color: #F9D5A7;
+}
+
+.app-name {
+    color: #90AACB;
+    font-family: cursive !important;
 }
