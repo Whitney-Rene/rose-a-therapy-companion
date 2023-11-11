@@ -3,8 +3,21 @@ p {
     font-family: monospace;
 }
 
-.icon-trash {
-    cursor: pointer;
-  }
+.headers {
+  text-align: center;
+  color: #FFB085;
+  font-family: monospace !important;
+}
 
-/* add hover over effects for icons */
+.icon-edit {
+  color: #90AACB;
+}
+
+.icon-trash {
+  color: #F9D5A7;
+} 
+
+/* instead, add hover over effects for icons */
+/* .icon-trash {
+  cursor: pointer;
+} */

@@ -113,7 +113,7 @@ export default function RequestBouquet() {
             {item.entry_content}
 
             <span className='icon-wrapper' aria-label="Delete" onClick={() => handleDelete(item.entry_id)}>
-            <DeleteOutlineIcon className='icontrash'/>
+            <DeleteOutlineIcon className='icon-trash'/>
             </span>
 
             {/* routes user to edit component

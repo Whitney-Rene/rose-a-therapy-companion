@@ -20,11 +20,7 @@ export default function CreateRoseBudThorn() {
 
     <div className="create" >
 
-      <Typography 
-        align="center"
-        color="#FFB085"
-        style={{ fontFamily: 'monospace' }}
-        >
+      <Typography className='headers'>
         create a new rose, bud or thorn
       </Typography>
 

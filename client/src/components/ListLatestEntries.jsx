@@ -58,13 +58,7 @@ export default function ListLatestEntries() {
 
       <div>
       
-      <Typography 
-      // variant="subtitle"
-      // noWrap
-      align="center"
-      color="#FFB085"
-      style={{ fontFamily: 'monospace' }}
-      >
+      <Typography className='headers'>
         your latest rose, bud and thorns
       </Typography>
 
