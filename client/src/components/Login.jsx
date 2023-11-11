@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../css/Login.css';
+import { Typography, Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
 export default function Login( {currentUser, setCurrentUser }) {
 
@@ -56,22 +58,23 @@ export default function Login( {currentUser, setCurrentUser }) {
     <>
 
         {/* login form, with button that triggers handleLogin */}
-        <h2>Login</h2>
+        <Typography variant="h2" className='login'>Login</Typography>
 
         <form>
 
             <div>
-                <label htmlFor="email" >Email:</label>
-                <input id="email" required type="text"  ref={userEmail}/>
+                <TextField className="input-box" required  label="email" type="text" inputRef={userEmail}/>
             </div>
 
             <div>
-                <label htmlFor="password">Password:</label>
-                <input id="password" required type='text'  ref={userPassword}/>
+                <TextField className="input-box" required label="password" type='password' inputRef={userPassword}/>
             </div>
 
-            <button onClick={(e)=> handleLogin(e)}>login</button>
-            <button>create an account</button>
+            <Button type="submit" className="login-button" onClick={(e)=> handleLogin(e)}> 
+            login
+            </Button>
+
+            <Button type="submit" className="create-account-button">create an account</Button>
 
             {/* if loginError is not empty, show error */}
             {loginError && <p>{loginError}</p>}
