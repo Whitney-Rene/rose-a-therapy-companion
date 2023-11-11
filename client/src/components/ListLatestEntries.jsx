@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import { Typography } from '@mui/material';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import functions from '../../utils/functions';
 import '../css/ListLatestEntries.css';
@@ -55,32 +56,39 @@ export default function ListLatestEntries() {
   }, []);
 
   return (
+      <div className='center-container'>
 
-    <div>
-      
-      <Typography className='headers'>
-        your latest rose, bud and thorns
-      </Typography>
+        <Typography className='headers'>
+          your latest rose, bud and thorns
+        </Typography>
 
-      {/* map over entries state and show relevant data and buttons */}
-      {entries && entries.map((entry, index) => (
+        <ResponsiveMasonry
+                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+        >
 
-        <div key={index}>
+        <Masonry columnsCount={3} gutter="16px">
+        {/* map over entries state and show relevant data and buttons */}
+        {entries && entries.map((entry, index) => (
 
-          <p>{entry.entry_type}</p>
-          <p>{entry.entry_content}</p>
+          <div key={index} className='masonry-card'>
 
-          <span aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
-            <DeleteOutlineIcon className='icon-trash' />
-          </span>
+            <p>{entry.entry_type}</p>
+            <p>{entry.entry_content}</p>
 
-          <Link to={`/edit/${entry.entry_id}`} state={entry} aria-label='Edit'>
-            <EditTwoToneIcon className='icon-edit' />
-          </Link>
+            <span aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
+              <DeleteOutlineIcon className='icon-trash' />
+            </span>
 
-        </div>
-        
-      ))}
+            <Link to={`/edit/${entry.entry_id}`} state={entry} aria-label='Edit'>
+              <EditTwoToneIcon className='icon-edit' />
+            </Link>
+
+          </div>
+          
+        ))}
+        </Masonry>
+
+        </ResponsiveMasonry>
 
     </div>
 

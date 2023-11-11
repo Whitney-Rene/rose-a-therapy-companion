@@ -11,6 +11,8 @@ export default function NavBar() {
    
     <div className='navbar'>
 
+      
+
       <Link className="logout-link" to="/login">logout</Link>
 
       <div className='logo'>
