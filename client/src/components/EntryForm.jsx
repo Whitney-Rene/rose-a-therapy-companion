@@ -52,35 +52,35 @@ export default function EntryForm() {
 
     return (
         <>
-        <h2>create a {entry_type} entry</h2>
+            <h2>create a {entry_type} entry</h2>
 
-        {/* basic form for entry with sumbit and cancel button */}
-        <form onSubmit={handleSubmit}>
+            {/* basic form for entry with sumbit and cancel button */}
+            <form onSubmit={handleSubmit}>
 
-            <label>
-                Date:
-                <input name="date" required type='date'></input>
-            </label>
+                <label>
+                    Date:
+                    <input name="date" required type='date'></input>
+                </label>
 
-            <label>
-                {entry_type}
-                <textarea name="content" placeholder='type text here'required />
-            </label>
+                <label>
+                    {entry_type}
+                    <textarea name="content" placeholder='type text here'required />
+                </label>
 
-            <button type='submit'>Submit</button>
+                <button type='submit'>Submit</button>
     
-        </form>
+            </form>
 
-        <button onClick={routeHome}>Cancel</button>
+            <button onClick={routeHome}>Cancel</button>
 
-        {confirmationMessage}
+            {confirmationMessage}
 
-        {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
-        {quote && quote.affirmation}
+            {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
+            {quote && quote.affirmation}
             
         </>
-    )
-}
+    );
+};
 
 //FUTURE PLANS:
 //add styling

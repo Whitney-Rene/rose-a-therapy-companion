@@ -7,7 +7,6 @@ import '../css/NavBar.css';
 export default function NavBar() {
 
   return (
-    <>
    
     <div className='navbar'>
 
@@ -30,9 +29,8 @@ export default function NavBar() {
 
     </div>
 
-    </>
-  )
-}
+  );
+};
 
 //FUTURE PLANS:
 //add styling

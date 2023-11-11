@@ -52,11 +52,11 @@ export default function ListLatestEntries() {
 
     updateListLatestEntries();
     
-    }, []);
+  }, []);
 
   return (
 
-      <div>
+    <div>
       
       <Typography className='headers'>
         your latest rose, bud and thorns
@@ -82,7 +82,7 @@ export default function ListLatestEntries() {
         
       ))}
 
-      </div>
+    </div>
 
   );
 };

@@ -25,8 +25,8 @@ export default function HomePage() {
       <ListLatestEntries />
 
     </Container>
-  )
-}
+  );
+};
 
 //FUTURE PLANS:
 //add styling

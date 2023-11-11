@@ -16,6 +16,7 @@ export default function RequestBouquet() {
   const userStartDate = useRef(null);
   const userEndDate = useRef(null);
   const [bouquetData, setBouquetData] = useState([]);
+  const [userDates, setUserDates] = useState([])
   const [noEntriesMessage, setNoEntriesMessage] = useState(false);
 
   //functionality for delete buttons
@@ -59,6 +60,7 @@ export default function RequestBouquet() {
         setBouquetData(data)};
 
       setBouquetData(data);
+      setUserDates([functions.formatTime(start_date), functions.formatTime(end_date)])
 
       //this will clear the input fields AFTER the request is made
       userStartDate.current.value = "";
@@ -103,6 +105,9 @@ export default function RequestBouquet() {
     {bouquetData.length > 0 && (
 
       <div>
+
+        <span> {userDates[0]} to {userDates[1]}
+        </span>
        
         {bouquetData.map((item) => (
 
@@ -134,8 +139,8 @@ export default function RequestBouquet() {
     {noEntriesMessage && <p> no r/b/th for these dates </p>}
 
     </div>
-  )
-}
+  );
+};
 
 //FUTURE PLANS: 
 //add styling

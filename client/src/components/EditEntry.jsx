@@ -60,46 +60,46 @@ export default function EditEntry (){
 
         <>
 
-        {/* form to grab the value of input boxes with update buttons and cancel button */}
-        <p>original {state.entry_type} below: </p>
+            {/* form to grab the value of input boxes with update buttons and cancel button */}
+            <p>original {state.entry_type} below: </p>
 
-        {state && (
+            {state && (
 
-          <div>
+            <div>
 
-            <p>{functions.formatTime(state.entry_date)}</p>
-            <p>{state.entry_content}</p>
+                <p>{functions.formatTime(state.entry_date)}</p>
+                <p>{state.entry_content}</p>
 
-            <form>
+                <form>
 
-                <label>
-                    edit entry type?
-                    <input required name="entry_type" type="text" value={updatedEntry.entry_type} onChange={handleInputChange}></input>
-                </label>
-                
-                <label>
-                    edit date?
-                    <input required name="entry_date" type="date" value={updatedEntry.entry_date} onChange={handleInputChange}></input>
-                </label>
+                    <label>
+                        edit entry type?
+                        <input required name="entry_type" type="text" value={updatedEntry.entry_type} onChange={handleInputChange}></input>
+                    </label>
+                    
+                    <label>
+                        edit date?
+                        <input required name="entry_date" type="date" value={updatedEntry.entry_date} onChange={handleInputChange}></input>
+                    </label>
 
-                <label>
-                    edit entry content?
-                    <input required name="entry_content" type="text" value={updatedEntry.entry_content} onChange={handleInputChange}></input>
-                </label>
+                    <label>
+                        edit entry content?
+                        <input required name="entry_content" type="text" value={updatedEntry.entry_content} onChange={handleInputChange}></input>
+                    </label>
 
-            </form>
+                </form>
 
-            <button onClick={handleUpdate}>Update Entry</button>
-            <button onClick={prevPage}>Cancel</button>
+                <button onClick={handleUpdate}>Update Entry</button>
+                <button onClick={prevPage}>Cancel</button>
 
-          </div>
+            </div>
 
-        )}
+            )}
 
-        {confirmationMessage && confirmationMessage}
+            {confirmationMessage && confirmationMessage}
 
-      </>
-    )
+        </>
+    );
 };
 
 //FUTURE PLANS:
