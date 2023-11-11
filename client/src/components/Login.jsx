@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../css/Login.css';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, Divider } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
 export default function Login( {currentUser, setCurrentUser }) {
@@ -55,33 +55,37 @@ export default function Login( {currentUser, setCurrentUser }) {
 
     return (
     
-    <>
+        <div className='login-container'>
 
-        {/* login form, with button that triggers handleLogin */}
-        <Typography variant="h2" className='login'>Login</Typography>
+            <div className='login-box'>
 
-        <form>
+            {/* login form, with button that triggers handleLogin */}
+                <Typography variant="h2" className='login'>Login</Typography>
 
-            <div>
-                <TextField className="input-box" required  label="email" type="text" inputRef={userEmail}/>
+                <form autoComplete='off'>
+
+                    <div>
+                        <TextField className="input-box" required  label="email" type="text" inputRef={userEmail}/>
+                    </div>
+
+                    <div>
+                        <TextField className="input-box" required label="password" type='password' inputRef={userPassword}/>
+                    </div>
+
+                    <Button type="submit" className="login-button" onClick={(e)=> handleLogin(e)}> 
+                    login
+                    </Button>
+
+                    <Button type="submit" className="create-account-button">create an account</Button>
+
+                    {/* if loginError is not empty, show error */}
+                    {loginError && <p className='error-message'>{loginError}</p>}
+
+                </form>
+
             </div>
-
-            <div>
-                <TextField className="input-box" required label="password" type='password' inputRef={userPassword}/>
-            </div>
-
-            <Button type="submit" className="login-button" onClick={(e)=> handleLogin(e)}> 
-            login
-            </Button>
-
-            <Button type="submit" className="create-account-button">create an account</Button>
-
-            {/* if loginError is not empty, show error */}
-            {loginError && <p>{loginError}</p>}
-
-        </form>
-        
-    </>
+            
+        </div>
     
     );
 };

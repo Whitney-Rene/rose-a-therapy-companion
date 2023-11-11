@@ -11,19 +11,24 @@ export default function NavBar() {
    
     <div className='navbar'>
 
-      <SpaOutlinedIcon className="rose-icon" />
+      <Link className="logout-link" to="/login">logout</Link>
 
-      <Typography className="app-name"> 
-      rose: a therapy companion 
-      </Typography>
+      <div className='logo'>
+
+        <SpaOutlinedIcon className="rose-icon" />
+
+        <Typography className="app-name"> 
+        rose: a therapy companion 
+        </Typography>
+
+      </div>
 
       <div className="links">
     
         {/* when the user clicks "Home", "Request a Bouquet" or "Login" links
         direct the user to this path, which renders an element/comp */}
-        <Link className="nav-link" to="/">home</Link>
-        <Link className="nav-link" to="/request">request a bouquet</Link>
-        <Link className="nav-link" to="/login">logout</Link>
+        <Link className="home-link" to="/">home</Link>
+        <Link className="rab-link" to="/request">request a bouquet</Link>
 
       </div>
 

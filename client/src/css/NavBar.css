@@ -1,13 +1,29 @@
-.nav-link {
+.home-link, .rab-link {
     color: #444444;
     font-family: cursive;
+    margin-left: 12px;
+    margin-right: 10px;
+}
+
+.logout-link {
+    color: #444444;
+    font-family: cursive;
+    float: right;
+    margin-right: 10px;
 }
 
 .rose-icon {
    color: #F9D5A7;
+   margin-right: 2px;
 }
 
 .app-name {
     color: #90AACB;
     font-family: cursive !important;
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+  }
+  
