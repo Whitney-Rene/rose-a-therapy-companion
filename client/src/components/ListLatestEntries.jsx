@@ -58,7 +58,7 @@ export default function ListLatestEntries() {
   return (
       <div className='center-container'>
 
-        <Typography className='headers'>
+        <Typography variant="h4" className='header-lle'>
           your latest rose, bud and thorns
         </Typography>
 
@@ -66,7 +66,8 @@ export default function ListLatestEntries() {
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
         >
 
-        <Masonry columnsCount={3} gutter="16px">
+      {/* gutter is the margin surrounding each item */}
+        <Masonry columnsCount={3} gutter="60px">
         {/* map over entries state and show relevant data and buttons */}
         {entries && entries.map((entry, index) => (
 

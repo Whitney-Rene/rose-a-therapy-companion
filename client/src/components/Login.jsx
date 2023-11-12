@@ -11,6 +11,7 @@ export default function Login( {currentUser, setCurrentUser }) {
     //set up useRef for form, state
     const userEmail = useRef(null);
     const userPassword = useRef(null);
+    const [createNewUserMsg, setcreateNewUserMsg] = useState(false);
     const [loginError, setLoginError] = useState(null);
 
     //variable to store useNavigate react-router-dom
@@ -44,6 +45,7 @@ export default function Login( {currentUser, setCurrentUser }) {
         setCurrentUser({id: user_id, name: user_name});
         navigateTo("/");
         } else {
+            setcreateNewUserMsg(false);
             setLoginError(data.error);
         }
 
@@ -52,6 +54,13 @@ export default function Login( {currentUser, setCurrentUser }) {
         }
         
     };
+
+    const createAccount = (event) => {
+        event.preventDefault();
+
+        setLoginError(null);
+        setcreateNewUserMsg(true);
+    }
 
     return (
     
@@ -76,10 +85,11 @@ export default function Login( {currentUser, setCurrentUser }) {
                     login
                     </Button>
 
-                    <Button type="submit" className="create-account-button">create an account</Button>
+                    <Button type="submit" className="create-account-button" onClick={(e)=> createAccount(e)}>create an account</Button>
 
                     {/* if loginError is not empty, show error */}
                     {loginError && <p className='error-message'>{loginError}</p>}
+                    {createNewUserMsg && <p className='create-user-message'>This is a future feature.</p>}
 
                 </form>
 

@@ -20,7 +20,7 @@ export default function CreateRoseBudThorn() {
 
     <div className="create" >
 
-      <Typography className='headers'>
+      <Typography variant="h4" className='header-crbth'>
         create a new rose, bud or thorn
       </Typography>
 
