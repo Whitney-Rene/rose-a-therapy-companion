@@ -13,6 +13,12 @@
   font-family: cursive !important;
   font-size: larger !important;
   color: #444444;
+}
+
+.user-instructions {
+  font-family: cursive !important;
+  color: #90AACB;
+  margin-top: 15px;
   margin-bottom: 30px !important;
 }
 
@@ -58,11 +64,28 @@
 color: #F9D5A7;
 } 
 
-.user-dates {
+.user-dates, .no-entries-msg {
   margin-top: 35px;
   display: flex;
   justify-content: center;
   font-family: cursive;
   color: #FFB085;
   font-weight: bold;
+}
+
+.bentry-type {
+  color: #444444;
+  font-family: monospace;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.bentry-date {
+  font-family: cursive;
+}
+
+.bentry-content {
+  color: #333333;
+  font-family: monospace;
 }

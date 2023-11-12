@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Typography, Button } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import functions from '../../utils/functions';
 import "../css/RequestBouquet.css";
@@ -88,6 +89,10 @@ export default function RequestBouquet() {
           request a bouquet
         </Typography>
 
+        <Typography className='user-instructions'>
+          (see your roses, buds and thorns between specific dates)
+        </Typography>
+
         <form onSubmit={handleSubmit}>
 
           <label>
@@ -117,34 +122,44 @@ export default function RequestBouquet() {
         <p className='user-dates'>bouquet for {userDates[0]} to {userDates[1]}
         </p>
        
-        {bouquetData.map((item) => (
+        <ResponsiveMasonry
+                columnsCountBreakPoints={{900: 4}}
+        >
 
-          <div key={item.entry_id}>
+          <Masonry columnsCount={3} gutter="40px"> 
+        
+            {bouquetData.map((item) => (
 
-            {item.entry_type}
-            {functions.formatTime(item.entry_date)}
-            {item.entry_content}
+              <div key={item.entry_id}>
 
-            <span className='icon-wrapper' aria-label="Delete" onClick={() => handleDelete(item.entry_id)}>
-            <DeleteOutlineIcon className='icon-trash'/>
-            </span>
+                <p className='bentry-type'>{item.entry_type}</p>
+                <p className='bentry-date'>{functions.formatTime(item.entry_date)}</p>
+                <p className='bentry-content'>{item.entry_content}</p>
 
-            {/* routes user to edit component
-                and takes the entry id and current state of entry with it */}
-            <Link to={`/edit/${item.entry_id}`} state={item} aria-label="Edit">
-              <EditTwoToneIcon className='icon-edit' /> 
-            </Link>
+                <span className='icon-wrapper' aria-label="Delete" onClick={() => handleDelete(item.entry_id)}>
+                <DeleteOutlineIcon className='icon-trash'/>
+                </span>
 
-          </div>
+                {/* routes user to edit component
+                    and takes the entry id and current state of entry with it */}
+                <Link to={`/edit/${item.entry_id}`} state={item} aria-label="Edit">
+                  <EditTwoToneIcon className='icon-edit' /> 
+                </Link>
 
-        ))}
+              </div>
+
+            ))}
+
+          </Masonry>
+
+          </ResponsiveMasonry>
 
       </div>
 
-    )};
+    )}
 
     {/* if entriesMessage is true */}
-    {noEntriesMessage && <p> no r/b/th for these dates </p>}
+    {noEntriesMessage && <p className='no-entries-msg'> no r/b/th for these dates </p>}
 
     </div>
   );
