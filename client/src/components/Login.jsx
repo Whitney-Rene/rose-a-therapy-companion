@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../css/Login.css';
-import { Typography, Button, Divider } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
 export default function Login( {currentUser, setCurrentUser }) {

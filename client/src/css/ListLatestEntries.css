@@ -1,6 +1,14 @@
-p {
+.entry-type {
     color: #444444;
     font-family: monospace;
+    font-style: italic;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.entry-content {
+  color: #333333;
+  font-family: monospace;
 }
 
 .header-lle {
@@ -18,3 +26,7 @@ p {
 .icon-trash {
   color: #F9D5A7;
 } 
+
+.icon-edit:hover, .icon-trash:hover {
+  transform: scale(1.2);
+}

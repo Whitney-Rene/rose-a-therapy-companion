@@ -67,14 +67,14 @@ export default function ListLatestEntries() {
         >
 
       {/* gutter is the margin surrounding each item */}
-        <Masonry columnsCount={3} gutter="60px">
+        <Masonry columnsCount={3} gutter="40px">
         {/* map over entries state and show relevant data and buttons */}
         {entries && entries.map((entry, index) => (
 
           <div key={index} className='masonry-card'>
 
-            <p>{entry.entry_type}</p>
-            <p>{entry.entry_content}</p>
+            <p className='entry-type'>{entry.entry_type}</p>
+            <p className='entry-content'>{entry.entry_content}</p>
 
             <span aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
               <DeleteOutlineIcon className='icon-trash' />

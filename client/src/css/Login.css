@@ -35,15 +35,14 @@
 }
 
 .login-button, .create-account-button {
-        color: #90AACB !important;
-        border: 1px solid #90AACB !important;
-        text-align: center !important;
-        text-transform: lowercase !important;
-        font-family: cursive !important; 
+    color: #90AACB !important;
+    border: 1px solid #90AACB !important;
+    text-align: center !important;
+    text-transform: lowercase !important;
+    font-family: cursive !important; 
 }
 
 .login-button:hover, .create-account-button:hover {
-    /* color: #F9D5A7 !important; */
     border: 2px solid #F9D5A7 !important;
 }
 
@@ -54,13 +53,13 @@
     height: 100vh; 
   }
   
-  .login-box {
+.login-box {
     border: 1px solid #ccc;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px; /* Adjust the width as needed */
+    max-width: 400px;
     width: 100%;
-  }
+}
   
 
 .error-message {

@@ -1,6 +1,7 @@
 //imports from react, libraries and other files
 import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Typography, Button } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 
@@ -79,35 +80,42 @@ export default function RequestBouquet() {
 
   return (
 
-    <div>
+    <div className='bouquet-request'>
+
+      <div className='request-box'>
       
-      <p> request a bouquet </p>
+        <Typography variant="h2" className='request-title'>
+          request a bouquet
+        </Typography>
 
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
-        <label>
-          start date:
-          <input required type="date" ref={userStartDate} />
-        </label>
+          <label>
+            start date:
+            <input required type="date" ref={userStartDate} />
+          </label>
 
-        <label>
-          end date:
-          <input required type='date' ref={userEndDate} />
-        </label>
+          <label>
+            end date:
+            <input required type='date' ref={userEndDate} />
+          </label>
 
-        <button type='submit'>submit</button>
+          <Button type='submit'>submit</Button>
 
-      </form>
+        </form>
 
-      <button onClick={routeHome}>cancel</button>
+      
+        <Button onClick={routeHome}>cancel</Button>
+      
+      </div>
 
     {/* render details of bouquet, if it is true that bouquetData is longer than 0*/}
     {bouquetData.length > 0 && (
 
-      <div>
+      <div className="bouquet-details">
 
-        <span> {userDates[0]} to {userDates[1]}
-        </span>
+        <p className='user-dates'>bouquet for {userDates[0]} to {userDates[1]}
+        </p>
        
         {bouquetData.map((item) => (
 
