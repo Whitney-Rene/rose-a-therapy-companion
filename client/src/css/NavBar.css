@@ -3,6 +3,7 @@
     font-family: cursive;
     margin-left: 12px;
     margin-right: 10px;
+    text-decoration: none !important;
 }
 
 .logout-link {
@@ -10,7 +11,14 @@
     font-family: cursive;
     float: right;
     margin-right: 10px;
+    text-decoration: none !important;
 }
+
+.home-link:hover, .rab-link:hover, .logout-link:hover {
+    text-decoration: underline !important; 
+    color:#FFB085; 
+}
+
 
 .rose-icon {
    color: #F9D5A7;
