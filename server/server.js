@@ -2,11 +2,18 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 import db from "./db/db-connection.js";
 import { hashPassword } from "./utils/hashPasswordUtils.js";
 
 const app = express();
+// Get the curret directory
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "dist");
+// Serve static files
+app.use(express.static(REACT_BUILD_DIR));
 const PORT = process.env.PORT || 9999;
 
 //middleware
@@ -243,6 +250,10 @@ app.delete("/delete-entries/:entry_id", async (req, res) => {
     console.error("Error deleting entry:", error);
     res.json({ error });
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 
 //port listening
