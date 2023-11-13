@@ -1,0 +1,81 @@
+.edit-entry-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; 
+    width: 100%;
+    margin: 20px auto 0;
+    text-align: center;
+  }
+  
+.edit-entry-title {
+    font-family: cursive !important;
+    font-size: larger !important;
+    color: #444444;
+    margin-top: 30px !important;
+    text-transform: lowercase;
+    color: #90AACB;
+    text-align: center;
+}
+  
+.org-date, .org-content {
+    font-family: cursive;
+    text-align: center;
+}
+
+.edit-entry-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #444444;
+    font-family: cursive;
+}
+  
+.edit-entry-input {
+    width: 48%; 
+    box-sizing: border-box; 
+    margin-bottom: 20px;
+    margin-left: 20px !important;
+    color: #444444;
+    font-family: monospace;
+}
+  
+.edit-entry-input-content {
+    width: auto !important; 
+    box-sizing: border-box; 
+    margin-bottom: 5px;
+    margin-left: 20px !important;
+    color: #444444;
+    font-family: monospace;
+    overflow: auto !important; 
+    resize: vertical !important;
+}
+
+.edit-entry-button {
+    width: 30%; 
+    margin-right: 4%; 
+    color: #90AACB !important;
+    border: 1px solid #90AACB !important;
+    text-align: center;
+    text-transform: lowercase !important;
+    font-family: cursive !important;
+}
+  
+.edit-entry-button:hover {
+    border: 2px solid #F9D5A7;
+}
+
+.confirm-msg {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    font-family: cursive;
+    color: #FFB085;
+    font-weight: bold;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: #F9D5A7; 
+  }
+
+  
+  

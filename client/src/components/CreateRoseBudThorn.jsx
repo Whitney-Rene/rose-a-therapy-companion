@@ -30,13 +30,11 @@ export default function CreateRoseBudThorn() {
       {/* buttons that have routing functionality */}
       <div className="button-group" >
 
-        {/* <ButtonGroup variant="outlined"> */}
           <Button className="button" onClick={() => handleClick('rose')}>rose</Button>
           <SpaOutlinedIcon className="rose-icon-crbth" />
           <Button className="button" onClick={() => handleClick('bud')}>bud</Button>
           <SpaOutlinedIcon className="rose-icon-crbth" />
           <Button className="button" onClick={() => handleClick('thorn')}>thorn</Button>
-        {/* </ButtonGroup> */}
 
       </div>
       

@@ -89,7 +89,7 @@ export default function EntryForm() {
 
                 {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
                 {quote && <p className='quote'> a beautiful reminder:  '{quote.affirmation}'</p>}
-                <AutoAwesomeOutlinedIcon className='star'/>
+                {/* <AutoAwesomeOutlinedIcon className='star'/> */}
 
             </div>
 

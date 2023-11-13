@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import '../css/Login.css';
 import { Typography, Button } from '@mui/material';
+import SpaOutlinedIcon from '@mui/icons-material/SpaOutlined';
 import TextField from '@mui/material/TextField';
 
 export default function Login( {currentUser, setCurrentUser }) {
@@ -68,6 +69,16 @@ export default function Login( {currentUser, setCurrentUser }) {
 
             <div className='login-box'>
 
+            <div className='logo'>
+
+                <SpaOutlinedIcon className="rose-icon" />
+
+                <Typography className="app-name"> 
+                rose: a therapy companion 
+                </Typography>
+
+            </div>
+
             {/* login form, with button that triggers handleLogin */}
                 <Typography variant="h2" className='login'>Login</Typography>
 
@@ -96,7 +107,7 @@ export default function Login( {currentUser, setCurrentUser }) {
             </div>
             
         </div>
-    
+
     );
 };
 
