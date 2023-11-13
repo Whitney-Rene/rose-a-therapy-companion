@@ -55,12 +55,12 @@ app.get("/get-entry/:entry_id", async (req, res) => {
   }
 });
 
-//endpoint to query db for the lastest entries, limit 5
+//endpoint to query db for the lastest entries, limit 8
 app.get("/list-latest-entries/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;
     const { rows: ffentries } = await db.query(
-      "SELECT * FROM entries WHERE user_id=$1 ORDER BY entry_date DESC LIMIT 5",
+      "SELECT * FROM entries WHERE user_id=$1 ORDER BY entry_date DESC LIMIT 8",
       [user_id]
     );
     res.send(ffentries);
@@ -150,7 +150,9 @@ app.post("/login", async (req, res) => {
         res.json({ error: "Incorrect password" });
       }
     } else {
-      res.json({ error: "User not found" });
+      res.json({
+        error: "User not found. Please check you email and password entries.",
+      });
     }
   } catch (error) {
     console.error("Database error:", error);

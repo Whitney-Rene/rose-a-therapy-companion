@@ -1,11 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 
 import EditEntry from '../components/EditEntry';
 
 test('buttons render', () => {
+  
   render(
-    <Router>
+    //necessary to mock the state as well, if you use location.state in component
+    <Router initialEntries={[{pathname: "/edit/12", state: {}}]}>
         <EditEntry />
     </Router>);
 
@@ -16,5 +18,3 @@ test('buttons render', () => {
     expect(cancelButton).toBeInTheDocument();
 
 });
-
-//ISSUE: Error: Uncaught [TypeError: Cannot read properties of null (reading 'entry_type')]

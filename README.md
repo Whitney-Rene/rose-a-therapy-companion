@@ -23,7 +23,7 @@ If you are interested in installing and running this project on your local compu
 
 The project will look like this on the client side:
 
-![screenshot of rose_atc](<rose_atc, week 2.png>)
+![preview of rose: a theraapy companion](<Screenshot 2023-11-13 at 12.15.29 AM.png>)
 
 ### Technologies Used
 

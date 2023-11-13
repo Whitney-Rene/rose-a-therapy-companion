@@ -1,5 +1,10 @@
-//useHistory is replaced by useNavigate "react-router-dom" v.6
 import { useNavigate } from 'react-router-dom';
+import { Typography, Button, ButtonGroup } from '@mui/material';
+import SpaOutlinedIcon from '@mui/icons-material/SpaOutlined';
+
+import '../css/CreateRoseBudThorn.css'
+
+
 
 export default function CreateRoseBudThorn() {
   
@@ -16,18 +21,22 @@ export default function CreateRoseBudThorn() {
 
     <div className="create" >
 
-      {/* buttons that have routing functionality */}
-      <p>CreateRoseBudThorn Component</p>
-      <button onClick={() => handleClick('rose')}>rose</button>
-      <button onClick={() => handleClick('bud')}>bud</button>
-      <button onClick={() => handleClick('thorn')}>thorn</button>
+      <Typography variant="h4" className='header-crbth'>
+        create a new rose, bud or thorn
+      </Typography>
 
+      {/* buttons that have routing functionality */}
+      <div className="button-group" >
+
+          <Button className="button" onClick={() => handleClick('rose')}>rose</Button>
+          <SpaOutlinedIcon className="rose-icon-crbth" />
+          <Button className="button" onClick={() => handleClick('bud')}>bud</Button>
+          <SpaOutlinedIcon className="rose-icon-crbth" />
+          <Button className="button" onClick={() => handleClick('thorn')}>thorn</Button>
+
+      </div>
+      
     </div>
 
   );
 };
-
-//FUTURE PLANS:
-//add styling
-
-//TODO: add button, consider removing fragments in other components

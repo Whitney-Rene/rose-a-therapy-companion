@@ -57,13 +57,3 @@ INSERT INTO entries (
   'I was feeling anxious. I opened the calm app, and use the 3 min breath timer. I took a deep breaths', 
   1
 );
-
---Extra SQL COMMANDS:
---update value of a column
-
--- UPDATE entries
--- SET user_id = 1
--- WHERE entry_id = 3;
-
---delete row from table
--- DELETE FROM entries WHERE entry_id = 3;

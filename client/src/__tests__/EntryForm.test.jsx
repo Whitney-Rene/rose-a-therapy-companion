@@ -1,27 +1,53 @@
-import { render, screen, fireEvent, userEvent } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import EntryForm from '../components/EntryForm';
 
-test('HomePage renders child components', () => {
+const user = userEvent.setup();
+
+//update mock to simulate handle submit
+beforeAll(() => {
+  // Mock the global fetch function with a custom implementation
+    global.fetch = vi.fn()
+    fetch.mockReturnValue(
+      Promise.resolve(
+        {
+          ok: true, 
+          json: () => Promise.resolve({
+            "entry_id": 60,
+            "entry_type": "bud",
+            "entry_date": "2023-11-09T05:00:00.000Z",
+            "entry_content": "how to destress",
+            "user_id": 1
+        }),
+      })
+    );
+
+});
+
+//want to always clear mocks, so it does not interfere with other tests
+afterAll(() => {
+  //needed to avoid issues
+  vi.clearAllMocks()
+});
+
+test('Entry component is confirming new entry for user', async () => {
+  
   render(
     <Router>
         <EntryForm />
     </Router>);
 
-    const inputElement = screen.getByPlaceholderText(/type text here/i);
+    const inputElement = screen.getByRole('textbox');
+    const dateElement = screen.getByLabelText(/date:/i);
+    expect(dateElement).toBeInTheDocument();
     const buttonElement = screen.getByRole('button', {name: 'Submit'});
+ 
+    await user.type(dateElement, "2023-11-09");
+    expect(dateElement).toHaveValue('2023-11-09');
+    await user.type(inputElement, 'abundance mindset');
+    await user.click(buttonElement);
 
-    //TODO: replace with userEvent 
-    fireEvent.change(inputElement, {target: {value: 'abundance mindset'}});
-    fireEvent.click(buttonElement);
-    const confirmationElement = screen.getByText(/entry submitted/i)
-
-    expect(confirmationElement).toBeInTheDocument();
-    // expect(inputElement).toBeInTheDocument();
-    // expect(buttonElement).toBeInTheDocument();
+    expect(await screen.findByText(/entry submitted/i)).toBeInTheDocument();
 });
-
-//ISSUE: TestingLibraryElementError: Unable to find an element with the text: /entry submitted/i. 
-    //This could be because the text is broken up by multiple elements. 
-    //In this case, you can provide a function for your text matcher to make your matcher more flexible.

@@ -1,0 +1,32 @@
+.entry-type {
+    color: #444444;
+    font-family: monospace;
+    font-style: italic;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+.entry-content {
+  color: #333333;
+  font-family: monospace;
+}
+
+.header-lle {
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
+  text-align: center;
+  color: #FFB085;
+  font-family: cursive !important;
+}
+
+.icon-edit {
+  color: #90AACB;
+}
+
+.icon-trash {
+  color: #F9D5A7;
+} 
+
+.icon-edit:hover, .icon-trash:hover {
+  transform: scale(1.2);
+}
