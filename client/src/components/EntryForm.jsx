@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Typography, Button } from '@mui/material';
-import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
 import functions from '../../utils/functions';
 import '../css/EntryForm.css';
@@ -89,20 +88,9 @@ export default function EntryForm() {
 
                 {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
                 {quote && <p className='quote'> a beautiful reminder:  '{quote.affirmation}'</p>}
-                {/* <AutoAwesomeOutlinedIcon className='star'/> */}
 
             </div>
 
         </>
     );
 };
-
-//FUTURE PLANS:
-//add styling
-
-//NICE-TO-HAVES:
-//info bar at top with inspirational quote
-
-//LEARNED:
-    //line 76: conditional rendering statement
-    //line 21: specifically for variables and is the same name as key, only need to type key name

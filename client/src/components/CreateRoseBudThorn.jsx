@@ -21,8 +21,6 @@ export default function CreateRoseBudThorn() {
 
     <div className="create" >
 
-        {/* <SpaOutlinedIcon className="rose-icon-crbth" /> */}
-
       <Typography variant="h4" className='header-crbth'>
         create a new rose, bud or thorn
       </Typography>
@@ -42,8 +40,3 @@ export default function CreateRoseBudThorn() {
 
   );
 };
-
-//FUTURE PLANS:
-//add styling
-
-//TODO: add button, consider removing fragments in other components

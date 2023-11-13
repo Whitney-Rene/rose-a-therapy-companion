@@ -55,7 +55,7 @@ app.get("/get-entry/:entry_id", async (req, res) => {
   }
 });
 
-//endpoint to query db for the lastest entries, limit 5
+//endpoint to query db for the lastest entries, limit 8
 app.get("/list-latest-entries/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;

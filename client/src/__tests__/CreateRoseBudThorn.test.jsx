@@ -5,10 +5,10 @@ import CreateRoseBudThorn from '../components/CreateRoseBudThorn';
 
 test('CreateRoseBudThorn component renders buttons', () => {
 
-    render( 
-    <Router>
-        <CreateRoseBudThorn />
-    </Router>);
+  render( 
+  <Router>
+      <CreateRoseBudThorn />
+  </Router>);
   
   //this will hold a reference to an HTMl elememt
   const roseButton = screen.getByRole('button', {name: "rose"});

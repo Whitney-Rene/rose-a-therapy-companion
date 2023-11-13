@@ -52,7 +52,6 @@ export default function EditEntry (){
     };
 
     //function to route user to previous page, when the cancel button is clicked
-    //TODO: CHANGE NAME- previous page
     const prevPage = () => {
         navigateTo(-1);
     }
@@ -95,6 +94,7 @@ export default function EditEntry (){
 
                     <Button className='edit-entry-button' onClick={handleUpdate}>Update Entry</Button>
                     <Button className='edit-entry-button' onClick={prevPage}>Cancel</Button>
+
                 </div>
 
             </div>
@@ -106,6 +106,3 @@ export default function EditEntry (){
         </div>
     );
 };
-
-//FUTURE PLANS:
-//add styling

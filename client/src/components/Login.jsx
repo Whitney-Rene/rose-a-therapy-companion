@@ -110,11 +110,3 @@ export default function Login( {currentUser, setCurrentUser }) {
 
     );
 };
-
-//FUTURE PLANS:
-//add styling
-
-//NICE-TO-HAVES:
-//required on input fields
-//add placeholders
-//auth 0 to login users

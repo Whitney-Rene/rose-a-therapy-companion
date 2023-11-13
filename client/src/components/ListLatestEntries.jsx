@@ -50,59 +50,49 @@ export default function ListLatestEntries() {
   
   //side effect hook, triggers function
   useEffect (() => {
-
     updateListLatestEntries();
-    
   }, []);
 
   return (
-      <div className='center-container'>
+    <div className='center-container'>
 
-        <Typography variant="h4" className='header-lle'>
-          your latest rose, bud and thorns
-        </Typography>
+      <Typography variant="h4" className='header-lle'>
+        your latest rose, bud and thorns
+      </Typography>
 
-        <ResponsiveMasonry
-                columnsCountBreakPoints={{900: 4}}
-        >
+      <ResponsiveMasonry
+              columnsCountBreakPoints={{900: 4}}
+      >
 
-      {/* gutter is the margin surrounding each item */}
+        {/* gutter is the margin surrounding each item */}
         <Masonry columnsCount={3} gutter="40px">
-        {/* map over entries state and show relevant data and buttons */}
-        {entries && entries.map((entry, index) => (
-
-          <div key={index} className='masonry-card'>
-
-            <p className='entry-type'>{entry.entry_type}</p>
-            <p className='entry-content'>{entry.entry_content}</p>
-
-            <span aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
-              <DeleteOutlineIcon className='icon-trash' />
-            </span>
-
-            <Link to={`/edit/${entry.entry_id}`} state={entry} aria-label='Edit'>
-              <EditTwoToneIcon className='icon-edit' />
-            </Link>
-
-          </div>
           
-        ))}
+          {/* map over entries state and show relevant data and buttons */}
+          {entries && entries.map((entry, index) => (
+
+            <div key={index} className='masonry-card'>
+
+              <p className='entry-type'>{entry.entry_type}</p>
+              <p className='entry-content'>{entry.entry_content}</p>
+
+              <span aria-label='Delete' onClick={() => handleDelete(entry.entry_id)}>
+                <DeleteOutlineIcon className='icon-trash' />
+              </span>
+
+              <Link to={`/edit/${entry.entry_id}`} state={entry} aria-label='Edit'>
+                <EditTwoToneIcon className='icon-edit' />
+              </Link>
+
+            </div>
+            
+          ))}
+
         </Masonry>
 
-        </ResponsiveMasonry>
+      </ResponsiveMasonry>
 
     </div>
 
   );
 };
-
-//FUTURE PLANS:
-//add styling
-
-//NICE-TO-HAVES:
-//confirm/alert for delete -- go back to Eventonica project
-
-//LEARNED:
-  //filter method, if a entry does not have an id, don't show it
-  // setEntries((prevEntries) => prevEntries.filter((entry) => entry.entry_id !== entry_id));
     

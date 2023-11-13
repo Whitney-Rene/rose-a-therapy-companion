@@ -62,7 +62,7 @@ test('edit icon apperas for entries entry', async () => {
         <ListLatestEntries />
     </Router>);
 
-//edit icons are present
+  //edit icons are present
   await waitFor( () => {
     const editButtons = screen.getAllByTestId("EditTwoToneIcon");
     user.click(editButtons[0]);
