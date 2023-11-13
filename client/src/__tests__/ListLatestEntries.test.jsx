@@ -55,7 +55,7 @@ test('list entries on page', async () => {
 
 });
 
-test('edit icon apperas for entries entry', async () => {
+test('edit icon appears for entries entry', async () => {
   
   render(
     <Router>

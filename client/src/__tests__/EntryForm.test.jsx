@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -49,5 +49,5 @@ test('Entry component is confirming new entry for user', async () => {
     await user.type(inputElement, 'abundance mindset');
     await user.click(buttonElement);
 
-    expect(await screen.findByText(/entry submitted/i)).toBeInTheDocument();
+    expect(await screen.findByText(/entry successfully submitted/i)).toBeInTheDocument();
 });
