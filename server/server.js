@@ -60,7 +60,7 @@ app.get("/list-latest-entries/:user_id", async (req, res) => {
   try {
     const { user_id } = req.params;
     const { rows: ffentries } = await db.query(
-      "SELECT * FROM entries WHERE user_id=$1 ORDER BY entry_date DESC",
+      "SELECT * FROM entries WHERE user_id=$1 ORDER BY entry_date DESC LIMIT 8",
       [user_id]
     );
     res.send(ffentries);

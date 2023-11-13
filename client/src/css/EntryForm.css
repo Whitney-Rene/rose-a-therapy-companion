@@ -1,0 +1,72 @@
+
+.entry-form-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; 
+    width: 100%;
+    margin: 20px auto 0;
+    text-align: center;
+}
+  
+.entry-form-title {
+    font-family: cursive !important;
+    font-size: larger !important;
+    color: #444444;
+    margin-bottom: 30px !important;
+}
+  
+label {
+    display: block;
+    margin-bottom: 20px;
+    color: #444444;
+    font-family: cursive;
+}
+  
+.entry-form-date {
+    width: 48%; 
+    box-sizing: border-box; 
+    margin-bottom: 5px;
+    margin-left: 20px !important;
+    color: #444444;
+    font-family: monospace;
+}
+
+.entry-form-textarea {
+    width: 80%;
+    height: 50px;
+    overflow: auto; 
+    resize: vertical;
+    margin-left: 20px !important;
+}
+  
+.entry-form-submit-btn, .entry-form-cancel-btn {
+    width: 25%; 
+    margin-right: 4%; 
+    color: #90AACB !important;
+    border: 1px solid #90AACB !important;
+    text-align: center;
+    text-transform: lowercase !important;
+    font-family: cursive !important;
+}
+  
+.entry-form-submit-btn:hover, .entry-form-cancel-btn:hover {
+    border: 2px solid #F9D5A7 !important;
+}
+  
+.confirmation-msg, .quote {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    font-family: cursive;
+    color: #FFB085;
+    font-weight: bold;
+  }
+
+.quote {
+    color: #90AACB;
+}
+
+.star {
+    color: #F9D5A7;
+}

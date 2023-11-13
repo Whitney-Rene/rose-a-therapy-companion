@@ -1,6 +1,8 @@
 //imports from react, libraries and other files
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Typography, Button } from '@mui/material';
+import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
 import functions from '../../utils/functions';
 import '../css/EntryForm.css';
@@ -32,7 +34,7 @@ export default function EntryForm() {
             //resets input fields to blank
             event.target.reset();
 
-            setConfirmationMessage("Entry submitted")
+            setConfirmationMessage("Entry successfully submitted")
 
             const data = await functions.getRequest("/quotes");
             setQuote(data);
@@ -51,33 +53,46 @@ export default function EntryForm() {
     }
 
     return (
+
         <>
-            <h2>create a {entry_type} entry</h2>
 
-            {/* basic form for entry with sumbit and cancel button */}
-            <form onSubmit={handleSubmit}>
+            <div className='entry-form-box'>
 
-                <label>
-                    Date:
-                    <input name="date" required type='date'></input>
-                </label>
+                <Typography variant="h2" className='entry-form-title'>
+                    create a {entry_type} entry
+                </Typography>
 
-                <label>
-                    {entry_type}
-                    <textarea name="content" placeholder='type text here'required />
-                </label>
+                {/* basic form for entry with sumbit and cancel button */}
+                <form onSubmit={handleSubmit}>
 
-                <button type='submit'>Submit</button>
-    
-            </form>
+                    <label>
+                        date:   
+                        <input className="entry-form-date" name="date" required type='date'></input>
+                    </label>
 
-            <button onClick={routeHome}>Cancel</button>
+                    <label>
+                        {entry_type}:         
+                        <textarea className="entry-form-textarea" name="content" placeholder='type text here'required />
+                    </label>
 
-            {confirmationMessage}
+                    <Button className='entry-form-submit-btn' type='submit'>Submit</Button>
+        
+                </form>
 
-            {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
-            {quote && quote.affirmation}
-            
+                <Button className='entry-form-cancel-btn' onClick={routeHome}>Cancel</Button>
+                
+            </div>
+
+            <div>
+
+                <p className='confirmation-msg'>{confirmationMessage}</p>
+
+                {/* {quote} will have a truthy value with the successful api call, and falsy with unsuccessful api call} */}
+                {quote && <p className='quote'> a beautiful reminder:  '{quote.affirmation}'</p>}
+                <AutoAwesomeOutlinedIcon className='star'/>
+
+            </div>
+
         </>
     );
 };
