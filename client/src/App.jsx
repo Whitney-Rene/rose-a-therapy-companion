@@ -44,6 +44,3 @@ function App() {
 };
 
 export default App
-
-// FUTURE PLANS:
-//add styling, decide whether to delete app.css or index.css
