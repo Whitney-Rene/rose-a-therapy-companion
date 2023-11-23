@@ -85,7 +85,7 @@ app.get("/date-specific-entries/:start_date/:end_date", async (req, res) => {
   try {
     const { start_date, end_date } = req.params;
     const { rows: dsentries } = await db.query(
-      "SELECT *FROM entries WHERE entry_date BETWEEN $1 AND $2",
+      "SELECT *FROM entries WHERE entry_date BETWEEN $1 AND $2 ORDER BY entry_date ASC",
       [start_date, end_date]
     );
     res.send(dsentries);

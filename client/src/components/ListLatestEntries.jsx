@@ -61,7 +61,7 @@ export default function ListLatestEntries() {
       </Typography>
 
       <ResponsiveMasonry
-              columnsCountBreakPoints={{900: 4}}
+              columnsCountBreakPoints={{900: 4, 768: 3, 350: 1}}
       >
 
         {/* gutter is the margin surrounding each item */}
