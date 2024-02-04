@@ -6,6 +6,7 @@
   width: 100%;
   margin: 20px auto 0;
   text-align: center;
+  border-radius: 20px;
 }
 
 .request-title {
@@ -41,10 +42,11 @@
   width: 25%; 
   margin-right: 4%; 
   color: #90AACB;
-  border: 1px solid #90AACB;
+  border: 1.5px solid #90AACB;
   text-align: center;
   text-transform: lowercase;
   font-family: cursive;
+  font-weight: bolder !important;
 }
 
 .bouquet-request button:hover {

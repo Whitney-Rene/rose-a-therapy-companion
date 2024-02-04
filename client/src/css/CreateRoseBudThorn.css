@@ -4,11 +4,13 @@
     text-align: center;
     color: #FFB085;
     font-family: cursive !important;
+    font-weight: bold !important;
 }
 
 .button {
-    color: #90AACB !important;
-    border: 1px solid #90AACB !important;
+    color: #444444 !important;
+    font-weight: bolder !important;
+    border: 2px solid #90AACB !important;
     text-align: center !important;
     text-transform: lowercase !important;
     font-family: cursive !important; 
@@ -19,6 +21,7 @@
 
 .button:hover {
     border: 2px solid #F9D5A7 !important;
+    border-width: bolder !important;
 }
   
 .button-group {
@@ -30,6 +33,5 @@
 .rose-icon-crbth {
     color: #F9D5A7 !important;
     margin-right: 2px;
-   
  }
   

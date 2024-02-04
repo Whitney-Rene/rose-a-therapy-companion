@@ -1,6 +1,7 @@
 .home-link, .rab-link {
     color: #444444;
     font-family: cursive;
+    font-weight: bolder !important;
     margin-left: 12px;
     margin-right: 10px;
     text-decoration: none !important;
@@ -9,6 +10,7 @@
 .logout-link {
     color: #444444;
     font-family: cursive;
+    font-weight: bolder !important;
     float: right;
     margin-right: 10px;
     text-decoration: none !important;
@@ -16,7 +18,8 @@
 
 .home-link:hover, .rab-link:hover, .logout-link:hover {
     text-decoration: underline !important; 
-    color:#FFB085; 
+    color:#90AACB; 
+    font-weight: bolder !important;
 }
 
 
@@ -27,6 +30,7 @@
 
 .app-name {
     color: #90AACB;
+    font-weight: bolder !important;
     font-family: cursive !important;
 }
 
